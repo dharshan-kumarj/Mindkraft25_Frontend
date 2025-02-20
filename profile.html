@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('assets/images/images.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .username-tag {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .button {
+            padding: 10px;
+            background: linear-gradient(to right, #00509d, #66b2ff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <h1>Welcome</h1>
+        <p class="username-tag">User: <span id="user-tag"></span></p>
+        <button class="button" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const user = localStorage.getItem("loggedInUser");
+            if (user) {
+                document.getElementById("user-tag").textContent = user;
+            } else {
+                window.location.href = "loginpage.html";
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "loginpage.html";
+        }
+    </script>
+
+</body>
+</html>

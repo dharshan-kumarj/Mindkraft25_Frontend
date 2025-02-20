@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mindkraft 2K25</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('assets/images/images.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header img {
+            position: absolute;
+            left: 20px;
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Login Container */
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Logo Circle */
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Login Title */
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        /* Form Styles */
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input {
+            width: 90%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: white;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Checkbox Container */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .label {
+            color: white;
+            margin-left: 10px;
+        }
+
+        /* Button */
+        .button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #00509d, #66b2ff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Additional Options */
+        .additional-options {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .link {
+            color: #66b2ff;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            localStorage.setItem("loggedInUser", username);
+            window.location.href = "profile.html";
+        }
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="assets/images/karunyalogo.png" alt="Left Logo">
+        <h1 class="header-title">MINDKRAFT 2K25</h1>
+    </div>
+    <!-- Login Box -->
+    <div class="login-container">
+        <div class="logo-circle">
+            <img src="assets/images/Logo Final.png" alt="Logo" class="logo-image">
+        </div>
+        <h1 class="login-title">Login Now</h1>
+        <form class="form" onsubmit="handleLogin(event)">
+            <input type="text" id="username" placeholder="Enter your Username" required class="input">
+            <input type="password" placeholder="Enter your Password" required class="input">
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me" class="label">Remember me</label>
+            </div>
+            <button type="submit" class="button">LOGIN</button>
+        </form>
+        <!-- Additional Options -->
+        <div class="additional-options">
+            <a href="registrationpage.html" class="link">Don’t have an account?</a>
+            <a href="forgotpassword.html" class="link">Forgot password?</a>
+        </div>
+    </div>
+</body>
+</html>

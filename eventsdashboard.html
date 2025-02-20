@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: white;
+            text-align: center;
+        }
+
+        /* Events Grid */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 100px 50px 50px;
+        }
+
+        .event-tile {
+            background: rgba(34, 34, 34, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 191, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .event-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5);
+        }
+
+        .event-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-date {
+            font-size: 16px;
+            color: #00bfff;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .register-button {
+            background: #00bfff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .register-button:hover {
+            background: #008fcc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mindkraft 2K25 Events</h1>
+
+    <div class="events-container">
+        <div class="event-tile">
+            <h2 class="event-title">Hackathon</h2>
+            <p class="event-date">March 21, 2025</p>
+            <p class="event-description">A coding competition where participants solve real-world problems in teams.</p>
+            <button class="register-button">Register</button>
+        </div>
+
+        <div class="event-tile">
+            <h2 class="event-title">AI Workshop</h2>
+            <p class="event-date">March 22, 2025</p>
+            <p class="event-description">An interactive workshop on Artificial Intelligence and its latest advancements.</p>
+            <button class="register-button">Register</button>
+        </div>
+
+        <div class="event-tile">
+            <h2 class="event-title">Robotics Expo</h2>
+            <p class="event-date">March 21-22, 2025</p>
+            <p class="event-description">Showcase your innovative robotics projects and explore cutting-edge technology.</p>
+            <button class="register-button">Register</button>
+        </div>
+    </div>
+</body>
+</html>

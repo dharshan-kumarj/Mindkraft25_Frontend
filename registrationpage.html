@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Mindkraft 2K25</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('assets/images/bg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .header img:first-child {
+            position: absolute;
+            left: 20px;
+            height: 70px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            gap: 10px; /* Space between text and logo */
+        }
+
+        .header-title img {
+            height: 50px; /* Adjust logo size */
+        }
+
+        /* Container Styles */
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Centered Toggle Buttons */
+        .toggle {
+            display: flex;
+            justify-content: center; /* Center buttons horizontally */
+            margin-bottom: 20px;
+        }
+
+        /* Updated Toggle Button Style */
+        .toggle button {
+            position: relative;
+            overflow: hidden;
+            height: 3rem;
+            padding: 0 2rem;
+            border-radius: 1.5rem;
+            background: #3d3a4e;
+            background-size: 400%;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 10px; /* Space between buttons */
+        }
+
+        .toggle button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .toggle button .button-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .toggle button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: 0 50%;
+            width: 100%;
+            height: inherit;
+            border-radius: inherit;
+            background: linear-gradient(
+                82.3deg,
+                rgba(150, 93, 233, 1) 10.8%,
+                rgba(99, 88, 238, 1) 94.3%
+            );
+            transition: all 0.475s;
+        }
+
+        /* Form Styles */
+        .form {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 45%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Updated Submit Button Style */
+        .btn {
+            --fancy-button-gradient-0: #8d49fd;
+            --fancy-button-gradient-50: #7f56f3;
+            --fancy-button-gradient-100: #5691f3;
+            --fancy-button-inner-shadow-top: rgba(233, 209, 255, 0.2);
+            --fancy-button-inner-shadow-top-lg: rgba(9, 12, 60, 0.1);
+            --fancy-button-inner-shadow-bottom: rgba(137, 222, 246, 0.3);
+            --fancy-button-shine-top: #e9d1ff;
+            --fancy-button-shine-bottom: #adfff9;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 21px;
+            text-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.2);
+            padding: 0;
+            margin: 0;
+            appearance: none;
+            border: none;
+            outline: none;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 25px;
+            color: #fff;
+            background-image: linear-gradient(
+                to bottom,
+                var(--fancy-button-gradient-0) 0%,
+                var(--fancy-button-gradient-50) 50%,
+                var(--fancy-button-gradient-100) 100%
+            );
+            box-shadow:
+                0px 4px 12px rgba(9, 12, 60, 0.15),
+                0px 2px 8px rgba(9, 12, 60, 0.15),
+                0px 1px 3px var(--fancy-button-inner-shadow-top-lg),
+                inset 0px 1px 1px var(--fancy-button-inner-shadow-top),
+                inset 0px -1px 3px var(--fancy-button-inner-shadow-bottom);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:before,
+        .btn:after {
+            content: "";
+            position: absolute;
+            border-radius: inherit;
+            will-change: transform;
+        }
+
+        .btn:before {
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--fancy-button-shine-top);
+            width: 96px;
+            height: 6px;
+            top: -3px;
+            opacity: 0.6;
+            filter: blur(6px);
+            transition: opacity 0.25s;
+        }
+
+        .btn:after {
+            inset: 0;
+            background-size: cover;
+            z-index: 2;
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .btn span {
+            display: block;
+            padding: 12px 24px;
+            border-radius: inherit;
+            overflow: hidden;
+            position: relative;
+            background-image: linear-gradient(
+                to bottom,
+                var(--fancy-button-shine-top),
+                transparent 8px
+            );
+            background-position: 0 -6px;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .btn span:before,
+        .btn span:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background-color: var(--fancy-button-shine-bottom);
+            transition:
+                opacity 0.25s,
+                transform 0.25s;
+            will-change: transform;
+        }
+
+        .btn span:before {
+            width: 92px;
+            height: 8px;
+            bottom: -4px;
+            opacity: 0.75;
+            filter: blur(6px);
+        }
+
+        .btn span:after {
+            width: 112px;
+            height: 1px;
+            bottom: 0;
+            opacity: 0.9;
+            filter: blur(1px);
+        }
+
+        .btn:hover span:before {
+            opacity: 0.8;
+        }
+
+        .btn:hover span:before {
+            transform: translateX(-50%) scale(1.25);
+        }
+
+        .btn:hover span:after {
+            opacity: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="assets/images/karunyalogo.png" alt="Left Logo">
+        <div class="header-title">
+            <span>MINDKRAFT 2K25</span>
+            <img src="assets/images/Logo Final.png" alt="Logo Final">
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Toggle Buttons -->
+        <div class="toggle">
+            <button id="internal-btn" class="active">
+                <span class="button-content">Internal Students</span>
+            </button>
+            <button id="external-btn">
+                <span class="button-content">External Students</span>
+            </button>
+        </div>
+
+        <!-- Forms -->
+        <form id="internal-form" class="form">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="register-number">Register Number</label>
+                <input type="text" id="register-number" placeholder="Enter your register number" required>
+            </div>
+            <div class="form-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" id="phone-number" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="mail-id">Mail ID</label>
+                <input type="email" id="mail-id" placeholder="Enter your mail ID" required>
+            </div>
+            <div class="form-group">
+                <label for="program">Program</label>
+                <select id="program">
+                    <option value="">Select Program</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="mtech">M.Tech</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="course">Course</label>
+                <select id="course">
+                    <option value="">Select Course</option>
+                    <optgroup label="B.Tech">
+                        <option value="aerospace">B.Tech Aerospace Engineering</option>
+                        <option value="ai-data-science">B.Tech Artificial Intelligence and Data Science</option>
+                        <option value="biomedical">B.Tech Biomedical Engineering</option>
+                        <option value="biomedical-ai-ml">B.Tech Biomedical Engineering (Specialization in Artificial Intelligence and Machine Learning)</option>
+                        <option value="biomedical-data-science">B.Tech Biomedical Engineering (Specialization in Data Science)</option>
+                        <option value="biotechnology">B.Tech Biotechnology</option>
+                        <option value="biotech-drug-eng">B.Tech Biotechnology (Specialization in Drug Engineering)</option>
+                        <option value="biotech-genome-eng">B.Tech Biotechnology (Specialization in Genome Engineering and Technology)</option>
+                        <option value="biotech-precision-health">B.Tech Biotechnology (Specialization in Precision Health Technology)</option>
+                        <option value="civil">B.Tech Civil Engineering</option>
+                        <option value="computer-eng">B.Tech Computer Engineering</option>
+                        <option value="cse">B.Tech Computer Science and Engineering</option>
+                        <option value="cse-cyber-security">B.Tech Computer Science and Engineering (Specialization in Cyber Security)</option>
+                        <option value="cse-ai">B.Tech Computer Science and Engineering (Specialization in Artificial Intelligence)</option>
+                        <option value="cse-data-analytics">B.Tech Computer Science and Engineering (Specialization in Data Analytics)</option>
+                        <option value="cse-ai-ml">B.Tech Computer Science and Engineering (Specialization in Artificial Intelligence & Machine Learning)</option>
+                        <option value="ece">B.Tech Electronics and Communication Engineering</option>
+                        <option value="ece-ai">B.Tech Electronics and Communication Engineering (Specialization in Artificial Intelligence)</option>
+                        <option value="ece-iot">B.Tech Electronics and Communication Engineering (Specialization in IoT)</option>
+                        <option value="ece-computer">B.Tech Electronics and Computer Engineering</option>
+                        <option value="ece-computer-ai-ds">B.Tech Electronics and Computer Engineering (Specialization in Artificial Intelligence and Data Science)</option>
+                        <option value="ece-computer-ds">B.Tech Electronics and Computer Engineering (Specialization in Data Science)</option>
+                        <option value="food-processing">B.Tech Food Processing and Engineering</option>
+                        <option value="food-processing-iot">B.Tech Food Processing and Engineering (Specialization in IoT)</option>
+                        <option value="mechanical">B.Tech Mechanical Engineering</option>
+                        <option value="mechanical-3d-printing">B.Tech Mechanical Engineering (Specialization in 3D Printing)</option>
+                        <option value="mechanical-ev">B.Tech Mechanical Engineering (Specialization in Electric Vehicles)</option>
+                        <option value="robotics">B.Tech Robotics and Automation</option>
+                        <option value="robotics-ai">B.Tech Robotics and Automation (Specialization in Artificial Intelligence)</option>
+                    </optgroup>
+                    <optgroup label="B.A.">
+                        <option value="criminology">B.A. Criminology</option>
+                    </optgroup>
+                    <optgroup label="B.B.A.">
+                        <option value="bba">B.B.A.</option>
+                    </optgroup>
+                    <optgroup label="B.Com.">
+                        <option value="bcom">B.Com.</option>
+                        <option value="bcom-banking">B.Com. Banking and Capital Markets</option>
+                        <option value="bcom-fintech">B.Com. Financial Technologies</option>
+                    </optgroup>
+                    <optgroup label="B.Sc.">
+                        <option value="bsc-cs-ai">B.Sc. Computer Science (Specialization in Artificial Intelligence)</option>
+                        <option value="bsc-cs-ds">B.Sc. Computer Science (Specialization in Data Science and Analytics)</option>
+                        <option value="bsc-infosec">B.Sc. Information Security and Digital Forensics</option>
+                        <option value="bsc-forensic">B.Sc. Forensic Science</option>
+                        <option value="bsc-optometry">B.Sc. Optometry</option>
+                        <option value="bsc-visual-comm">B.Sc. Visual Communication (Specialization in Multimedia and Animation)</option>
+                    </optgroup>
+                    <optgroup label="M.Tech.">
+                        <option value="mtech-advanced-manu">M.Tech. Advanced Manufacturing Technology</option>
+                        <option value="mtech-aerospace">M.Tech. Aerospace Engineering</option>
+                        <option value="mtech-biomedical-instr">M.Tech. Biomedical Instrumentation</option>
+                        <option value="mtech-biotech">M.Tech. Biotechnology</option>
+                        <option value="mtech-comm-sys">M.Tech. Communication Systems</option>
+                        <option value="mtech-cse">M.Tech. Computer Science and Engineering</option>
+                        <option value="mtech-cse-ai-ds">M.Tech. Computer Science and Engineering (Specialization in Artificial Intelligence and Data Science)</option>
+                        <option value="mtech-cyber-security">M.Tech. Cyber Security</option>
+                        <option value="mtech-env-water">M.Tech. Environment and Water Resources Engineering</option>
+                        <option value="mtech-food-processing">M.Tech. Food Processing and Engineering</option>
+                        <option value="mtech-robotics">M.Tech. Robotics and Automation</option>
+                        <option value="mtech-structural">M.Tech. Structural Engineering</option>
+                        <option value="mtech-vlsi">M.Tech. VLSI Design</option>
+                    </optgroup>
+                    <optgroup label="M.B.A.">
+                        <option value="mba">M.B.A.</option>
+                    </optgroup>
+                    <optgroup label="M.Sc.">
+                        <option value="msc-agri-agronomy">M.Sc. Agriculture (Specialization in Agronomy)</option>
+                        <option value="msc-agri-plant-breeding">M.Sc. Agriculture (Specialization in Plant Breeding and Genetics)</option>
+                        <option value="msc-horticulture">M.Sc. Horticulture</option>
+                        <option value="msc-biotech">M.Sc. Biotechnology</option>
+                        <option value="msc-chemistry">M.Sc. Chemistry</option>
+                        <option value="msc-forensic">M.Sc. Forensic Science</option>
+                        <option value="msc-food-sci">M.Sc. Food Science and Technology</option>
+                        <option value="msc-physics">M.Sc. Physics</option>
+                    </optgroup>
+                    <optgroup label="Ph.D.">
+                        <option value="phd">Ph.D. (Engineering / Management / Sciences / Arts)</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year">
+                    <option value="">Select Year</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="btn">
+                <span>SUBMIT</span>
+            </button>
+        </form>
+
+        <form id="external-form" class="form hidden">
+            <div class="form-group">
+                <label for="ext-first-name">First Name</label>
+                <input type="text" id="ext-first-name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-last-name">Last Name</label>
+                <input type="text" id="ext-last-name" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-phone-number">Phone Number</label>
+                <input type="tel" id="ext-phone-number" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-mail-id">Mail ID</label>
+                <input type="email" id="ext-mail-id" placeholder="Enter your mail ID" required>
+            </div>
+            <div class="form-group">
+                <label for="college-name">College Name</label>
+                <input type="text" id="college-name" placeholder="Enter your college name" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-program">Program</label>
+                <select id="ext-program">
+                    <option value="">Select Program</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="mtech">M.Tech</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ext-course">Course</label>
+                <input type="text" id="ext-course" placeholder="Enter your course" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-year">Year</label>
+                <select id="ext-year">
+                    <option value="">Select Year</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ext-password">Password</label>
+                <input type="password" id="ext-password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="ext-confirm-password">Confirm Password</label>
+                <input type="password" id="ext-confirm-password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="btn">
+                <span>SUBMIT</span>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const internalBtn = document.getElementById('internal-btn');
+        const externalBtn = document.getElementById('external-btn');
+        const internalForm = document.getElementById('internal-form');
+        const externalForm = document.getElementById('external-form');
+
+        internalBtn.addEventListener('click', () => {
+            internalForm.classList.remove('hidden');
+            externalForm.classList.add('hidden');
+            internalBtn.classList.add('active');
+            externalBtn.classList.remove('active');
+        });
+
+        externalBtn.addEventListener('click', () => {
+            externalForm.classList.remove('hidden');
+            internalForm.classList.add('hidden');
+            externalBtn.classList.add('active');
+            internalBtn.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
