@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -13,7 +14,6 @@
             text-align: center;
         }
 
-        /* Events Grid */
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -52,6 +52,13 @@
             margin-bottom: 15px;
         }
 
+        .event-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
+
         .register-button {
             background: #00bfff;
             color: white;
@@ -72,27 +79,42 @@
 <body>
     <h1>Mindkraft 2K25 Events</h1>
 
-    <div class="events-container">
-        <div class="event-tile">
-            <h2 class="event-title">Hackathon</h2>
-            <p class="event-date">March 21, 2025</p>
-            <p class="event-description">A coding competition where participants solve real-world problems in teams.</p>
-            <button class="register-button">Register</button>
-        </div>
-
-        <div class="event-tile">
-            <h2 class="event-title">AI Workshop</h2>
-            <p class="event-date">March 22, 2025</p>
-            <p class="event-description">An interactive workshop on Artificial Intelligence and its latest advancements.</p>
-            <button class="register-button">Register</button>
-        </div>
-
-        <div class="event-tile">
-            <h2 class="event-title">Robotics Expo</h2>
-            <p class="event-date">March 21-22, 2025</p>
-            <p class="event-description">Showcase your innovative robotics projects and explore cutting-edge technology.</p>
-            <button class="register-button">Register</button>
-        </div>
+    <div class="events-container" id="events-container">
+        <p>Loading events...</p>
     </div>
+
+    <script>
+        async function fetchEvents() {
+            try {
+                const response = await axios.get("https://mindkraft25.onrender.com/api/events/");
+                const events = response.data.data; // Extracting the "data" array
+                const eventsContainer = document.getElementById("events-container");
+                eventsContainer.innerHTML = ""; // Clear loading text
+                
+                events.forEach(event => {
+                    const eventTile = document.createElement("div");
+                    eventTile.classList.add("event-tile");
+
+                    eventTile.innerHTML = `
+                        <h2 class="event-title">${event.eventname}</h2>
+                        <p class="event-date">
+                            ${new Date(event.start_time).toLocaleString()} - 
+                            ${new Date(event.end_time).toLocaleString()}
+                        </p>
+                        <p class="event-description">${event.description}</p>
+                        <p class="event-price">Entry Fee: ₹${event.price} | Limit: ${event.participation_strength_setlimit} participants</p>
+                        <button class="register-button">Register</button>
+                    `;
+
+                    eventsContainer.appendChild(eventTile);
+                });
+            } catch (error) {
+                console.error("Error fetching events:", error);
+                document.getElementById("events-container").innerHTML = "<p>Failed to load events.</p>";
+            }
+        }
+
+        fetchEvents();
+    </script>
 </body>
 </html>
