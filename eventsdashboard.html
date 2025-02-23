@@ -86,7 +86,7 @@
     <script>
         async function fetchEvents() {
             try {
-                const response = await axios.get("https://mindkraft25.onrender.com/api/events/");
+                const response = await axios.get("https://mindkraft25-backend.onrender.com/api/events/");
                 const events = response.data.data; // Extracting the "data" array
                 const eventsContainer = document.getElementById("events-container");
                 eventsContainer.innerHTML = ""; // Clear loading text
