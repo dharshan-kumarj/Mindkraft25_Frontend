@@ -160,13 +160,54 @@
         .link:hover {
             text-decoration: underline;
         }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
     <script>
-        function handleLogin(event) {
+        async function handleLogin(event) {
             event.preventDefault();
-            let username = document.getElementById("username").value;
-            localStorage.setItem("loggedInUser", username);
-            window.location.href = "profile.html";
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            // API Endpoint
+            const apiUrl = "https://mindkraft25-backend.onrender.com/user/login/";
+
+            // Request payload
+            const payload = { email, password };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store token (if needed)
+                    localStorage.setItem("accessToken", data.access);
+
+                    // Redirect to events dashboard
+                    window.location.href = "eventpage.html";
+                } else {
+                    errorMessage.textContent = data.message || "Invalid email or password!";
+                    errorMessage.style.display = "block";
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                errorMessage.textContent = "Something went wrong! Please try again.";
+                errorMessage.style.display = "block";
+            }
         }
     </script>
 </head>
@@ -176,6 +217,7 @@
         <img src="assets/images/karunyalogo.png" alt="Left Logo">
         <h1 class="header-title">MINDKRAFT 2K25</h1>
     </div>
+
     <!-- Login Box -->
     <div class="login-container">
         <div class="logo-circle">
@@ -183,14 +225,16 @@
         </div>
         <h1 class="login-title">Login Now</h1>
         <form class="form" onsubmit="handleLogin(event)">
-            <input type="text" id="username" placeholder="Enter your Username" required class="input">
-            <input type="password" placeholder="Enter your Password" required class="input">
+            <input type="email" id="email" placeholder="Enter your Email" required class="input">
+            <input type="password" id="password" placeholder="Enter your Password" required class="input">
             <div class="checkbox-container">
                 <input type="checkbox" id="remember-me">
                 <label for="remember-me" class="label">Remember me</label>
             </div>
             <button type="submit" class="button">LOGIN</button>
+            <p id="error-message" class="error-message"></p>
         </form>
+
         <!-- Additional Options -->
         <div class="additional-options">
             <a href="registrationpage.html" class="link">Don’t have an account?</a>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Initialize state
+    let currentImage = 0;
+    let quantity = 1;
+    const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"];
+
+    const images = [
+      "/placeholder.svg?height=600&width=600",
+      "/placeholder.svg?height=600&width=600",
+      "/placeholder.svg?height=600&width=600",
+      "/placeholder.svg?height=600&width=600",
+    ];
+
+    // Function to handle previous image
+    function handlePrevious() {
+      currentImage = currentImage === 0 ? images.length - 1 : currentImage - 1;
+      updateImage();
+    }
+
+    // Function to handle next image
+    function handleNext() {
+      currentImage = currentImage === images.length - 1 ? 0 : currentImage + 1;
+      updateImage();
+    }
+
+    // Function to update the displayed image
+    function updateImage() {
+      const mainImage = document.getElementById("main-image");
+      mainImage.src = images[currentImage];
+      updateThumbnails();
+    }
+
+    // Function to update thumbnail borders
+    function updateThumbnails() {
+      const thumbnails = document.querySelectorAll(".thumbnail");
+      thumbnails.forEach((thumbnail, index) => {
+        if (index === currentImage) {
+          thumbnail.classList.add("border-blue-600");
+          thumbnail.classList.remove("border-transparent");
+        } else {
+          thumbnail.classList.remove("border-blue-600");
+          thumbnail.classList.add("border-transparent");
+        }
+      });
+    }
+
+    // Function to decrement quantity
+    function decrementQuantity() {
+      if (quantity > 1) {
+        quantity--;
+        updateQuantity();
+      }
+    }
+
+    // Function to increment quantity
+    function incrementQuantity() {
+      if (quantity < 9) {
+        quantity++;
+        updateQuantity();
+      }
+    }
+
+    // Function to update quantity display
+    function updateQuantity() {
+      const quantityDisplay = document.getElementById("quantity-display");
+      quantityDisplay.textContent = quantity;
+      updateSubtotal();
+    }
+
+    // Function to update subtotal
+    function updateSubtotal() {
+      const subtotalDisplay = document.getElementById("subtotal");
+      subtotalDisplay.textContent = `₹${(999 * quantity).toLocaleString()}`;
+    }
+
+    // Function to render size options
+    function renderSizeOptions() {
+      const sizeContainer = document.getElementById("size-options");
+      sizeContainer.innerHTML = sizes
+        .map(
+          (size) => `
+          <label
+            for="size-${size.toLowerCase()}"
+            class="flex cursor-pointer items-center justify-center rounded-md border py-2 hover:border-blue-600"
+          >
+            <input
+              type="radio"
+              name="size"
+              id="size-${size.toLowerCase()}"
+              value="${size}"
+              class="sr-only"
+            />
+            ${size}
+          </label>
+        `
+        )
+        .join("");
+    }
+
+    // Initialize the page
+    document.addEventListener("DOMContentLoaded", () => {
+      updateImage();
+      updateQuantity();
+      renderSizeOptions();
+    });
+  </script>
+</head>
+<body class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-2">
+      <!-- Image Gallery -->
+      <div class="relative">
+        <div class="relative aspect-square overflow-hidden rounded-lg">
+          <img
+            id="main-image"
+            src="/placeholder.svg?height=600&width=600"
+            alt="T-shirt view"
+            class="object-cover w-full h-full"
+          />
+          <div class="absolute inset-0 flex items-center justify-between p-4">
+            <button
+              onclick="handlePrevious()"
+              class="h-8 w-8 rounded-full bg-white/70 hover:bg-white/90 flex items-center justify-center"
+            >
+              &lt;
+            </button>
+            <button
+              onclick="handleNext()"
+              class="h-8 w-8 rounded-full bg-white/70 hover:bg-white/90 flex items-center justify-center"
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
+        <div class="mt-4 grid grid-cols-4 gap-4">
+          <!-- Thumbnails -->
+          ${images
+            .map(
+              (image, index) => `
+              <button
+              onclick="currentImage = " + index + "; updateImage();"
+              class="relative aspect-square overflow-hidden rounded-lg border-2 " + 
+              (index === currentImage ? 'border-blue-600' : 'border-transparent') + 
+              " thumbnail">
+
+                <img src="${image}" alt="T-shirt thumbnail" class="object-cover w-full h-full" />
+              </button>
+            `
+            )
+            .join("")}
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="flex flex-col gap-6">
+        <div>
+          <h1 class="text-3xl font-bold">Premium Cotton T-Shirt</h1>
+          <p class="mt-2 text-xl font-semibold text-blue-600">₹999</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Size Selection -->
+          <div>
+            <label for="size" class="text-base font-semibold">Select Size</label>
+            <div class="mt-2 grid grid-cols-4 gap-2" id="size-options"></div>
+          </div>
+
+          <!-- Quantity Selection -->
+          <div>
+            <label for="quantity" class="text-base font-semibold">Quantity</label>
+            <div class="mt-2 flex items-center gap-4">
+              <button
+                onclick="decrementQuantity()"
+                class="h-8 w-8 flex items-center justify-center border rounded-md"
+              >
+                -
+              </button>
+              <span id="quantity-display" class="w-12 text-center text-lg">1</span>
+              <button
+                onclick="incrementQuantity()"
+                class="h-8 w-8 flex items-center justify-center border rounded-md"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtotal -->
+        <div class="space-y-4 rounded-lg bg-gray-100 p-4">
+          <div class="flex items-center justify-between text-lg">
+            <span>Subtotal</span>
+            <span id="subtotal" class="font-semibold">₹999</span>
+          </div>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button class="w-full bg-blue-600 text-white py-2 rounded-md">Add to Cart</button>
+
+        <!-- Product Details -->
+        <div class="space-y-4">
+          <h2 class="text-lg font-semibold">Product Details</h2>
+          <ul class="list-inside list-disc space-y-2 text-gray-600">
+            <li>100% Premium Cotton</li>
+            <li>Pre-shrunk fabric</li>
+            <li>Shoulder-to-shoulder taping</li>
+            <li>Quarter-turned to avoid crease down the middle</li>
+            <li>Double-needle sleeve and bottom hems</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Cart</title>
+    <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('assets/images/bg.png') no-repeat center center fixed; /* Background Image */
+            background-size: cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header .left-logo { 
+            position: absolute;
+            left: 1%;
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px; 
+        }
+
+        .header-title-container { 
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0; 
+        }
+
+        .header .right-logo { 
+            position: absolute;
+            right: 1%;
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-left: 10px; 
+        }
+
+        /* Event Cart Container */
+        .event-cart-container {
+            max-width: 800px; /* Maximum width */
+            width: 90%; /* Responsive width */
+            background-color: rgba(36, 47, 65, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 80px auto 20px; /* Adjusted margin to bring it up */
+        }
+
+        /* Cart Total Container */
+        .cart-total-container {
+            max-width: 800px; /* Maximum width */
+            width: 90%; /* Responsive width */
+            background-color: rgba(36, 47, 65, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        /* Title Style */
+        .cart-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+            text-align: left;
+        }
+
+        /* Cart Total Content */
+        .cart-total-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Total Label */
+        .total-label {
+            font-size: 16px;
+            color: #cbd5e1;
+        }
+
+        /* Total Amount */
+        #cart-total {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Proceed Button */
+        .proceed-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #7952B3; /* Mindkraft button gradient */
+            border: none;
+            border-radius: 10px; /* More rounded button */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 15px rgba(101, 176, 255, 0.3);
+        }
+
+        .proceed-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Cart Items (Dynamic content) */
+        #cart-items {
+            /* Styles for individual cart items will be added here via JS */
+        }
+
+        /* Specific style for the label and amount */
+        .cart-total-content p {
+            font-size: 14px; /* Adjust as needed */
+            color: #cbd5e1; /* Adjust as needed */
+        }
+
+        /* Style for "Proceed to Payment" button */
+        .proceed-button {
+            background-color: #7952B3; /* Adjust as needed */
+            color: white; /* Adjust as needed */
+            /* Other styles */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="assets/images/karunyalogo.png" alt="Left Logo" class="left-logo">
+        <div class="header-title-container">
+            <h1 class="header-title">MINDKRAFT 2K25</h1>
+            <img src="assets/images/Logo Final.png" alt="Right Logo" class="right-logo">
+        </div>
+    </div>
+
+    <!-- Event Cart Container -->
+    <div class="event-cart-container">
+        <h2 class="cart-title">Your Events</h2>
+        <div id="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Cart Total Container -->
+    <div class="cart-total-container">
+        <h2 class="cart-title">Cart Total</h2>
+        <div class="cart-total-content">
+            <p class="total-label">Total</p>
+            <p id="cart-total">₹0</p>
+        </div>
+        <button class="proceed-button">Proceed to Payment</button>
+    </div>
+
+    <script>
+        // Function to display cart items
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+
+            // Clear existing cart items
+            cartItemsContainer.innerHTML = '';
+
+            // Calculate total price
+            let total = 0;
+
+            // Add each event to the cart display
+            cart.forEach((event, index) => {
+                const eventDiv = document.createElement('div');
+                eventDiv.style.marginBottom = '10px'; // Add spacing between items
+                eventDiv.style.padding = '10px';
+                eventDiv.style.backgroundColor = 'rgba(58, 75, 99, 0.5)'; // Semi-transparent item background
+                eventDiv.style.borderRadius = '10px';
+                eventDiv.style.display = 'flex'; // Use flexbox for layout
+                eventDiv.style.justifyContent = 'space-between'; // Space out title, price, and delete button
+                eventDiv.style.alignItems = 'center'; // Center items vertically
+                eventDiv.style.color = '#cbd5e1'; // Light text color
+
+                // Event title and price
+                const eventInfo = document.createElement('div');
+                eventInfo.innerHTML = `
+                    <h3 style="margin: 0;">${event.title}</h3>
+                    <p style="margin: 0;">${event.price}</p> <!-- Add ₹ symbol here -->
+                `;
+
+                // Delete button
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.style.padding = '5px 10px';
+                deleteButton.style.backgroundColor = '#ff4d4d'; // Red color for delete button
+                deleteButton.style.color = 'white';
+                deleteButton.style.border = 'none';
+                deleteButton.style.borderRadius = '5px';
+                deleteButton.style.cursor = 'pointer';
+                deleteButton.style.transition = 'background-color 0.3s ease';
+
+                // Add hover effect to delete button
+                deleteButton.addEventListener('mouseenter', () => {
+                    deleteButton.style.backgroundColor = '#cc0000'; // Darker red on hover
+                });
+                deleteButton.addEventListener('mouseleave', () => {
+                    deleteButton.style.backgroundColor = '#ff4d4d'; // Original color on mouse leave
+                });
+
+                // Delete button functionality
+                deleteButton.addEventListener('click', () => {
+                    cart.splice(index, 1); // Remove the event from the cart
+                    localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+                    displayCart(); // Refresh the cart display
+                });
+
+                // Append elements to the eventDiv
+                eventDiv.appendChild(eventInfo);
+                eventDiv.appendChild(deleteButton);
+
+                // Append the eventDiv to the cart container
+                cartItemsContainer.appendChild(eventDiv);
+
+                // Add the event price to the total
+                total += parseInt(event.price, 10); // Ensure price is a number
+            });
+
+            // Update the total price
+            cartTotalElement.textContent = `₹${total}`; // Add ₹ symbol here
+        }
+
+        // Display the cart when the page loads
+        displayCart();
+    </script>
+</body>
+</html>
