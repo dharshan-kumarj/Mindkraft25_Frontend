@@ -147,14 +147,14 @@
     .event-tile {
       width: 350px; /* Fixed width */
       height: 250px; /* Fixed height */
-      background-color: rgba(30, 41, 59, 0.5); /* Translucent background */
+      background-color: rgba(30, 41, 59, 极客时间 0.5); /* Translucent background */
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       padding: 16px;
-      display: flex;
+      display:极客时间 flex;
       flex-direction: column;
       justify-content: space-between;
       border: 2px solid rgba(255, 255, 255, 0.1); /* Light border for visibility */
@@ -214,7 +214,7 @@
     .register-button:hover {
       background: linear-gradient(45deg, #7952B3, #4b10a4); /* Reverse gradient on hover */
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 0, 极客时间 0, 0.3);
     }
 
     .register-button:active {
@@ -281,6 +281,17 @@
       margin: 8px 0;
       color: #f8fafc; /* Light text */
     }
+
+    /* Loading Spinner */
+    .loading-spinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #f8fafc;
+    }
   </style>
 </head>
 <body>
@@ -293,11 +304,26 @@
   <div class="side-nav">
     <ul>
       <li class="active" onclick="filterEvents('all')">All Departments</li>
-      <li onclick="filterEvents('Tech')">Tech</li>
-      <li onclick="filterEvents('Sports')">Sports</li>
-      <li onclick="filterEvents('Art')">Art</li>
-      <li onclick="filterEvents('Music')">Music</li>
-      <li onclick="filterEvents('Entertainment')">Entertainment</li>
+      <li onclick="filterEvents('Physical Sciences')">Physical Sciences</li>
+      <li onclick="filterEvents('AIML')">AIML</li>
+      <li onclick="filterEvents('Physical Science')">Physical Science</li>
+      <li onclick="filterEvents('Physical Science (Chemistry)')">Physical Science (Chemistry)</li>
+      <li onclick="filterEvents('Food Processing Technology')">Food Processing Technology</li>
+      <li onclick="filterEvents('Karunya School of Management')">Karunya School of Management</li>
+      <li onclick="filterEvents('Computer Science and Engineering')">Computer Science and Engineering</li>
+      <li onclick="filterEvents('English')">English</li>
+      <li onclick="filterEvents('Civil Engineering')">Civil Engineering</li>
+      <li onclick="filterEvents('Commerce and International Trade')">Commerce and International Trade</li>
+      <li onclick="filterEvents('Data Science and Cyber Security')">Data Science and Cyber Security</li>
+      <li onclick="filterEvents('MECHANICAL')">MECHANICAL</li>
+      <li onclick="filterEvents('MEDIA')">MEDIA</li>
+      <li onclick="filterEvents('Mechanical')">Mechanical</li>
+      <li onclick="filterEvents('Robotics Engineering')">Robotics Engineering</li>
+      <li onclick="filterEvents('Biomedical Engineering')">Biomedical Engineering</li>
+      <li onclick="filterEvents('Division of Criminology and Forensic Science')">Division of Criminology and Forensic Science</li>
+      <li onclick="filterEvents('Digital Sciences')">Digital Sciences</li>
+      <li onclick="filterEvents('Aerospace Engineering')">Aerospace Engineering</li>
+      <li onclick="filterEvents('Division of Civil Engineering')">Division of Civil Engineering</li>
     </ul>
   </div>
 
@@ -333,6 +359,11 @@
     </div>
   </div>
 
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" id="loading-spinner">
+    <i class="fas fa-spinner fa-spin"></i>
+  </div>
+
   <script>
     // Function to toggle the side navigation bar
     function toggleSideNav() {
@@ -342,51 +373,56 @@
       eventContainer.classList.toggle('side-nav-open');
     }
 
-    // Sample data for 10 events
-    // const events = Array.from({ length: 10 }, (_, i) => ({
-    //   id: i + 1,
-    //   title: `Event ${i + 1}`,
-    //   date: `2023-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
-    //   time: `${Math.floor(Math.random() * 12) + 1}:00 ${Math.random() > 0.5 ? 'PM' : 'AM'}`,
-    //   seats: Math.floor(Math.random() * 500) + 50,
-    //   location: `Venue ${i + 1}`,
-    //   category: ['Entertainment', 'Music', 'Art', 'Sports', 'Tech'][Math.floor(Math.random() * 5)],
-    //   price: `₹${Math.floor(Math.random() * 1000) + 100}`,
-    //   registrationLink: `https://www.event${i + 1}.com`,
-    //   description: `This is a detailed description of Event ${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    //   prizes: `1st Prize: ₹10,000, 2nd Prize: ₹5,000, 3rd Prize: ₹2,000`,
-    //   studentCoordinator: `Student ${i + 1}`,
-    //   staffCoordinator: `Staff ${i + 1}`,
-    //   contactNumber: `+91 98765${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
-    // }));
+    // Fetch events from the API
+    async function fetchEvents(filter = 'all') {
+      const loadingSpinner = document.getElementById('loading-spinner');
+      loadingSpinner.style.display = 'block';
+
+      try {
+        let url = 'https://mindkraft25-backend.onrender.com/api/events/';
+        if (filter !== 'all') {
+          url = `https://mindkraft25-backend.onrender.com/api/events/filter/?division=${encodeURIComponent(filter)}`;
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+          generateEventTiles(data.data);
+        } else {
+          alert('Failed to fetch events');
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        alert('An error occurred while fetching events.');
+      } finally {
+        loadingSpinner.style.display = 'none';
+      }
+    }
 
     // Function to generate event tiles
-    function generateEventTiles(filter = 'all') {
+    function generateEventTiles(events) {
       const container = document.querySelector('.event-container');
       container.innerHTML = ''; // Clear existing tiles
 
-      const filteredEvents = filter === 'all' ? events : events.filter(event => event.category === filter);
-
-      filteredEvents.forEach(event => {
+      events.forEach(event => {
         const eventTile = document.createElement('div');
         eventTile.className = 'event-tile';
 
         eventTile.innerHTML = `
           <div class="details">
-            <h2>${event.title}</h2>
+            <h2>${event.eventname}</h2>
             <div class="chips">
-              <span><i class="fas fa-calendar-alt"></i> ${event.date}</span>
-              <span><i class="fas fa-clock"></i> ${event.time}</span>
-              <span><i class="fas fa-users"></i> ${event.seats} Seats</span>
-              <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
-              <span><i class="fas fa-tag"></i> ${event.category}</span>
-              <span><i class="fas fa-rupee-sign"></i> ${event.price}</span>
+              <span><i class="fas fa-calendar-alt"></i> ${formatDate(event.start_time)}</span>
+              <span><i class="fas fa-clock"></i> ${formatTime(event.start_time)} - ${formatTime(event.end_time)}</span>
+              <span><i class="fas fa-users"></i> ${event.participation_strength_setlimit} Seats</span>
+              <span><i class="fas fa-tag"></i> ${event.category_name}</span>
+              <span><i class="fas fa-rupee-sign"></i> ₹${event.price}</span>
             </div>
           </div>
           <button class="register-button" onclick="showEventDetails('${event.eventid}')">
             Register Now
           </button>
-
         `;
 
         container.appendChild(eventTile);
@@ -394,58 +430,46 @@
     }
 
     // Function to filter events by department
-    // Function to generate event tiles
-function generateEventTiles(events, filter = 'all') {
-  const container = document.querySelector('.event-container');
-  container.innerHTML = ''; // Clear existing tiles
-
-  const filteredEvents = filter === 'all' ? events : events.filter(event => event.category_name === filter);
-
-  filteredEvents.forEach(event => {
-    const eventTile = document.createElement('div');
-    eventTile.className = 'event-tile';
-
-    eventTile.innerHTML = `
-      <div class="details">
-        <h2>${event.eventname}</h2>
-        <div class="chips">
-          <span><i class="fas fa-calendar-alt"></i> ${formatDate(event.start_time)}</span>
-          <span><i class="fas fa-clock"></i> ${formatTime(event.start_time)} - ${formatTime(event.end_time)}</span>
-          <span><i class="fas fa-users"></i> ${event.participation_strength_setlimit} Seats</span>
-          <span><i class="fas fa-tag"></i> ${event.category_name}</span>
-          <span><i class="fas fa-rupee-sign"></i> ₹${event.price}</span>
-        </div>
-      </div>
-      <button class="register-button" onclick="showEventDetails('${event.eventid}')">
-        Register Now
-      </button>
-    `;
-
-    container.appendChild(eventTile);
-  });
-}
-
+    function filterEvents(department) {
+      fetchEvents(department);
+      // Update active state in the side nav
+      const navItems = document.querySelectorAll('.side-nav ul li');
+      navItems.forEach(item => item.classList.remove('active'));
+      const activeItem = Array.from(navItems).find(item => item.textContent.includes(department));
+      if (activeItem) activeItem.classList.add('active');
+    }
 
     // Function to show event details
-    // Function to show event details
-function showEventDetails(eventId) {
-  // Find event by ID
-  const event = events.find(e => e.eventid === eventId);
-  if (event) {
-    // Update the details section with the event data
-    document.getElementById('event-description').textContent = event.description;
-    document.getElementById('event-prizes').textContent = event.prizes;
-    document.getElementById('student-coordinator').textContent = event.studentCoordinator;
-    document.getElementById('staff-coordinator').textContent = event.staffCoordinator;
-    document.getElementById('contact-number').textContent = event.contactNumber;
-    document.querySelector('.event-details h2').textContent = event.eventname;
+    async function showEventDetails(eventId) {
+      const loadingSpinner = document.getElementById('loading-spinner');
+      loadingSpinner.style.display = 'block';
 
-    // Hide event tiles and show event details
-    document.querySelector('.event-container').style.display = 'none';
-    document.querySelector('.event-details').style.display = 'block';
-  }
-}
+      try {
+        const response = await fetch(`https://mindkraft25-backend.onrender.com/api/events/filter/?eventid=${eventId}`);
+        const data = await response.json();
 
+        if (data.status === 'success' && data.data.length > 0) {
+          const event = data.data[0];
+          document.getElementById('event-description').textContent = event.description;
+          document.getElementById('event-prizes').textContent = event.prizes;
+          document.getElementById('student-coordinator').textContent = event.studentCoordinator;
+          document.getElementById('staff-coordinator').textContent = event.staffCoordinator;
+          document.getElementById('contact-number').textContent = event.contactNumber;
+          document.querySelector('.event-details h2').textContent = event.eventname;
+
+          // Hide event tiles and show event details
+          document.querySelector('.event-container').style.display = 'none';
+          document.querySelector('.event-details').style.display = 'block';
+        } else {
+          alert('Event details not found');
+        }
+      } catch (error) {
+        console.error('Error fetching event details:', error);
+        alert('An error occurred while fetching event details.');
+      } finally {
+        loadingSpinner.style.display = 'none';
+      }
+    }
 
     // Function to hide event details and show event tiles
     function hideEventDetails() {
@@ -453,124 +477,20 @@ function showEventDetails(eventId) {
       document.querySelector('.event-details').style.display = 'none';
     }
 
-    // Function to add an event to the cart
-    function addToCart(event) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(event);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${event.title} has been added to your cart!`);
+    // Function to format date to a readable format
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     }
 
-    // Generate event tiles on page load
-    generateEventTiles();
+    // Function to format time to a readable format
+    function formatTime(dateString) {
+      const date = new Date(dateString);
+      return `${date.getHours()}:${date.getMinutes()}`;
+    }
+
+    // Generate event tiles on page load by fetching events
+    fetchEvents();
   </script>
-  <script>
-  // Function to toggle the side navigation bar
-  function toggleSideNav() {
-    const sideNav = document.querySelector('.side-nav');
-    const eventContainer = document.querySelector('.event-container');
-    sideNav.classList.toggle('open');
-    eventContainer.classList.toggle('side-nav-open');
-  }
-
-  // Fetch events from the API
-  async function fetchEvents() {
-    try {
-      const response = await fetch('https://mindkraft25-backend.onrender.com/api/events/');
-      const data = await response.json();
-
-      if (data.status === 'success') {
-        // Use the fetched events to generate event tiles
-        generateEventTiles(data.data);
-      } else {
-        alert('Failed to fetch events');
-      }
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      alert('An error occurred while fetching events.');
-    }
-  }
-
-  // Function to generate event tiles
-  function generateEventTiles(events, filter = 'all') {
-    const container = document.querySelector('.event-container');
-    container.innerHTML = ''; // Clear existing tiles
-
-    const filteredEvents = filter === 'all' ? events : events.filter(event => event.category_name === filter);
-
-    filteredEvents.forEach(event => {
-      const eventTile = document.createElement('div');
-      eventTile.className = 'event-tile';
-
-      eventTile.innerHTML = `
-        <div class="details">
-          <h2>${event.eventname}</h2>
-          <div class="chips">
-            <span><i class="fas fa-calendar-alt"></i> ${formatDate(event.start_time)}</span>
-            <span><i class="fas fa-clock"></i> ${formatTime(event.start_time)} - ${formatTime(event.end_time)}</span>
-            <span><i class="fas fa-users"></i> ${event.participation_strength_setlimit} Seats</span>
-            <span><i class="fas fa-tag"></i> ${event.category_name}</span>
-            <span><i class="fas fa-rupee-sign"></i> ₹${event.price}</span>
-          </div>
-        </div>
-        <button class="register-button" onclick="showEventDetails(${event.eventid})">
-          Register Now
-        </button>
-      `;
-
-      container.appendChild(eventTile);
-    });
-  }
-
-  // Function to filter events by department
-  function filterEvents(department) {
-    fetchEvents();  // Re-fetch events based on the selected department
-    // Update active state in the side nav
-    const navItems = document.querySelectorAll('.side-nav ul li');
-    navItems.forEach(item => item.classList.remove('active'));
-    const activeItem = Array.from(navItems).find(item => item.textContent.includes(department));
-    if (activeItem) activeItem.classList.add('active');
-  }
-
-  // Function to show event details
-  function showEventDetails(eventId) {
-    // Find event by ID and display details (same as before)
-    const event = events.find(e => e.eventid === eventId);
-    if (event) {
-      document.getElementById('event-description').textContent = event.description;
-      document.getElementById('event-prizes').textContent = event.prizes;
-      document.getElementById('student-coordinator').textContent = event.studentCoordinator;
-      document.getElementById('staff-coordinator').textContent = event.staffCoordinator;
-      document.getElementById('contact-number').textContent = event.contactNumber;
-      document.querySelector('.event-details h2').textContent = event.title;
-
-      // Hide event tiles and show event details
-      document.querySelector('.event-container').style.display = 'none';
-      document.querySelector('.event-details').style.display = 'block';
-    }
-  }
-
-  // Function to hide event details and show event tiles
-  function hideEventDetails() {
-    document.querySelector('.event-container').style.display = 'flex';
-    document.querySelector('.event-details').style.display = 'none';
-  }
-
-  // Function to format date to a readable format
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-  }
-
-  // Function to format time to a readable format
-  function formatTime(dateString) {
-    const date = new Date(dateString);
-    return `${date.getHours()}:${date.getMinutes()}`;
-  }
-
-  // Generate event tiles on page load by fetching events
-  fetchEvents();
-</script>
-
 </body>
 </html>
