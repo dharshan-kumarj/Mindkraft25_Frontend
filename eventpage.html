@@ -147,14 +147,14 @@
     .event-tile {
       width: 350px; /* Fixed width */
       height: 250px; /* Fixed height */
-      background-color: rgba(30, 41, 59, 极客时间 0.5); /* Translucent background */
+      background-color: rgba(30, 41, 59, 0.5); /* Translucent background */
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       padding: 16px;
-      display:极客时间 flex;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       border: 2px solid rgba(255, 255, 255, 0.1); /* Light border for visibility */
@@ -214,7 +214,7 @@
     .register-button:hover {
       background: linear-gradient(45deg, #7952B3, #4b10a4); /* Reverse gradient on hover */
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 极客时间 0, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
     .register-button:active {
@@ -365,132 +365,1823 @@
   </div>
 
   <script>
-    // Function to toggle the side navigation bar
-    function toggleSideNav() {
-      const sideNav = document.querySelector('.side-nav');
-      const eventContainer = document.querySelector('.event-container');
-      sideNav.classList.toggle('open');
-      eventContainer.classList.toggle('side-nav-open');
-    }
+// Function to toggle the side navigation bar
+function toggleSideNav() {
+  const sideNav = document.querySelector('.side-nav');
+  const eventContainer = document.querySelector('.event-container');
+  sideNav.classList.toggle('open');
+  eventContainer.classList.toggle('side-nav-open');
+}
 
-    // Fetch events from the API
-    async function fetchEvents(filter = 'all') {
-      const loadingSpinner = document.getElementById('loading-spinner');
-      loadingSpinner.style.display = 'block';
-
-      try {
-        let url = 'https://mindkraft25-backend.onrender.com/api/events/';
-        if (filter !== 'all') {
-          url = `https://mindkraft25-backend.onrender.com/api/events/filter/?division=${encodeURIComponent(filter)}`;
-        }
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.status === 'success') {
-          generateEventTiles(data.data);
-        } else {
-          alert('Failed to fetch events');
-        }
-      } catch (error) {
-        console.error('Error fetching events:', error);
-        alert('An error occurred while fetching events.');
-      } finally {
-        loadingSpinner.style.display = 'none';
+// Manually defined event data
+const events = [
+  {
+    "eventid": "MK25E0001",
+    "eventname": "Astronomy through Telescopes - Exhibition",
+    "description": "Astronomical telescopes will be put on display during the Mindkraft event.",
+    "type": "tech",
+    "category": 1,
+    "category_name": "Non - Technical",
+    "division": "Physical Sciences",
+    "start_time": "2025-02-10T18:55:34Z",
+    "end_time": "2025-02-10T18:55:36Z",
+    "price": "0",
+    "participation_strength_setlimit": "School students",
+    "coordinators": {
+      "faculty": {
+        "name": "Dr. D.Khanna (1185)",
+        "phone": "Phone Number    9080776415\nPhone Number    9894928737\nName: 0, dtype: object",
+        "email": "davidkhanna@karunya.edu"
+      },
+      "student": {
+        "name": "Mr. Nitin Oliver P",
+        "phone": "Phone Number    9080776415\nPhone Number    9894928737\nName: 0, dtype: object",
+        "email": "nithinoliver23@karunya.edu.in"
       }
     }
-
-    // Function to generate event tiles
-    function generateEventTiles(events) {
-      const container = document.querySelector('.event-container');
-      container.innerHTML = ''; // Clear existing tiles
-
-      events.forEach(event => {
-        const eventTile = document.createElement('div');
-        eventTile.className = 'event-tile';
-
-        eventTile.innerHTML = `
-          <div class="details">
-            <h2>${event.eventname}</h2>
-            <div class="chips">
-              <span><i class="fas fa-calendar-alt"></i> ${formatDate(event.start_time)}</span>
-              <span><i class="fas fa-clock"></i> ${formatTime(event.start_time)} - ${formatTime(event.end_time)}</span>
-              <span><i class="fas fa-users"></i> ${event.participation_strength_setlimit} Seats</span>
-              <span><i class="fas fa-tag"></i> ${event.category_name}</span>
-              <span><i class="fas fa-rupee-sign"></i> ₹${event.price}</span>
-            </div>
-          </div>
-          <button class="register-button" onclick="showEventDetails('${event.eventid}')">
-            Register Now
-          </button>
-        `;
-
-        container.appendChild(eventTile);
-      });
-    }
-
-    // Function to filter events by department
-    function filterEvents(department) {
-      fetchEvents(department);
-      // Update active state in the side nav
-      const navItems = document.querySelectorAll('.side-nav ul li');
-      navItems.forEach(item => item.classList.remove('active'));
-      const activeItem = Array.from(navItems).find(item => item.textContent.includes(department));
-      if (activeItem) activeItem.classList.add('active');
-    }
-
-    // Function to show event details
-    async function showEventDetails(eventId) {
-      const loadingSpinner = document.getElementById('loading-spinner');
-      loadingSpinner.style.display = 'block';
-
-      try {
-        const response = await fetch(`https://mindkraft25-backend.onrender.com/api/events/filter/?eventid=${eventId}`);
-        const data = await response.json();
-
-        if (data.status === 'success' && data.data.length > 0) {
-          const event = data.data[0];
-          document.getElementById('event-description').textContent = event.description;
-          document.getElementById('event-prizes').textContent = event.prizes;
-          document.getElementById('student-coordinator').textContent = event.studentCoordinator;
-          document.getElementById('staff-coordinator').textContent = event.staffCoordinator;
-          document.getElementById('contact-number').textContent = event.contactNumber;
-          document.querySelector('.event-details h2').textContent = event.eventname;
-
-          // Hide event tiles and show event details
-          document.querySelector('.event-container').style.display = 'none';
-          document.querySelector('.event-details').style.display = 'block';
-        } else {
-          alert('Event details not found');
-        }
-      } catch (error) {
-        console.error('Error fetching event details:', error);
-        alert('An error occurred while fetching event details.');
-      } finally {
-        loadingSpinner.style.display = 'none';
+  },
+  {
+    "eventid": "MK25E0002",
+    "eventname": "CTF",
+    "description": "Each team will be given clues from which they have to decode it and find the hidden flag in it using their skills.",
+    "type": "tech",
+    "category": 1,
+    "category_name": "Technical",
+    "division": "AIML",
+    "start_time": "2025-02-10T18:55:34Z",
+    "end_time": "2025-02-10T18:55:36Z",
+    "price": "150",
+    "participation_strength_setlimit": 90,
+    "coordinators": {
+      "faculty": {
+        "name": "Angelin Jeba & 2767",
+        "phone": "Phone Number    7094687611\nPhone Number    8547666222\nName: 1, dtype: object",
+        "email": "angelinjeba@karunya.edu.in"
+      },
+      "student": {
+        "name": "Johan Joseph",
+        "phone": "Phone Number    7094687611\nPhone Number    8547666222\nName: 1, dtype: object",
+        "email": "johanjoseph@karunya.edu.in"
       }
     }
-
-    // Function to hide event details and show event tiles
-    function hideEventDetails() {
-      document.querySelector('.event-container').style.display = 'flex';
-      document.querySelector('.event-details').style.display = 'none';
+  },
+  {
+    "eventid": "MK25E0003",
+    "eventname": "Identify me",
+    "description": "Candidates will explore their chemistry knowledge in finding objects.",
+    "type": "tech",
+    "category": 1,
+    "category_name": "Technical",
+    "division": "Physical Science",
+    "start_time": "2025-02-10T18:55:34Z",
+    "end_time": "2025-02-10T18:55:36Z",
+    "price": "50",
+    "participation_strength_setlimit": 200,
+    "coordinators": {
+      "faculty": {
+        "name": "Dr. A. Obadiah - 1607",
+        "phone": "Phone Number    9944286556\nPhone Number    7763999234\nName: 2, dtype: object",
+        "email": "obadiah@karunya.edu"
+      },
+      "student": {
+        "name": "MANISHA RANI KACHHAP",
+        "phone": "Phone Number    9944286556\nPhone Number    7763999234\nName: 2, dtype: object",
+        "email": "manisharani@karunya.edu.in"
+      }
     }
-
-    // Function to format date to a readable format
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+  },
+  {
+        "eventid": "MK25E0001",
+        "eventname": "Magik Show",
+        "description": "Demonstrate and explain the phenomenon behind the curiosity of day to day simple chemical reaction from their root.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Physical Science (Chemistry)",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 250,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. A. Obadiah - 1607",
+                "phone": "Phone Number    9944286556\nPhone Number    8148501052\nName: 3, dtype: object",
+                "email": "obadiah@karunya.edu"
+            },
+            "student": {
+                "name": "Arunkumar S",
+                "phone": "Phone Number    9944286556\nPhone Number    8148501052\nName: 3, dtype: object",
+                "email": "arunchemistry1998@gmail.com"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Technical Debate",
+        "description": "A Technical Debate on Food Technology is a discussion forum where participant will express their view on challenges, and future trends in food processing, safety, sustainability, and nutrition.  ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 20,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Pathak Sumit Sudhir  (2389)",
+                "phone": "Phone Number                   9284829452\nPhone Number    9920204123 and 9677765186\nName: 4, dtype: object",
+                "email": "pathaksumit@karunya.edu"
+            },
+            "student": {
+                "name": "Mr. Sudarshan Ramanathan and Mr. Larmeralds",
+                "phone": "Phone Number                   9284829452\nPhone Number    9920204123 and 9677765186\nName: 4, dtype: object",
+                "email": "sudarshanramanathan@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Gastronomer",
+        "description": "\"Savor the thrill at Gastronomer, an eating competition\nwhere participants eat their way to victory! Join us for a\nfeast of competitive indulgence, as contenders showcase\ntheir appetites and determination in this ultimate\ngastronomic showdown.\"",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Wasiya Farzana (2379)",
+                "phone": "Phone Number                   7999271860\nPhone Number    9840169360 and 8015222012\nName: 5, dtype: object",
+                "email": "wasiya@karunya.edu"
+            },
+            "student": {
+                "name": "Aishwariya K and Merryl Abigail",
+                "phone": "Phone Number                   7999271860\nPhone Number    9840169360 and 8015222012\nName: 5, dtype: object",
+                "email": "merrylabigail@karunyaa.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "ChocoArtistry: Crafting Beauty in Cocoa",
+        "description": "A Chocolate Art Challenge, ChocoArtistry is an unique competition invites talented artists, chocolatiers, and food enthusiasts to showcase their skills in transforming the rich, velvety texture of cocoa into stunning works of edible art. Join us to celebrate the participant's creativity, craftsmanship, and, of course, the irresistible allure of chocolate. ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 30,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. R. Freeda Blessie (2232)",
+                "phone": "Phone Number                   9965576488\nPhone Number    8903775633 and 8883776554\nName: 6, dtype: object",
+                "email": "freedablessier@karunya.edu"
+            },
+            "student": {
+                "name": "Ms. Leya B and Mr. Othniel Amos",
+                "phone": "Phone Number                   9965576488\nPhone Number    8903775633 and 8883776554\nName: 6, dtype: object",
+                "email": "leyab23@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Food Treasure Hunt",
+        "description": "Food treasure hunt is a non-technical event where participants race to solve food-related riddles, complete hands-on challenges, and navigate through multiple stations, each testing their knowledge of food chemistry, safety, nutrition, and sustainability. At each station, teams will solve clues and tackle food-based puzzles to unlock the next location.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 30,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Veena Paul (2686)",
+                "phone": "Phone Number                   9170137878\nPhone Number    6382080545 and 8590859758\nName: 7, dtype: object",
+                "email": "veenapaul@karunya.com"
+            },
+            "student": {
+                "name": "Ms. Agila R and Mr. Siljo K Saji",
+                "phone": "Phone Number                   9170137878\nPhone Number    6382080545 and 8590859758\nName: 7, dtype: object",
+                "email": "agilar@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Food Hackathon",
+        "description": "This Hackathon focuses on solving microbial challenges in food industries by developing novel techniques in non invasive detection and clean label processing.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. T. V. Ranganathan (590)",
+                "phone": "Phone Number                   9487846976\nPhone Number    6282659002 and 9207419191\nName: 8, dtype: object",
+                "email": "ranganathan@karunya.edu "
+            },
+            "student": {
+                "name": "Malavika Manoj and Sidharath P",
+                "phone": "Phone Number                   9487846976\nPhone Number    6282659002 and 9207419191\nName: 8, dtype: object",
+                "email": "malavikamanoj@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Pictoquest",
+        "description": "PictoQuest \u2013 Unraveling Enigma is a technical event that integrates logic-based picture puzzles with Food Processing Technology concepts. Participants solve puzzles to uncover answers, enhancing their critical thinking and problem-solving skills. This engaging challenge promotes strategic reasoning and pattern recognition, making learning both interactive and enjoyable.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Food Processing Technology",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 30,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.Vijayalakshmi Kovuru (2390)",
+                "phone": "Phone Number                   9182228487\nPhone Number    7356835424 and 8086024210\nName: 9, dtype: object",
+                "email": "vijayalakshmik@karunya.edu"
+            },
+            "student": {
+                "name": "Liwin Wilson Johns and Eabin Rosh M",
+                "phone": "Phone Number                   9182228487\nPhone Number    7356835424 and 8086024210\nName: 9, dtype: object",
+                "email": "liwinwilson@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Business Plan",
+        "description": "The Business Plan Contest will provide students with the opportunity to showcase their business ideas.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Karunya School of Management",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100 Per Participants",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Nisha Malini    1934",
+                "phone": "Phone Number    9543377227\nPhone Number    7000294817\nName: 10, dtype: object",
+                "email": "nishag@karunya.edu"
+            },
+            "student": {
+                "name": "Mahima Thomas",
+                "phone": "Phone Number    9543377227\nPhone Number    7000294817\nName: 10, dtype: object",
+                "email": "mahimathomas24@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "FREE FIRE BATTLE GROUNDS GAMEZONE",
+        "description": "\"This is a event on free fire battle grounds game \nHere there will be 12 teams minimum for each game and the players will be selected according to the points they get from the match and those who win the match will get the final prize money\"",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "AIML",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 30,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Ebenezer Jangam & 2676",
+                "phone": "Phone Number    70133 44365\nPhone Number     6301511124\nName: 11, dtype: object",
+                "email": "ebenezerj@karunya.edu"
+            },
+            "student": {
+                "name": "ELAHI MOHAMMAD NAWAZ",
+                "phone": "Phone Number    70133 44365\nPhone Number     6301511124\nName: 11, dtype: object",
+                "email": "elahimohammad@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Business Quiz",
+        "description": "The Business Quiz will consist of questions related to various business aspects like marketing, finance, and management. ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Karunya School of Management",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100 Per Participants",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Giri Babu  2756",
+                "phone": "Phone Number    9493008410\nPhone Number    7598202813\nName: 12, dtype: object",
+                "email": "giribabu@karunya.edu"
+            },
+            "student": {
+                "name": "Abinesh T A",
+                "phone": "Phone Number    9493008410\nPhone Number    7598202813\nName: 12, dtype: object",
+                "email": "abinesht@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Best Manager",
+        "description": "The aim of this event is to identify the student with the traits of a good manager. It \nalso aims to find out how they demonstrate the skills, knowledge and talents of a \ngood manager. And further tests them on how they use the strategies to solve the \nproblems.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Karunya School of Management",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100 Per Participants",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Annie Priya Dharshini   2325",
+                "phone": "Phone Number       8870777695\nPhone Number    +916379137696\nName: 13, dtype: object",
+                "email": "anniepriya@karunya.edu"
+            },
+            "student": {
+                "name": "Hemamalini S.",
+                "phone": "Phone Number       8870777695\nPhone Number    +916379137696\nName: 13, dtype: object",
+                "email": "hemamalinis@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Hashes over Roses",
+        "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as \"flags\", that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150",
+        "participation_strength_setlimit": 150,
+        "coordinators": {
+            "faculty": {
+                "name": "Mr. D. Shibin - 1756",
+                "phone": "Phone Number    8072542091\nPhone Number    8921853641\nName: 14, dtype: object",
+                "email": "shibin@karunya.edu"
+            },
+            "student": {
+                "name": "Ms. Nitha Zachariah",
+                "phone": "Phone Number    8072542091\nPhone Number    8921853641\nName: 14, dtype: object",
+                "email": "nithazachariah@karunya.edu.in "
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Harry potter vs voldemort duel",
+        "description": "Event Concept: The event is a gamified quiz where participants battle a virtual \"Python Snake\" by answering progressively harder Python coding questions (MCQs, fill-in-the-blanks). Correct answers weaken the snake, while incorrect ones make it stronger. There are 10 rounds, with one question per round. The final goal is to defeat the snake by answering all questions correctly or deal the most \"damage\" to it",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 200,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. P. Eben Sophia - 2802",
+                "phone": "Phone Number    9789814239\nPhone Number    9500950937\nName: 15, dtype: object",
+                "email": "ebensophia@karunya.edu"
+            },
+            "student": {
+                "name": "Monick (URK23CS1167)",
+                "phone": "Phone Number    9789814239\nPhone Number    9500950937\nName: 15, dtype: object",
+                "email": "monicks@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Squid X",
+        "description": "An electrifying fusion of technology, strategy, and survival!  Squid X brings the thrill of Squid Game into the tech world with six intense rounds of debugging, problem-solving, and IoT-based challenges. Participants must code, strategize, and outplay their opponents in a high-stakes battle where only the sharpest minds survive.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. S. Stewart Kirubakaran - 2331",
+                "phone": "Phone Number    9952556668\nPhone Number    9750021317\nName: 16, dtype: object",
+                "email": "stewart@karunya.edu"
+            },
+            "student": {
+                "name": "Ann Rivka (URK23CS8004)",
+                "phone": "Phone Number    9952556668\nPhone Number    9750021317\nName: 16, dtype: object",
+                "email": " annrivka@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Tech Feud: Battle of the Brains",
+        "description": "In Tech Feud, teams of participants will compete against each other in multiple rounds of questions based on various topics from computer science. Each round will consist of questions that require teams to guess the most popular answers, much like in Family Feud. Topics will cover a wide range of computer science domains, including algorithms, data structures, programming languages, web development, artificial intelligence, cybersecurity, and more. The event will be highly interactive, fast-paced, and fun, while also challenging participants' knowledge across the breadth of computer science. Teams will earn points by guessing the most popular answers to questions, with each round progressively more difficult and diverse in terms of topics.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Sneha George - 2542",
+                "phone": "Phone Number    9633596394\nPhone Number    9535908484\nName: 17, dtype: object",
+                "email": "snehageorge@karunya.edu"
+            },
+            "student": {
+                "name": "Esther (URK23CS1231)",
+                "phone": "Phone Number    9633596394\nPhone Number    9535908484\nName: 17, dtype: object",
+                "email": "jestinaesther@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Build and Debug With IoT",
+        "description": "The game is to make the people to debug the arduio code which is already provided and the code is in scrambled manner. Now the People need to debug the code and the obstacle avoiding robot components will be installed already and they need to connect them with jumper wires and upload the code and to make the car to run. ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "75",
+        "participation_strength_setlimit": 70,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. T.Kavitha - 2346",
+                "phone": "Phone Number    9444342405\nPhone Number    9342755824\nName: 18, dtype: object",
+                "email": "kavithat@karunya.edu"
+            },
+            "student": {
+                "name": "Sam Jenish (URK23CS1199)",
+                "phone": "Phone Number    9444342405\nPhone Number    9342755824\nName: 18, dtype: object",
+                "email": "samjenish@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Compile or Die",
+        "description": "This game blends the classic Mafia-style gameplay with the high-stakes world of coding, where teams of Developers must work together to protect their project from the nefarious Hackers. Special roles like the Debugger and Cyber Guardian add even more layers of strategy, keeping players on their toes as they attempt to outsmart and outcode each other.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "0",
+        "participation_strength_setlimit": 150,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. P. Getzi Jeba Leelipushpam - 495",
+                "phone": "Phone Number    9566551171\nPhone Number    7092988091\nName: 19, dtype: object",
+                "email": "getzi@karunya.edu"
+            },
+            "student": {
+                "name": "M Durai Murugan  (URK23CS1185)",
+                "phone": "Phone Number    9566551171\nPhone Number    7092988091\nName: 19, dtype: object",
+                "email": "mduraimurugan@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Building Worlds with Unity: AR/VR ",
+        "description": "This workshop will introduce participants to Augmented Reality (AR) and Virtual Reality (VR) game development using the Unity Engine. It will combine a lecture-style discussion on the basics of Unity and its capabilities for AR/VR development with hands-on sessions where participants will create their own simple AR/VR games. The goal is to provide participants with the tools and knowledge to build immersive digital experiences using Unity. Participants will learn how to set up Unity for AR/VR development, interact with essential Unity features, and create functional prototypes or mini-games. By the end of the workshop, attendees will have a basic AR/VR game running on their system or device.",
+        "type": "non-tech",
+        "category": 1,
+        "category_name": "Seminar/ Workshop",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. C.P. Shirley - 2489",
+                "phone": "Phone Number    90038 20713\nPhone Number     7760981866\nName: 20, dtype: object",
+                "email": "shirleycp@karunya.edu"
+            },
+            "student": {
+                "name": "Jeremy Joe Thomas(URK23CS1264)",
+                "phone": "Phone Number    90038 20713\nPhone Number     7760981866\nName: 20, dtype: object",
+                "email": "jeremyjoe@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": " Mafia: CSE edition",
+        "description": "Cyber Mafia is an engaging, strategy-based role-playing game with a technical twist inspired by the classic game Mafia. In this version, participants take on roles such as Hackers (imposters), Developers (crew mates), Antivirus (protectors), and Network Monitors (investigators), all set in the thrilling backdrop of cybersecurity. The aim is to simulate real-world cybersecurity scenarios in an interactive way where:",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Mrs. Keirolona Safana Seles - 2533",
+                "phone": "Phone Number    9600528973\nPhone Number    9443391160\nName: 21, dtype: object",
+                "email": "keirolonasafana@karunya.edu"
+            },
+            "student": {
+                "name": "Mahima (URK23CS1168)",
+                "phone": "Phone Number    9600528973\nPhone Number    9443391160\nName: 21, dtype: object",
+                "email": "pearlinemahima@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "ResuMe Up: Code Your Future",
+        "description": "The Web Development Challenge will focus on introducing HTML and CSS, followed by a practical competition where participants build a portfolio website using these technologies. The event will conclude with a judging session based on the creativity, appearance, and use of HTML/CSS tags.",
+        "type": "non-tech",
+        "category": 1,
+        "category_name": "Seminar/ Workshop",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "60",
+        "participation_strength_setlimit": 120,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. I. Titus - 2343",
+                "phone": "Phone Number    8667504022\nPhone Number    8310544039\nName: 22, dtype: object",
+                "email": "titusi@karunya.edu"
+            },
+            "student": {
+                "name": "Benjamin(URK22CS1141)",
+                "phone": "Phone Number    8667504022\nPhone Number    8310544039\nName: 22, dtype: object",
+                "email": "benjamingeorge22@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "E-Carnival",
+        "description": "The E-Carnival is an immersive, tech-filled event that blends the excitement of virtual simulations, hands-on IoT experiences, and interactive games in a dynamic carnival setting. From high-speed multiplayer car simulations and cipher-based treasure hunts to remote-controlled obstacle courses and memory puzzles, each game challenges participants to think, strategize, and engage with technology in fun and innovative ways. Traditional carnival favorites like Spin the Wheel, Tic-Tac-Toe with sandbags, and a dart game get a digital or interactive twist, while activities like the bean bag toss race and photo booth add to the lively atmosphere. Whether testing precision, problem-solving, or agility, the E-Carnival offers something for everyone, making it a thrilling fusion of entertainment and technology.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "60",
+        "participation_strength_setlimit": 300,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Pearly Princess - 2814",
+                "phone": "Phone Number    8072363457\nPhone Number    9500463623\nName: 23, dtype: object",
+                "email": "pearlyprincess@karunya.edu"
+            },
+            "student": {
+                "name": "Sherine (URK22CS1011)",
+                "phone": "Phone Number    8072363457\nPhone Number    9500463623\nName: 23, dtype: object",
+                "email": "sherins@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "E-Sports Showdown: The Ultimate Gaming Battle",
+        "description": "This event will be an online gaming tournament that brings together gamers from various backgrounds to compete in popular video games. The tournament will feature multiple rounds, with players participating either individually or in teams, depending on the game format. The goal is to offer a competitive and fun environment, allowing gamers to showcase their skills in various online games, while also promoting community engagement and e-sports culture. The event will focus on creating a seamless experience for participants, including live streaming, real-time scores, and audience interaction. The games selected will be accessible to a wide audience, and the event will encourage both new and experienced players to join.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Computer Science and Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 200,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.A.Samson Arun Raj - 2304",
+                "phone": "Phone Number    9894505910\nPhone Number    9489463035\nName: 24, dtype: object",
+                "email": "samsonarunraj@karunya.edu"
+            },
+            "student": {
+                "name": "Ashwin (URK22CS1146)",
+                "phone": "Phone Number    9894505910\nPhone Number    9489463035\nName: 24, dtype: object",
+                "email": "ashwinshinu@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Event 1.\tAD \u2013 MAD     Event 2. Feel the Play   Event  3. Story the Pictures  and   Event 4.\tPoetry Writing.",
+        "description": "Event 1. AD \u2013 MAD:  \nTopics: \n1.        Smart Tools and Gadgets\n2.        Paints\n3.        Energy Drinks.\nGroup of minimum 3 to maximum 5 can participate in the event.\nEach of the participants should register individually.\nOne picture of any product will be displayed related to the topic given.\nMusic and Properties can be brought by the participants. \nEnacting in a humorous way is more appreciable. Language: English only, Timing: 3 to 5 Minutes.\n\nEvent 2. Feel the Play: \n Picture will be displayed in the screen and the participant can play any music (without lyrics) relevant to that picture. Music instruments can be anything of the participant\u2019s choice.\nIndividual participation only.\n\n Event  3. Story the Pictures : \nThere will be 5-7 pictures in one slide. Each participant can write up their own imagination from 200 to 300 words. 20 minutes duration will be provided and picture will be displayed only for the first 5 minutes. Individual participation only.\n \n Event 4. Poetry Writing: \nTopics: \n1.        Loved ones\n2.        Chat GPT\n3.        Mythology\n4.        Desserts \n5.        Picnic\nIndividual participation only.\n\n",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "English",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs. 50 /- for each event. Event 1: if there are 3 members in a group, all 3 will pay Rs.50/- individually.   ( Total 4 events)",
+        "participation_strength_setlimit": "50 - 100",
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. N. Cinthia Jemima / 2817",
+                "phone": "Phone Number                                           9487846877\nPhone Number    Event 1. 8220171247,   Event 2. 9894640622,   ...\nName: 25, dtype: object",
+                "email": "cinthiajemiman@karunya.edu"
+            },
+            "student": {
+                "name": "Event 1.  Ms. Preha. C,     Event 2. Mrs. Janet Olivia Richmond,     Event 3. Mr. Daniel Jebarajan. T,     and  Event 4. Ms. Shona Shapriya. B.",
+                "phone": "Phone Number                                           9487846877\nPhone Number    Event 1. 8220171247,   Event 2. 9894640622,   ...\nName: 25, dtype: object",
+                "email": "Event 1. prehac@karunya.edu.in   Event 2. janetolivia@karunya.edu.in   Event 3. danieljeba@karunya.edu.in  Event 4. shonashapriya@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "EXQUIZITE",
+        "description": "The quiz will have multiple rounds with a preliminary round open for\nall the participants. Top 4 teams will be selected for the final rounds.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Civil Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "yes",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.E.Arunraj",
+                "phone": "Phone Number    9788683828\nPhone Number    9612220355\nName: 26, dtype: object",
+                "email": "arunraje@karunya.edu"
+            },
+            "student": {
+                "name": "Mr. Varun ",
+                "phone": "Phone Number    9788683828\nPhone Number    9612220355\nName: 26, dtype: object",
+                "email": "varunrajangom@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Bob the Builder",
+        "description": "Design and build a bridge using Ice cream stick (with lightweight, high loading capacity concept)",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Civil Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "250/-",
+        "participation_strength_setlimit": "40 Teams (2 to 3 members per team)",
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. K. Balamurali & 2761",
+                "phone": "Phone Number                            8610287775\nPhone Number    9398527211; 8056802353; 8137050964\nName: 27, dtype: object",
+                "email": "balamurali@karunya.edu"
+            },
+            "student": {
+                "name": "1. MUDDARUSU BHANU PRASAD, 2. TIMOTHY, 3. MERVYN R K BOSE, 3. ",
+                "phone": "Phone Number                            8610287775\nPhone Number    9398527211; 8056802353; 8137050964\nName: 27, dtype: object",
+                "email": "muddarusubhanu@karunya.edu.in; mervynr@karunya.edu.in; timothyk@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Squid game",
+        "description": "Step into a high-stakes simulation designed to test your business acumen, decision-making, and teamwork through five intense challenges inspired by Squid Game. Each level reflects core managerial competencies, pushing candidates to their limits in strategy, patience, leadership, and risk assessment.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Commerce and International Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. A. Leo",
+                "phone": "Phone Number    8760853175\nPhone Number    6238322282\nName: 28, dtype: object",
+                "email": "leoa@karunya.edu.in"
+            },
+            "student": {
+                "name": "Malavika Suresh",
+                "phone": "Phone Number    8760853175\nPhone Number    6238322282\nName: 28, dtype: object",
+                "email": 6238322282
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Money Heist",
+        "description": "Get ready for an adrenaline-fueled strategic quest where business meets intellect in a thrilling treasure hunt challenge! Inspired by the high-stakes precision of Money Heist, this game is designed to test your analytical thinking, risk management, teamwork, and strategic decision-making in a corporate-style setting.\nGame Structure: 5-Stage Business Intelligence Heist\nQuest 1-4: Decoding the Business Cipher\nQuest 5 -\ud83c\udfaf Key Business & Management Skills Tested:",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Commerce and International Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Shygil Joy  (2519)",
+                "phone": "Phone Number    9677466750\nPhone Number    7574962324\nName: 29, dtype: object",
+                "email": "shygiljoy@karunya.edu"
+            },
+            "student": {
+                "name": "Calix Dantalia",
+                "phone": "Phone Number    9677466750\nPhone Number    7574962324\nName: 29, dtype: object",
+                "email": 7574962324
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Among Stocks",
+        "description": "Step into the world of high-stakes trading, where intuition, analysis, and financial literacy are your greatest assets! Among Stock is a thrilling stock market simulation game designed to test your decision-making, risk assessment, and financial acumen in real-world trading scenarios.\n\ud83c\udfaf Game Concept: Spot the Market Imposter!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Commerce and International Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs.100",
+        "participation_strength_setlimit": 80,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.V. Palanisingh (2094)",
+                "phone": "Phone Number    8940194307\nPhone Number    6282864622\nName: 30, dtype: object",
+                "email": "palanisingh@karunya.edu"
+            },
+            "student": {
+                "name": "Sharon John Thomas",
+                "phone": "Phone Number    8940194307\nPhone Number    6282864622\nName: 30, dtype: object",
+                "email": "sharonjohn22@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Dapper Decades \u2013 Mr/Mrs. Business Tycoon",
+        "description": "Power Attire Showcase \u2013 Candidates must present their best business attire, reflecting authority, professionalism, and confidence\u2014whether it's a classic CEO look, a modern entrepreneur style, or a futuristic executive ensemble.\n The Ramp Walk \u2013 A chance to own the stage, radiating charisma and leadership presence, just like a true business mogul.\nThe Business Question Challenge \u2013 Each candidate will answer a tricky business-related question that tests their strategic thinking, crisis management, financial intelligence, or leadership skills.\nJudging Criteria:\n\u2705 Business Attire & Presentation \u2013 How well the candidate embodies the essence of a successful business leader.\n\u2705 Confidence & Stage Presence \u2013 The ability to command attention and exude executive poise.\n\u2705 Intellectual Brilliance \u2013 The depth, clarity, and strategy behind their business answer.\nThe Title: The most well-dressed, confident, and business-savvy candidate will be crowned as Mr./Mrs. Business Tycoon and honored as the epitome of leadership and style.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Commerce and International Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. K. Lakshmi Priya (2322)",
+                "phone": "Phone Number    9789247707\nPhone Number    8807990617\nName: 31, dtype: object",
+                "email": "lakshmipriya@karunya.edu"
+            },
+            "student": {
+                "name": "Elsha Jasmine",
+                "phone": "Phone Number    9789247707\nPhone Number    8807990617\nName: 31, dtype: object",
+                "email": 8807990617
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Cyber Hunt",
+        "description": "The Cyber Hunt is an interactive cybersecurity challenge where QR codes containing CTF puzzles will be placed across the university. Participants must locate, scan, and solve these challenges, which test skills in cryptography and cybersecurity. The winner will be the first to solve the most challenges. This event aims to enhance problem-solving abilities and cybersecurity awareness in a fun and engaging way.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Bertia A (2534)",
+                "phone": "Phone Number    80562 82527\nPhone Number    99448 71330\nName: 32, dtype: object",
+                "email": "bertia@karunya.edu"
+            },
+            "student": {
+                "name": "Mr.Bruno A",
+                "phone": "Phone Number    80562 82527\nPhone Number    99448 71330\nName: 32, dtype: object",
+                "email": "brunoa@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Iron Fist",
+        "description": "Get ready for the ultimate test of strength, strategy, and endurance! In this intense showdown, competitors will go one-on-one in a battle of pure power, pushing their limits to claim the title of Champion of Champions!\nRound-by-round eliminations will determine the strongest contender, with each match demanding a mix of grit, technique, and unshakable determination. Only the boldest and most resilient will rise to the top!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Commerce and International  Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Prakash K. Elamana",
+                "phone": "Phone Number    9544367482 (2837)\nPhone Number           6263071813\nName: 33, dtype: object",
+                "email": "prakashelamana@karunya.edu"
+            },
+            "student": {
+                "name": "Shashish A",
+                "phone": "Phone Number    9544367482 (2837)\nPhone Number           6263071813\nName: 33, dtype: object",
+                "email": "shashisha@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "MODEL MASTERS",
+        "description": "Model Masters is a technical event where registered participants will train machine learning models using a provided dataset. The challenge tests their skills in data preprocessing, model selection, and optimization to achieve the best results.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Darshika Kelin (2681)",
+                "phone": "Phone Number                9585928420\nPhone Number    6379251572, 8590327849\nName: 34, dtype: object",
+                "email": "darshika@karunya.edu"
+            },
+            "student": {
+                "name": "Renimol. S, Daya Susan George",
+                "phone": "Phone Number                9585928420\nPhone Number    6379251572, 8590327849\nName: 34, dtype: object",
+                "email": "renimols@karunya.edu.in, dayasusan@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Last Man Standing",
+        "description": "Last Man Standing is the ultimate Free Fire battle royale competition where only the strongest survive! Compete in intense solo or squad matches, fight through knockout rounds, and claim victory by being the last one standing. With epic prizes and fierce competition, it's time to prove your dominance on the battleground!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "200 (per team)",
+        "participation_strength_setlimit": "50 teams (200 members) ",
+        "coordinators": {
+            "faculty": {
+                "name": "Nirmal Varghese Babu (2528)",
+                "phone": "Phone Number                9400288874\nPhone Number    7418945601, 9497108722\nName: 35, dtype: object",
+                "email": "nirmalvarghese@karunya.edu"
+            },
+            "student": {
+                "name": "Dhuruv Swamy, Jeffrey Chris",
+                "phone": "Phone Number                9400288874\nPhone Number    7418945601, 9497108722\nName: 35, dtype: object",
+                "email": "dhuruvswamy@karunya.edu.in, jeffreychris@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Dare to survive",
+        "description": "A high-stakes game of wit, skill, and endurance where players must survive a series of thrilling challenges. Each round pushes contestants to their limits, eliminating those who fail until only one remains victorious. Do you have what it takes to outlast and claim the ultimate prize.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. A. Jenefa  (2616)",
+                "phone": "Phone Number               99941 89181\nPhone Number    9025818517, 9384627367\nName: 36, dtype: object",
+                "email": "jenefaa@karunya.edu"
+            },
+            "student": {
+                "name": "RUMITHA S, RESHWIN R S",
+                "phone": "Phone Number               99941 89181\nPhone Number    9025818517, 9384627367\nName: 36, dtype: object",
+                "email": "rumithas@karunya.edu.in, reshwinr@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Cyber Chronicles",
+        "description": "A crime has taken place, and the only clues left behind are hidden in the digital world! In Cyber Chronicles, you become a detective, searching for secrets buried in messages, images, and files. Follow the digital trail, connect the dots, and solve the case before time runs out.\n\nCan you crack the mystery and uncover the truth? The challenge begins now!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Mr. Rahul R (2783)",
+                "phone": "Phone Number                 77081 64465\nPhone Number    90036 92101, 88078 36289\nName: 37, dtype: object",
+                "email": "rahul@karunya.edu"
+            },
+            "student": {
+                "name": "Jerome T, Kaviya Varshini G S",
+                "phone": "Phone Number                 77081 64465\nPhone Number    90036 92101, 88078 36289\nName: 37, dtype: object",
+                "email": "jeromet22@karunya.edu.in, kaviyavarshini@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Bot fest",
+        "description": "A Bot Fest is typically an event where students showcase their skills in robotics, AI, and automation through projects, competitions, and interactive sessions.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Data science and Cyber security ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Mrs. M. Bhuvaneshwari (2536)",
+                "phone": "Phone Number     99940 70320\nPhone Number     79044 59520\nName: 38, dtype: object",
+                "email": "bhuvaneshwari@karunya.edu"
+            },
+            "student": {
+                "name": "Chris Remegis",
+                "phone": "Phone Number     99940 70320\nPhone Number     79044 59520\nName: 38, dtype: object",
+                "email": "chrisremigius@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Brushless painting",
+        "description": "Brushless Painting is a fun and creative event where participants use unconventional tools like sponges, fingers, straws, combs, cotton, leaves, and even spray techniques to create stunning artwork. The goal is to break free from traditional methods and explore new ways to express creativity.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Civil Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 10,
+        "coordinators": {
+            "faculty": {
+                "name": "Varun sabu sam,2894, Vinoth 2893",
+                "phone": "Phone Number    8943121337, 99943 95887\nPhone Number                 8056802353\nName: 39, dtype: object",
+                "email": "varunsabu@karunya.edu, vinoth@karunya.edu"
+            },
+            "student": {
+                "name": "Merwyn",
+                "phone": "Phone Number    8943121337, 99943 95887\nPhone Number                 8056802353\nName: 39, dtype: object",
+                "email": "mervynr@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Crash or Cash",
+        "description": "Two player per team will participate to excavate maximum load of sand from place to another place in a obstacle filled dark room. Player 1 who will be witness player 2 in the dark room though Mobile screen instructs about the course area. Player two inside the dark room with rc remotes controls the toy excavater to move sand from one place to the destination inside the room within limited 5 miniutes",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Civil Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100 per team",
+        "participation_strength_setlimit": "150 Team",
+        "coordinators": {
+            "faculty": {
+                "name": "Cyril Samuel JS (2828)",
+                "phone": "Phone Number    93448 35708 \nPhone Number      9497189017\nName: 40, dtype: object",
+                "email": "cyrilsamuel@karunya.edu "
+            },
+            "student": {
+                "name": "Mr.Milan",
+                "phone": "Phone Number    93448 35708 \nPhone Number      9497189017\nName: 40, dtype: object",
+                "email": "cyrilsamuel@karunya.edu"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "RACE X",
+        "description": "REMOTE CONTROL CAR SWILL BE PROVIDED TO TH EPARTICIPANTS FOR RACING ON A TRACK WITH OBSTACLES",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "MECHANICAL",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "250",
+        "participation_strength_setlimit": 75,
+        "coordinators": {
+            "faculty": {
+                "name": "R RAJA 192",
+                "phone": "Phone Number    07339524157\nPhone Number     8421445905\nName: 41, dtype: object",
+                "email": "raja_r11773@karunya.edu"
+            },
+            "student": {
+                "name": "GEORGE BOBBIN",
+                "phone": "Phone Number    07339524157\nPhone Number     8421445905\nName: 41, dtype: object",
+                "email": "georgebobin@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "TradeMAster Challenge: 24-Hour Profit Hunt",
+        "description": "Think you can conquer the stock market in just 24 hours? Join the TradeMaster Challenge, a high-intensity virtual trading competition using the Frontpage paper trading app! Compete against fellow students to make the highest profit within a day. The top three traders will win exciting prizes. No real money, just skill and strategy\u2014analyze, trade, and rise to the top. Are you ready to prove you're the ultimate trader? Let the challenge begin!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "AIML",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 30,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Srinitya G (2810)",
+                "phone": "Phone Number    8148170478\nPhone Number    8874188732\nName: 42, dtype: object",
+                "email": "srinitya@karunya.edu"
+            },
+            "student": {
+                "name": "Cyril Jacob",
+                "phone": "Phone Number    8148170478\nPhone Number    8874188732\nName: 42, dtype: object",
+                "email": "cyriljacob@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "TALENT SHOW'25",
+        "description": "The students will be showcasing their talents (dancing, singing, mime, stand up comedy etc)",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "MEDIA",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 25,
+        "coordinators": {
+            "faculty": {
+                "name": "M JENNIFER JUNE - 1552",
+                "phone": "Phone Number    9003577802\nPhone Number    8248344129\nName: 43, dtype: object",
+                "email": "jenniferjune@karunya.edu"
+            },
+            "student": {
+                "name": "RAKSHITHA",
+                "phone": "Phone Number    9003577802\nPhone Number    8248344129\nName: 43, dtype: object",
+                "email": "rakshithas23@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "ROBO WAR",
+        "description": "Participants have to bring their robot with weapon.They have to compete in Arena ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Mechanical",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "300",
+        "participation_strength_setlimit": 10,
+        "coordinators": {
+            "faculty": {
+                "name": "Rajakumar S Rai",
+                "phone": "Phone Number    9940985882\nPhone Number    8547410489\nName: 44, dtype: object",
+                "email": "Rajakumars@karunya.edu"
+            },
+            "student": {
+                "name": "Amalnath",
+                "phone": "Phone Number    9940985882\nPhone Number    8547410489\nName: 44, dtype: object",
+                "email": "amal@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Paper Presentation",
+        "description": "Paper presentation",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Mechanical",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150",
+        "participation_strength_setlimit": 75,
+        "coordinators": {
+            "faculty": {
+                "name": "Ebenezer Jacob Dhas",
+                "phone": "Phone Number    9940985882\nPhone Number    9497452916\nName: 45, dtype: object",
+                "email": "ebenezer@karunya.edu"
+            },
+            "student": {
+                "name": "Abhishek   Nair",
+                "phone": "Phone Number    9940985882\nPhone Number    9497452916\nName: 45, dtype: object",
+                "email": "amal@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Food without Fuel",
+        "description": "Students will prepare food without using any of the fuel or energy",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Commerce and International Trade",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.Shygil Joy (2519)",
+                "phone": "Phone Number    9677466750\nPhone Number    8104988821\nName: 46, dtype: object",
+                "email": "shygiljoy@karunya.edu"
+            },
+            "student": {
+                "name": "Alan John ",
+                "phone": "Phone Number    9677466750\nPhone Number    8104988821\nName: 46, dtype: object",
+                "email": "alanjohn@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "The Cipher Chase",
+        "description": "This is will be a Capture the Flag event (CTF)\n- 1 hour time limit\n- 3 levels (easy, medium, hard) of challenges will be there with each level having 2 steganography and 2 cryptography challenges\n- by the end of 1 hour the team having the highest points will be declared the winner followed by runners up\n- Rs. 5 should be paid for a single hint (there will be total of 2 hints)\n",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": " ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": "75 participants expected",
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. D. Ponmary Pushpa Latha (1882)",
+                "phone": "Phone Number                            6374690501\nPhone Number    9121493710, 9177214700, 9344458459\nName: 47, dtype: object",
+                "email": "ponmarylatha@karunya.edu"
+            },
+            "student": {
+                "name": "Samuel Paul (URK23DS3049- ISDF 2nd year BSc)  Paul Samuel (URK23DS3037- ISDF 2nd year BSc) Sam Moses (URK23DS3051- ISDF 2nd year BSc)",
+                "phone": "Phone Number                            6374690501\nPhone Number    9121493710, 9177214700, 9344458459\nName: 47, dtype: object",
+                "email": "Samuelpaul23@karunya.edu.in, vipparthipaul@karunya.edu.in, sammoses@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "TrapZone",
+        "description": "The Player enter a classroom that has been transformed into a  dark room.\nThe Outer Perimeter:  This first level acts as a gateway to the more challenging second level. Players must search the outer perimeter of the classroom for three flags. Two flags are hidden somewhere within the environment.  The third flag is earned, not found. Players must compete in a quick game of XOX (Tic-Tac-Toe) against a game master. The winner of the XOX game receives the third flag.\nOnce a player has successfully located the two hidden flags and won the XOX game to acquire the third flag, they have completed Level 1. Only then are they allowed to proceed to Level 2.  This ensures that players can't just rush through to the final level without demonstrating some skill and thoroughness.\nThe Inner layer: This is the final and more difficult level.  Players now enter the inner part of the classroom. Here, five more flags are hidden. These flags might be more cleverly concealed than the ones in Level 1.\nWinning the Game: The player who finds all eight flags (three from Level 1 and five from Level 2) in the fastest time wins the game.  A timer is likely used to track each player's\u00a0progress.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Robotics Engineering ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs. 100",
+        "participation_strength_setlimit": 200,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Bini D - 2405 ",
+                "phone": "Phone Number    +91 90422 26212\nPhone Number      +918089335562\nName: 48, dtype: object",
+                "email": "bini@karunya.edu"
+            },
+            "student": {
+                "name": "Ashwin P A",
+                "phone": "Phone Number    +91 90422 26212\nPhone Number      +918089335562\nName: 48, dtype: object",
+                "email": "aswinp22@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Tech- wizz",
+        "description": "Poster presentation on Recent advancement in biomedical field",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biomedical Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.Gnanasaravanan (2508)",
+                "phone": "Phone Number    9677975450\nPhone Number    9717640474\nName: 49, dtype: object",
+                "email": "gnanasaravanan@karunya.edu"
+            },
+            "student": {
+                "name": "Letitia Nimshi",
+                "phone": "Phone Number    9677975450\nPhone Number    9717640474\nName: 49, dtype: object",
+                "email": "letitianimshi@karunya@edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Bio-Mystery Escape Room",
+        "description": "Step into the darkness, where three dolls hide a deadly secret\u2014one is infected with a virus. Scattered blood samples and cryptic clues await, but only the sharpest minds will decipher them. Hunt, analyze, and uncover the truth before time runs out. the team who find with short time wins.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biomedical Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Prasanna J (2818)",
+                "phone": "Phone Number    9597972847\nPhone Number    7736605542\nName: 50, dtype: object",
+                "email": "prasannaj@karunya.edu"
+            },
+            "student": {
+                "name": "Vaibhav Kiran",
+                "phone": "Phone Number    9597972847\nPhone Number    7736605542\nName: 50, dtype: object",
+                "email": "vaibhavkiran@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Memory Relay",
+        "description": "The medical equipment names will be displayed; the one participant will memorize the names with the allotted time, other have to find them based on the clue.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biomedical Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. D.Hepsiba",
+                "phone": "Phone Number    8870452121\nPhone Number    9790683634\nName: 51, dtype: object",
+                "email": "hepsiba@karunya.edu"
+            },
+            "student": {
+                "name": "Dharshan R",
+                "phone": "Phone Number    8870452121\nPhone Number    9790683634\nName: 51, dtype: object",
+                "email": "dharshanr22@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Ink it, Guess it",
+        "description": "One participant will be given the picture; the others will recreate it based on the instructions.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Biomedical Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Nil",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Ashisha",
+                "phone": "Phone Number    7092164647\nPhone Number    7217241345\nName: 52, dtype: object",
+                "email": "ashisha@karunya.edu"
+            },
+            "student": {
+                "name": "Arpit Chauhan",
+                "phone": "Phone Number    7092164647\nPhone Number    7217241345\nName: 52, dtype: object",
+                "email": "arpitchauhan@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Workshop on Biomedical Instrumentation",
+        "description": "Workshop on Biomedical Instrumentation",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biomedical Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Subha Hency Jose",
+                "phone": "Phone Number    9487846907\nPhone Number    6379334208\nName: 53, dtype: object",
+                "email": "hency20002000@karunya.edu"
+            },
+            "student": {
+                "name": "Venika G",
+                "phone": "Phone Number    9487846907\nPhone Number    6379334208\nName: 53, dtype: object",
+                "email": "venikag@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Dashout",
+        "description": "Dashout is a definitive stage where the roar of metal, the buzz of innovation, and the excitement of contest unite. It's not only a fight; its a display where uniqueness of design engineering skills  in developing their independent warriors to take part in bot fight",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Robotics Engineering ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs. 100",
+        "participation_strength_setlimit": 40,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr Jegathesan V",
+                "phone": "Phone Number    +91 90925 51032\nPhone Number      +919445739750\nName: 54, dtype: object",
+                "email": "jegathesan@karunya.edu"
+            },
+            "student": {
+                "name": "Adithya ",
+                "phone": "Phone Number    +91 90925 51032\nPhone Number      +919445739750\nName: 54, dtype: object",
+                "email": "adithyas@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "OG DETECTIVE",
+        "description": "Step into the shoes of a forensic expert! Analyze evidence, decode clues, and unravel the mystery in this thrilling crime scene investigation challenge.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Division of Criminology and Forensic Science",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Labhini Rahangdale (2598)",
+                "phone": "Phone Number    7066339242\nPhone Number    9500771887\nName: 55, dtype: object",
+                "email": "labhini@karunya.edu "
+            },
+            "student": {
+                "name": "Aleen Godwin",
+                "phone": "Phone Number    7066339242\nPhone Number    9500771887\nName: 55, dtype: object",
+                "email": "aleengodina92@gmail.com"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Maze Master",
+        "description": "Prepare to be amazed by the ingenuity and precision of robotics at Robo Maze! This captivating event challenges participants to design and build autonomous robots capable of conquering a complex maze.  Starting from a designated point, these intelligent machines will navigate a labyrinthine course filled with twists, turns, and dead ends.  The objective is clear: reach the finish line in the shortest time possible.  But the path to victory won't be easy.  Robots must demonstrate exceptional obstacle avoidance skills, strategic path planning, and robust maneuverability to successfully traverse the maze.  Join us to witness these robotic contenders as they showcase their problem-solving abilities and compete for supremacy in a thrilling race against time and the intricate twists and turns of\u00a0the\u00a0Robo\u00a0Maze!",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Robotics Engineering ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs. 100",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. DAVID RAJA SELVAM J 873",
+                "phone": "Phone Number    +91 94420 69380\nPhone Number    +91 83019 28682\nName: 56, dtype: object",
+                "email": "jdavidrajaselvam@karunya.edu"
+            },
+            "student": {
+                "name": "T Bharath",
+                "phone": "Phone Number    +91 94420 69380\nPhone Number    +91 83019 28682\nName: 56, dtype: object",
+                "email": "tbharath@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Maze Master",
+        "description": "The Circuit Treasure Hunt isn't just about finding hidden objects; it's about combining your wits, technical knowledge, and teamwork to unearth the components of a complete circuit. Scattered across the college grounds, vital circuit elements await discovery.  Participants will follow a trail of cryptic clues, each successful find leading them closer to the next piece of the puzzle.  With every component retrieved, a new riddle unlocks the location of the next treasure.\nThe ultimate prize? A circuit diagram that will bring all the discovered pieces together.  Once all the components are in hand, teams will race against the clock to assemble the circuit according to the provided schematic.  The first team to correctly connect the components and achieve the desired output will claim the title of Circuit Treasure Hunt champions! Get ready to decode clues, explore hidden corners, and put your electronics skills to the test in this unique and\u00a0engaging\u00a0event.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Robotics Engineering ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "Rs. 100",
+        "participation_strength_setlimit": 75,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Anitha Angeline - 2523",
+                "phone": "Phone Number    +91 94420 69380\nPhone Number    +91 90146 07873\nName: 57, dtype: object",
+                "email": " anithaangeline@karunya.edu"
+            },
+            "student": {
+                "name": "CHILUKURI THANMAI SRI MURALI",
+                "phone": "Phone Number    +91 94420 69380\nPhone Number    +91 90146 07873\nName: 57, dtype: object",
+                "email": "chilukurithanmai@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Lights Camera Investigation\u00a0!",
+        "description": " Themes: Participants will be given 4 forensic-related themes.  \n- Format: Teams must create a 3-minute Instagram reel based on one of the themes. \nTeam members : 4",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Division of Criminology and Forensic Science",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50 per person ",
+        "participation_strength_setlimit": "80 Participants (20 Teams)",
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Marvel Bhosle (2494)",
+                "phone": "Phone Number    9511981087\nPhone Number    7708323663\nName: 58, dtype: object",
+                "email": "marvelbhosle@karunya.edu"
+            },
+            "student": {
+                "name": "M.Sridhar ",
+                "phone": "Phone Number    9511981087\nPhone Number    7708323663\nName: 58, dtype: object",
+                "email": "bemotivated36@gmail.com"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "TATA - DOCOMO",
+        "description": "TATA - DOCOMO\n\nA new day a new crime,Tata Docomo begins by giving an overview of an case with suspects along with the 1st clue. After tackling unlock other clues by performing a task.Keep on eliminating suspects and by the end of 8th clue the culprit\u00a0is\u00a0cornered..",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Division of Criminology and Forensic Science ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100 rs",
+        "participation_strength_setlimit": 80,
+        "coordinators": {
+            "faculty": {
+                "name": "Ms. Poonam Moon( 2597); Dr. Shifa Shine (2788)",
+                "phone": "Phone Number    9373439852; 8304877881\nPhone Number                7418466931\nName: 59, dtype: object",
+                "email": "shifashine@karunya.edu"
+            },
+            "student": {
+                "name": "ABINAYAA.B",
+                "phone": "Phone Number    9373439852; 8304877881\nPhone Number                7418466931\nName: 59, dtype: object",
+                "email": "babinayaa@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": " Kidz cracker ",
+        "description": "Cracking : The Moto of the first round is to crack the given md5 or sha hash value driven from the given puzzle and identifying the password.\n\nDebugging: The second round is to debug the given code and making it run and generate the output .\n\nIdeathon: The final round is to giving the participants a chance to flow their creativity and giving ideas for the problems given.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Digital Sciences",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150 per participant ",
+        "participation_strength_setlimit": "25 teams with 2 participants max  and 20 solo Participants",
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.S.Sanjith 2605",
+                "phone": "Phone Number              9751995269\nPhone Number    90430545049944604672\nName: 60, dtype: object",
+                "email": "Sanjith@karunya.edu"
+            },
+            "student": {
+                "name": "Brightina S,  Avinaash Isaac  ",
+                "phone": "Phone Number              9751995269\nPhone Number    90430545049944604672\nName: 60, dtype: object",
+                "email": "brightinas24@karunya.edu.in,  avinaashisaac24@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "CAD Modelling competition",
+        "description": "The participants will be given a CAD model details.They have to model it in CREO software",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Mechanical",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150",
+        "participation_strength_setlimit": 45,
+        "coordinators": {
+            "faculty": {
+                "name": "Rajakumar S Rai",
+                "phone": "Phone Number     9940985882\nPhone Number    08421445905\nName: 61, dtype: object",
+                "email": "rajakumars@karunya.edu "
+            },
+            "student": {
+                "name": "Mr George Bobbin",
+                "phone": "Phone Number     9940985882\nPhone Number    08421445905\nName: 61, dtype: object",
+                "email": "georgebobin@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "KARUNYA'S IPL AUCTION",
+        "description": "IPL Mock Auction\nOverview:\nAn engaging event testing cricket knowledge and strategic team-building through a\nsimulated IPL auction\n\nEvent Details:\n- Purse: INR 100 Crore\n- Team Size:16-18 players (6-8 overseas)\n- Rounds: 2\n- Scoring:\n- Team Points: Based on squad strength.\n - Bonus Points: Based on remaining purse.\n\nEvent Model:\nRound 1: Cricket Quiz\n- 50 questions, 25 minutes.\n- Top 10 teams advance.\n\nRound 2: Bidding War\n- Teams assigned an IPL franchise.\n- INR 120 Crore budget for auction.\n- Balanced squad building is key.\n\nScoring:\n- Team Points: Squad composition, player quality.\n- Bonus Points: Effective budget management.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Data Science and Cyber Security",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150 per person",
+        "participation_strength_setlimit": 80,
+        "coordinators": {
+            "faculty": {
+                "name": "Mrs. Antony Taurshia, 2348",
+                "phone": "Phone Number    9384218969\nPhone Number    9944064709\nName: 62, dtype: object",
+                "email": "antonytaurshia@karunya.edu"
+            },
+            "student": {
+                "name": "SANJAY NESAN J",
+                "phone": "Phone Number    9384218969\nPhone Number    9944064709\nName: 62, dtype: object",
+                "email": "sanjaynesan@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "TUF BROTHERS",
+        "description": "Encouraging the youth generation to involve in fitness activities to keep their body healthy as wealth.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Digital Sciences",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.S.Sanjith 2605",
+                "phone": "Phone Number              9751995269\nPhone Number    88704619709342203904\nName: 63, dtype: object",
+                "email": "Sanjith@karunya.edu"
+            },
+            "student": {
+                "name": "Aravindhan M  Praveen Kumar M ",
+                "phone": "Phone Number              9751995269\nPhone Number    88704619709342203904\nName: 63, dtype: object",
+                "email": "aravindhanm24@karunya.edu.in praveenkumarm24@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": " Treasure Hunt",
+        "description": "Team must stay together during the treasure hunt and are encouraged to work together to solve the clues. It includes 2 Rounds and 3 members per team.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Digital Sciences",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "60",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": " Dr.Linda Rose (2678)",
+                "phone": "Phone Number    7708664484\nPhone Number    7695996904\nName: 64, dtype: object",
+                "email": "lindarose@karunya.edu"
+            },
+            "student": {
+                "name": "Mr.J.Saranyan Mr.Laurren Prem Louis Premkumar",
+                "phone": "Phone Number    7708664484\nPhone Number    7695996904\nName: 64, dtype: object",
+                "email": "saranyanj@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Round Table ",
+        "description": "The game consists of series of tasks that teams must complete while rotating through different stations.\nIt includes 5 Rounds and 2 members per team.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Digital Sciences ",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "60",
+        "participation_strength_setlimit": 50,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.P.Esther Jebarani (2875)",
+                "phone": "Phone Number                9894774756\nPhone Number    7695996904, 7305982779\nName: 65, dtype: object",
+                "email": "esther@karunya.edu"
+            },
+            "student": {
+                "name": "Mr.J.Saranyan, Ms.S.Jane Samlin Ms.B.Smirithi",
+                "phone": "Phone Number                9894774756\nPhone Number    7695996904, 7305982779\nName: 65, dtype: object",
+                "email": "janesamlin@karunya.edu.in,janesamlin@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "AeroDrop: Water Rocketry & Parachute Challenge",
+        "description": "AeroDrop is a thrilling two-stage water rocketry and parachute deployment competition that challenges participants to design, build, and launch a water rocket with a functional parachute recovery system.\n",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Aerospace Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100\u20b9",
+        "participation_strength_setlimit": 60,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.S.Venkatachalam - 2137",
+                "phone": "Phone Number                  97911 75905\nPhone Number    94874 63124 & 95667 52757\nName: 66, dtype: object",
+                "email": "venkatachalam@karunya.edu"
+            },
+            "student": {
+                "name": "Jasmine  & Afreen A",
+                "phone": "Phone Number                  97911 75905\nPhone Number    94874 63124 & 95667 52757\nName: 66, dtype: object",
+                "email": "\"jasminesabeeka@karunya.edu.in &  afreena@karunya.edu.in"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "EcoAero: Sustainable Aero-Modelling Challenget",
+        "description": "EcoAero is a unique aeromodelling competition that challenges participants to design and build functional model aircraft using only waste or recycled materials. \n",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Aerospace Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "150\u20b9",
+        "participation_strength_setlimit": 70,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.Aldin Justin - 1280",
+                "phone": "Phone Number     9047653317\nPhone Number    86102 16697\nName: 67, dtype: object",
+                "email": "aldinjustin@karunya.edu "
+            },
+            "student": {
+                "name": "Jerline Mercy\t",
+                "phone": "Phone Number     9047653317\nPhone Number    86102 16697\nName: 67, dtype: object",
+                "email": "jerlinemercy@karunya.edu.in\t"
+            }
+        }
+    },
+    {
+        "eventid": "MK25E0001",
+        "eventname": "Cash or Crash",
+        "description": "three different levels of games will be conducted with paper cups",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Non - Technical",
+        "division": "Division of Civil Engineering",
+        "start_time": "2025-02-10T18:55:34Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Cyril Samuel JS (2828)",
+                "phone": "Phone Number    9344835708\nPhone Number    9497189017\nName: 68, dtype: object",
+                "email": "cyrilsamuel88@karunya.edu"
+            },
+            "student": {
+                "name": "Milan",
+                "phone": "Phone Number    9344835708\nPhone Number    9497189017\nName: 68, dtype: object",
+                "email": "cyrilsamuel88@karunya.edu"
+            }
+        }
     }
+];
 
-    // Function to format time to a readable format
-    function formatTime(dateString) {
-      const date = new Date(dateString);
-      return `${date.getHours()}:${date.getMinutes()}`;
-    }
+// Function to generate event tiles
+function generateEventTiles(filter = 'all') {
+  const container = document.querySelector('.event-container');
+  container.innerHTML = ''; // Clear existing tiles
 
-    // Generate event tiles on page load by fetching events
-    fetchEvents();
-  </script>
+  const filteredEvents = filter === 'all' ? events : events.filter(event => event.division === filter);
+
+  filteredEvents.forEach(event => {
+    const eventTile = document.createElement('div');
+    eventTile.className = 'event-tile';
+
+    eventTile.innerHTML = `
+      <div class="details">
+        <h2>${event.eventname}</h2>
+        <div class="chips">
+          <span><i class="fas fa-calendar-alt"></i> ${formatDate(event.start_time)}</span>
+          <span><i class="fas fa-clock"></i> ${formatTime(event.start_time)} - ${formatTime(event.end_time)}</span>
+          <span><i class="fas fa-users"></i> ${event.participation_strength_setlimit}</span>
+          <span><i class="fas fa-tag"></i> ${event.category_name}</span>
+          <span><i class="fas fa-rupee-sign"></i> ₹${event.price}</span>
+        </div>
+      </div>
+      <button class="register-button" onclick="showEventDetails('${event.eventid}')">
+        Register Now
+      </button>
+    `;
+
+    container.appendChild(eventTile);
+  });
+}
+
+// Function to filter events by department
+function filterEvents(department) {
+  generateEventTiles(department);
+  // Update active state in the side nav
+  const navItems = document.querySelectorAll('.side-nav ul li');
+  navItems.forEach(item => item.classList.remove('active'));
+  const activeItem = Array.from(navItems).find(item => item.textContent.includes(department));
+  if (activeItem) activeItem.classList.add('active');
+}
+
+// Function to show event details
+function showEventDetails(eventId) {
+  const event = events.find(event => event.eventid === eventId);
+  if (event) {
+    document.getElementById('event-description').textContent = event.description;
+    document.getElementById('event-prizes').textContent = event.prizes;
+    document.getElementById('student-coordinator').textContent = event.coordinators.student.name;
+    document.getElementById('staff-coordinator').textContent = event.coordinators.faculty.name;
+    document.getElementById('contact-number').textContent = event.coordinators.student.phone;
+    document.querySelector('.event-details h2').textContent = event.eventname;
+
+    // Hide event tiles and show event details
+    document.querySelector('.event-container').style.display = 'none';
+    document.querySelector('.event-details').style.display = 'block';
+  } else {
+    alert('Event details not found');
+  }
+}
+
+// Function to hide event details and show event tiles
+function hideEventDetails() {
+  document.querySelector('.event-container').style.display = 'flex';
+  document.querySelector('.event-details').style.display = 'none';
+}
+
+// Function to format date to a readable format
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+}
+
+// Function to format time to a readable format
+function formatTime(dateString) {
+  const date = new Date(dateString);
+  return `${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+}
+
+// Generate event tiles on page load
+generateEventTiles();
+</script>
 </body>
 </html>
