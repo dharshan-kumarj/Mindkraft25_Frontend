@@ -268,6 +268,45 @@
         .hidden {
             display: none;
         }
+
+        /* OTP Popup Styles */
+        #otp-popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        #otp-popup input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        #otp-popup button {
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background: #3d3a4e;
+            color: white;
+            font-size: 16px;
+        }
+
+        #otp-popup p {
+            margin: 20px 0 0;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -296,31 +335,31 @@
         <form id="internal-form" class="form">
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" placeholder="Enter your first name" required>
+                <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" placeholder="Enter your last name" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
             </div>
             <div class="form-group">
                 <label for="register-number">Register Number</label>
-                <input type="text" id="register-number" placeholder="Enter your register number" required>
+                <input type="text" id="register-number" name="register-number" placeholder="Enter your register number" required>
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" required>
+                <input type="date" id="dob" name="dob" required>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
-                <input type="tel" id="phone-number" placeholder="Enter your phone number" required>
+                <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number" required>
             </div>
             <div class="form-group">
                 <label for="mail-id">Mail ID</label>
-                <input type="email" id="mail-id" placeholder="Enter your mail ID" required>
+                <input type="email" id="mail-id" name="mail-id" placeholder="Enter your mail ID" required>
             </div>
             <div class="form-group">
                 <label for="program">Program</label>
-                <select id="program">
+                <select id="program" name="program">
                     <option value="">Select Program</option>
                     <option value="btech">B.Tech</option>
                     <option value="mtech">M.Tech</option>
@@ -328,7 +367,7 @@
             </div>
             <div class="form-group">
                 <label for="course">Course</label>
-                <select id="course">
+                <select id="course" name="course">
                     <option value="">Select Course</option>
                     <optgroup label="B.Tech">
                         <option value="aerospace">B.Tech Aerospace Engineering</option>
@@ -411,107 +450,216 @@
                     <optgroup label="Ph.D.">
                         <option value="phd">Ph.D. (Engineering / Management / Sciences / Arts)</option>
                     </optgroup>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <select id="year">
-                    <option value="">Select Year</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
-            </div>
-            <button type="submit" class="btn">
-                <span>SUBMIT</span>
-            </button>
-        </form>
-
-        <form id="external-form" class="form hidden">
-            <div class="form-group">
-                <label for="ext-first-name">First Name</label>
-                <input type="text" id="ext-first-name" placeholder="Enter your first name" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-last-name">Last Name</label>
-                <input type="text" id="ext-last-name" placeholder="Enter your last name" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-phone-number">Phone Number</label>
-                <input type="tel" id="ext-phone-number" placeholder="Enter your phone number" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-mail-id">Mail ID</label>
-                <input type="email" id="ext-mail-id" placeholder="Enter your mail ID" required>
-            </div>
-            <div class="form-group">
-                <label for="college-name">College Name</label>
-                <input type="text" id="college-name" placeholder="Enter your college name" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-program">Program</label>
-                <select id="ext-program">
-                    <option value="">Select Program</option>
-                    <option value="btech">B.Tech</option>
-                    <option value="mtech">M.Tech</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ext-course">Course</label>
-                <input type="text" id="ext-course" placeholder="Enter your course" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-year">Year</label>
-                <select id="ext-year">
-                    <option value="">Select Year</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ext-password">Password</label>
-                <input type="password" id="ext-password" placeholder="Enter your password" required>
-            </div>
-            <div class="form-group">
-                <label for="ext-confirm-password">Confirm Password</label>
-                <input type="password" id="ext-confirm-password" placeholder="Confirm your password" required>
-            </div>
-            <button type="submit" class="btn">
-                <span>SUBMIT</span>
-            </button>
-        </form>
-        </div>
-        
-        <script>
-            const internalBtn = document.getElementById('internal-btn');
-            const externalBtn = document.getElementById('external-btn');
-            const internalForm = document.getElementById('internal-form');
-            const externalForm = document.getElementById('external-form');
-        
-            internalBtn.addEventListener('click', () => {
-                internalForm.classList.remove('hidden');
-                externalForm.classList.add('hidden');
-                internalBtn.classList.add('active');
-                externalBtn.classList.remove('active');
-            });
-        
-            externalBtn.addEventListener('click', () => {
-                externalForm.classList.remove('hidden');
-                internalForm.classList.add('hidden');
-                externalBtn.classList.add('active');
-                internalBtn.classList.remove('active');
-            });
-        </script>
-        </body>
-        </html>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <select id="year" name="year">
+                            <option value="">Select Year</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="btn">
+                        <span>SUBMIT</span>
+                    </button>
+                    </form>
+                    
+                    <form id="external-form" class="form hidden">
+                        <div class="form-group">
+                            <label for="ext-first-name">First Name</label>
+                            <input type="text" id="ext-first-name" name="ext-first-name" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-last-name">Last Name</label>
+                            <input type="text" id="ext-last-name" name="ext-last-name" placeholder="Enter your last name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-phone-number">Phone Number</label>
+                            <input type="tel" id="ext-phone-number" name="ext-phone-number" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-mail-id">Mail ID</label>
+                            <input type="email" id="ext-mail-id" name="ext-mail-id" placeholder="Enter your mail ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="college-name">College Name</label>
+                            <input type="text" id="college-name" name="college-name" placeholder="Enter your college name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-program">Program</label>
+                            <select id="ext-program" name="ext-program">
+                                <option value="">Select Program</option>
+                                <option value="btech">B.Tech</option>
+                                <option value="mtech">M.Tech</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-course">Course</label>
+                            <input type="text" id="ext-course" name="ext-course" placeholder="Enter your course" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-year">Year</label>
+                            <select id="ext-year" name="ext-year">
+                                <option value="">Select Year</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-password">Password</label>
+                            <input type="password" id="ext-password" name="ext-password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ext-confirm-password">Confirm Password</label>
+                            <input type="password" id="ext-confirm-password" name="ext-confirm-password" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn">
+                            <span>SUBMIT</span>
+                        </button>
+                    </form>
+                    </div>
+                    
+                    <!-- OTP Popup -->
+                    <div id="otp-popup">
+                        <h2>Enter OTP</h2>
+                        <input type="text" id="otp-input" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                        <button id="verify-otp-btn">Verify OTP</button>
+                        <p id="timer"></p>
+                    </div>
+                    
+                    <script>
+                        const internalBtn = document.getElementById('internal-btn');
+                        const externalBtn = document.getElementById('external-btn');
+                        const internalForm = document.getElementById('internal-form');
+                        const externalForm = document.getElementById('external-form');
+                        const otpPopup = document.getElementById('otp-popup');
+                        const otpInput = document.getElementById('otp-input');
+                        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+                        const timerElement = document.getElementById('timer');
+                        let email = '';
+                    
+                        internalBtn.addEventListener('click', () => {
+                            internalForm.classList.remove('hidden');
+                            externalForm.classList.add('hidden');
+                            internalBtn.classList.add('active');
+                            externalBtn.classList.remove('active');
+                        });
+                    
+                        externalBtn.addEventListener('click', () => {
+                            externalForm.classList.remove('hidden');
+                            internalForm.classList.add('hidden');
+                            externalBtn.classList.add('active');
+                            internalBtn.classList.remove('active');
+                        });
+                    
+                        internalForm.addEventListener('submit', async (event) => {
+                            event.preventDefault();
+                            const formData = new FormData(internalForm);
+                            const data = {
+                                email: formData.get('mail-id'),
+                                first_name: formData.get('first-name'),
+                                last_name: formData.get('last-name'),
+                                register_no: formData.get('register-number'),
+                                mobile_no: formData.get('phone-number'),
+                                date_of_birth: formData.get('dob'),
+                                password: formData.get('password'),
+                                is_faculty: false,
+                                intercollege: false,
+                                is_enrolled: true,
+                                student: {
+                                    college_name: 'Karunya University',
+                                    branch: formData.get('program'),
+                                    dept: formData.get('course'),
+                                    year_of_study: parseInt(formData.get('year')),
+                                    tshirt: false
+                                }
+                            };
+                    
+                            try {
+                                const response = await fetch('https://mindkraft25-backend.onrender.com/user/register/', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+                    
+                                const result = await response.json();
+                                if (result.message) {
+                                    email = result.email;
+                                    openOtpPopup();
+                                    startTimer(600); // 10 minutes
+                                } else {
+                                    console.error('Error during registration:', result);
+                                }
+                            } catch (error) {
+                                console.error('Request failed:', error);
+                            }
+                        });
+                    
+                        function openOtpPopup() {
+                            otpPopup.style.display = 'block';
+                        }
+                    
+                        function closeOtpPopup() {
+                            otpPopup.style.display = 'none';
+                        }
+                    
+                        function startTimer(duration) {
+                            let timer = duration, minutes, seconds;
+                            const interval = setInterval(() => {
+                                minutes = parseInt(timer / 60, 10);
+                                seconds = parseInt(timer % 60, 10);
+                                minutes = minutes < 10 ? "0" + minutes : minutes;
+                                seconds = seconds < 10 ? "0" + seconds : seconds;
+                                timerElement.textContent = `Time Remaining: ${minutes}:${seconds}`;
+                                if (--timer < 0) {
+                                    clearInterval(interval);
+                                    timerElement.textContent = 'OTP expired!';
+                                }
+                            }, 1000);
+                        }
+                    
+                        verifyOtpBtn.addEventListener('click', async () => {
+                            const otp = otpInput.value;
+                            if (!otp) {
+                                alert('Please enter the OTP');
+                                return;
+                            }
+                    
+                            try {
+                                const response = await fetch('https://mindkraft25-backend.onrender.com/user/verify-otp/', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ email, otp })
+                                });
+                    
+                                const result = await response.json();
+                                if (result.message === 'OTP verified successfully') {
+                                    closeOtpPopup();
+                                    window.location.href = '/login';
+                                } else {
+                                    console.error('Error during OTP verification:', result);
+                                }
+                            } catch (error) {
+                                console.error('Request failed:', error);
+                            }
+                        });
+                    </script>
+                    </body>
+                    </html>
