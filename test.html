@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindKraft Event List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 20px 0;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    .loading {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>External Events</h1>
+  <div id="loading" class="loading">Loading events...</div>
+  <div id="error" class="error"></div>
+  <ul id="event-list"></ul>
+
+  <script>
+    // API URL and Token
+    const apiUrl = 'https://eduapi.peopleserve.app/api/MindKraft/GetMindKraftEventList?eventType=External%20Events&feeCode=MK24REGE-Registration%20External&eventStartDate=2025-03-20';
+    const apiToken = 'T7%Fj3p#X8vR!mWq&5Zk@4N^dLb2cY$9Gh*o1A6P#KxMv3tZfQjR!7Xk8^YzL&';
+
+    // Data to send in the body (like in the curl -d argument)
+    const data = {
+      eventType: "External Events",
+      feeCode: "MK24REGE-Registration External",
+      eventStartDate: "2025-03-20"
+    };
+
+    // Fetching events using POST with data
+    fetch(apiUrl, {
+      method: "POST",  // Using POST method
+      headers: {
+        'Api-Token': apiToken,
+        'Content-Type': 'application/json', // Ensure content type is JSON
+      },
+      body: JSON.stringify(data), // Send data as JSON string in body
+    })
+    .then(response => {
+      // Check if the response is okay (status 200-299)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON response
+    })
+    .then(data => {
+      const eventList = document.getElementById('event-list');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+
+      // Hide the loading message
+      loading.style.display = 'none';
+      error.style.display = 'none';
+
+      // Check if events were returned
+      if (data && data.length > 0) {
+        data.forEach(event => {
+          const eventItem = document.createElement('li');
+          eventItem.innerHTML = `
+            <h3>${event.eventName}</h3>
+            <p>${event.eventDescription}</p>
+            <p>Date: ${event.eventDate}</p>
+          `;
+          eventList.appendChild(eventItem);
+        });
+      } else {
+        eventList.innerHTML = '<li>No events found.</li>';
+      }
+    })
+    .catch(err => {
+      // Handle error
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').textContent = 'Error loading events: ' + err.message;
+    });
+  </script>
+
+</body>
+</html>
