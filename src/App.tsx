@@ -4,7 +4,8 @@ import Register from "../src/pages/auth/Register";
 import PaymentSuccess from "../src/pages/payments/PaymentSuccess";
 import EventRegistrationPage from "./pages/events/EventRegistation";
 import EventCartPage from "./pages/events/EventCartPage";
-
+import LandingPage from "./pages/LandingPage";
+import EventsPage from "./pages/events/EventsPage";
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,8 @@ const App: React.FC = () => {
         <Route path="/paymentsuccess" element={<PaymentSuccess/>} />
         <Route path="/event-reg" element={<EventRegistrationPage/>} />
         <Route path="/cart" element={<EventCartPage/>} />
-
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/events" element={<EventsPage/>} />
 
       </Routes>
     </Router>
