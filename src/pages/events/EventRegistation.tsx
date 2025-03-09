@@ -26,7 +26,7 @@ const EventRegistrationPage: React.FC = () => {
                 {/* Logo Circle */}
                 <div className="p-1 w-20 h-20 bg-opacity-60 bg-white rounded-full flex justify-center items-center absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-md">
                     <img
-                        src="src/assets/mk_logo.png"
+                        src="src/assets/mk_logo.webp"
                         alt="Logo"
                         className="w-full h-full object-cover rounded-full"
                     />
