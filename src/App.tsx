@@ -1,15 +1,19 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "../src/pages/auth/Login";
+import Register from "../src/pages/auth/Register";
+import PaymentSuccess from "../src/pages/payments/PaymentSuccess";
 
-function App() {
 
+const App: React.FC = () => {
   return (
-    <>
-      <div className="flex justify-center items-center h-screen bg-blue-500">
-        <h1 className="text-4xl text-white font-bold">Hello, Tailwind CSS!</h1>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/paymentsuccess" element={<PaymentSuccess/>} />
+      </Routes>
+    </Router>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
