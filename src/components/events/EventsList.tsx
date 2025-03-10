@@ -35,7 +35,6 @@ const EventsList: React.FC<EventsListProps> = ({ filter, onEventClick }) => {
           setError("Unexpected response format");
         }
       })
-      // console.log(Response);
       .catch((err) => {
         console.error("Error fetching events:", err);
         setError("Failed to load events");
@@ -48,7 +47,8 @@ const EventsList: React.FC<EventsListProps> = ({ filter, onEventClick }) => {
   if (loading) return <p className="text-center text-gray-300">Loading events...</p>;
   if (error) return <p className="text-center text-red-400">{error}</p>;
 
-  const filteredEvents = filter === "all"
+  // 🔹 Fix: Ensure "All Departments" shows all events
+  const filteredEvents = (filter === "all" || filter === "All Departments")
     ? eventsData
     : eventsData.filter((event) => event.division === filter);
 

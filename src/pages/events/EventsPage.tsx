@@ -30,15 +30,19 @@ const EventsPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#12022f] to-[#29075e] text-gray-100">
-      {/* Navbar - Fixed to top */}
-      <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-[#1e0635] border-b border-[#1e0635]">
+    <div 
+      className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100" 
+      style={{ backgroundImage: "url('/src/assets/bg.png')" }} 
+    >  
+      {/* Navbar with Solid Background (Fixed White Layer Issue) */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 bg-[#1e0635] shadow-lg">
+        
         {/* Sidebar Toggle Button */}
         <button
-          className="p-1 bg-purple-700 text-white rounded-md shadow-md focus:outline-none"
+          className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          <img src="src/assets/menu.png" width={30} height={30} alt="sidebar" />
+          <img src="/src/assets/menu.png" width={30} height={30} alt="sidebar" />
         </button>
 
         {/* Event Title */}
@@ -49,9 +53,10 @@ const EventsPage: React.FC = () => {
         {/* Cart Button */}
         <button
           onClick={() => navigate("/cart")}
-          className="relative bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full transition-all flex items-center"
+          className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
         >
-          <img src="src/assets/cart.png" width={20} height={20} alt="" />        </button>
+          <img src="/src/assets/cart.png" width={20} height={20} alt="" />
+        </button>
       </nav>
 
       {/* Sidebar Overlay */}
@@ -71,7 +76,7 @@ const EventsPage: React.FC = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="relative flex-1 p-6 mt-[64px] transition-all duration-300">
+      <main className="relative flex-1 p-6 mt-[64px] transition-all duration-300 min-h-screen">
         {/* Keep EventsList always rendered */}
         <div className={`${selectedEvent ? "opacity-50 pointer-events-none" : ""}`}>
           <EventsList onEventClick={handleEventSelect} filter={departmentFilter} />
