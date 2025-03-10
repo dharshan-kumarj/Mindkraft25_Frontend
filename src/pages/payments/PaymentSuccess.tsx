@@ -23,7 +23,8 @@ const PaymentSuccess: React.FC = () => {
                     return response.json();
                 })
                 .then((data) => {
-                    setUserDetails(data); // Assuming the API returns { name: string, url: string }
+                    // Assuming the API returns { name: string, url: string }
+                    setUserDetails(data);
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -79,7 +80,9 @@ const PaymentSuccess: React.FC = () => {
                             </a>
                         </p>
                     </>
-                ) : null}
+                ) : (
+                    <p className="text-white text-opacity-80 mt-2">No user details found.</p>
+                )}
 
                 {/* Home Button */}
                 <button
