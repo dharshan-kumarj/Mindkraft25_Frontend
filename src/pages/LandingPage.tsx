@@ -118,46 +118,70 @@ const LandingPage: React.FC = () => {
 
       {/* Committee Section - Next Page */}
       <div
-        id="committee-section"
-        className={`min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10 transition-opacity duration-1000 ease-out ${
-          isCommitteeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-        }`}
-      >
-        <h2 className="text-4xl font-bold text-center mb-8 text-white">COMMITTEE</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl px-6">
-          {/* Committee Items */}
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Patron</h3>
-            <p className="text-gray-300">Dr. Paul Dhinakaran, Chancellor</p>
-          </div>
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Co-Patron</h3>
-            <p className="text-gray-300">Mr. Samuel Paul Dhinakaran, Vice President</p>
-          </div>
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">President</h3>
-            <p className="text-gray-300">Dr. G. Prince Arulraj, Vice Chancellor</p>
-          </div>
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Vice Presidents</h3>
-            <p className="text-gray-300">Dr. E.J. James, Pro-Vice Chancellor (SIR)</p>
-            <p className="text-gray-300">Dr. Ridling Margaret Waller, Pro-Vice Chancellor (QS)</p>
-            <p className="text-gray-300">Dr. R. Elijah Blessing, Pro-Vice Chancellor (AIC)</p>
-            <p className="text-gray-300">Dr. S. J. Vijay, Registrar</p>
-          </div>
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Convenor</h3>
-            <p className="text-gray-300">Dr. Jibu Thomas, Professor & HoD Biotechnology</p>
-          </div>
-          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Organizing Secretaries</h3>
-            <p className="text-gray-300">Dr. E. Grace Mary Kanaga, HoD, DS&CS</p>
-            <p className="text-gray-300">Dr. R. Raja, Associate Professor, Mechanical Engineering</p>
-            <p className="text-gray-300">Dr. Bazil Wilfred C, Asst. Prof. Maths</p>
-          </div>
-        </div>
+  id="committee-section"
+  className={`min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10 transition-opacity duration-1000 ease-out ${
+    isCommitteeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+  }`}
+>
+  <h2 className="text-4xl font-bold text-center mb-8 text-white">COMMITTEE</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl px-6">
+    {/* Committee Items */}
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Patron</h3>
+      <p className="text-gray-300">Dr. Paul Dhinakaran, Chancellor</p>
+    </div>
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Co-Patron</h3>
+      <p className="text-gray-300">Mr. Samuel Paul Dhinakaran, Vice President</p>
+    </div>
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">President</h3>
+      <p className="text-gray-300">Dr. G. Prince Arulraj, Vice Chancellor</p>
+    </div>
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Vice Presidents</h3>
+      <p className="text-gray-300">Dr. E.J. James, Pro-Vice Chancellor (SIR)</p>
+      <p className="text-gray-300">Dr. Ridling Margaret Waller, Pro-Vice Chancellor (QS)</p>
+      <p className="text-gray-300">Dr. R. Elijah Blessing, Pro-Vice Chancellor (AIC)</p>
+      <p className="text-gray-300">Dr. S. J. Vijay, Registrar</p>
+    </div>
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Convenor</h3>
+      <p className="text-gray-300">Dr. Jibu Thomas, Professor & HoD Biotechnology</p>
+    </div>
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg">
+      <h3 className="text-2xl font-bold mb-4">Organizing Secretaries</h3>
+      <p className="text-gray-300">Dr. E. Grace Mary Kanaga, HoD, DS&CS</p>
+      <p className="text-gray-300">Dr. R. Raja, Associate Professor, Mechanical Engineering</p>
+      <p className="text-gray-300">Dr. Bazil Wilfred C, Asst. Prof. Maths</p>
+    </div>
+  </div>
+
+  {/* New Grid Box - Centered and Wider */}
+  <div className="flex justify-center w-full mt-8">
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg w-full max-w-4xl">
+      <h3 className="text-2xl font-bold mb-4">Committee Members</h3>
+      <div className="text-gray-300 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <p>Dr. C. Joseph Kennady, Dean (SSAM),</p>
+        <p>Dr. Sajan Kurien, Dean (SAS),</p>
+        <p>Dr. J. Clement Sudhahar, Dean (KSM),</p>
+        <p>Dr. D. Nirmal, Associate Dean (SET),</p>
+        <p>Dr. D. Tensing, Director (QAA),</p>
+        <p>Dr. K.R.S. Krishnan, Director (IE),</p>
+        <p>CA. A. Joseph Amulraj, Finance Officer,</p>
+        <p>Dr. S. Albones Raj, Director, Student Affairs,</p>
+        <p>Dr. Suresh Mathew, Director (Research & Consultancy),</p>
+        <p>Dr. Thomas George, Dy-Director (Research & Consultancy),</p>
+        <p>Dr. Madhu Ganesh, Director (Twinning Programme),</p>
+        <p>Mr. G. John Edison, Director (Training & Placement),</p>
+        <p>Dr. B. Jefferson Raja Bose, CoE,</p>
+        <p>Dr. Jims John Wesley, Officer on Special Duty,</p>
+        <p>Mr. Henriksen G. Balraj, Administrative Officer</p>
       </div>
     </div>
+  </div>
+</div>
+</div>
   );
 };
 
