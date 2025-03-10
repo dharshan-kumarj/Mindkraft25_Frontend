@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
+import registerBg from "../../../public/assets/register_bg.webp"; // Import the background image
+import karunyaLogo from "../../../public/assets/karunyalogo.webp"; // Import the Karunya logo
+import mkLogo from "../../../public/assets/mk_logo.webp"; // Import the Mindkraft logo
+
 interface EventDetail {
     eventid: string;
     eventname: string;
@@ -166,25 +170,25 @@ const EventCartPage: React.FC = () => {
     return (
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center"
-            style={{ backgroundImage: "url('../../../public/assets/register_bg.webp')" }}
+            style={{ backgroundImage: `url('${registerBg}')` }} // Use the imported image
         >
             {/* Header Section */}
             <div className="absolute top-5 w-full flex justify-center items-center">
                 <img
-                    src="../../../public/assets/karunyalogo.webp"
+                    src={karunyaLogo} // Use the imported image
                     alt="Left Logo"
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-bold uppercase text-white">MINDKRAFT 2K25</h1>
                     <img
-                        src="../../../public/assets/mk_logo.webp"
+                        src={mkLogo} // Use the imported image
                         alt="Right Logo"
                         className="h-16 w-16 object-cover rounded-full"
                     />
                 </div>
             </div>
-
+            
             {/* Event Cart Container */}
             <div className="max-w-4xl w-11/12 bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-md shadow-lg mt-20 mb-4">
                 <h2 className="text-2xl font-bold text-gray-200 mb-6 text-center">Your Events</h2>

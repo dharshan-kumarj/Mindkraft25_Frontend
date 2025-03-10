@@ -4,6 +4,10 @@ import EventDetails from "../../components/events/EventDetails";
 import SideNav from "../../components/events/sidenav";
 import { useNavigate } from "react-router-dom";
 
+import bgImage from "../../../public/assets/bg.png"; // Import the background image
+import menuIcon from "../../../public/assets/menu.png"; // Import the menu icon
+import cartIcon from "../../../public/assets/cart.png"; // Import the cart icon
+
 const EventsPage: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
   const [departmentFilter, setDepartmentFilter] = useState("all");
@@ -32,33 +36,32 @@ const EventsPage: React.FC = () => {
   return (
     <div 
       className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100" 
-      style={{ backgroundImage: "url('../../../public/assets/bg.png')" }} 
-    >  
+      style={{ backgroundImage: `url('${bgImage}')` }} // Use the imported image
+  >  
       {/* Navbar with Solid Background (Fixed White Layer Issue) */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 bg-[#1e0635] shadow-lg">
-        
-        {/* Sidebar Toggle Button */}
-        <button
-          className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-          <img src="../../../public/assets/menu.png" width={30} height={30} alt="sidebar" />
-        </button>
+          
+          {/* Sidebar Toggle Button */}
+          <button
+              className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+              <img src={menuIcon} width={30} height={30} alt="sidebar" /> {/* Use the imported image */}
+          </button>
 
-        {/* Event Title */}
-        <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center flex-1">
-          MINDKRAFT 2K25
-        </h1>
+          {/* Event Title */}
+          <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center flex-1">
+              MINDKRAFT 2K25
+          </h1>
 
-        {/* Cart Button */}
-        <button
-          onClick={() => navigate("/cart")}
-          className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
-        >
-          <img src="../../../public/assets/cart.png" width={20} height={20} alt="" />
-        </button>
+          {/* Cart Button */}
+          <button
+              onClick={() => navigate("/cart")}
+              className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
+          >
+              <img src={cartIcon} width={20} height={20} alt="cart" /> {/* Use the imported image */}
+          </button>
       </nav>
-
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import registerBg from "../../../public/assets/register_bg.webp"; // Import the background image
+import karunyaLogo from "../../../public/assets/karunyalogo.webp"; // Import the Karunya logo
+import mkLogo from "../../../public/assets/mk_logo.webp"; // Import the Mindkraft logo
+
 const RegistrationPage: React.FC = () => {
     const [isInternal, setIsInternal] = useState<boolean>(true);
     const [email, setEmail] = useState<string>("");
@@ -151,40 +155,40 @@ const RegistrationPage: React.FC = () => {
     return (
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('../../../public/assets/register_bg.webp')" }}
+            style={{ backgroundImage: `url('${registerBg}')` }} // Use the imported image
         >
             <style>
                 {`
-          select option {
-            color: black; /* Text color for dropdown options */
-          }
-          select:focus option:checked {
-            color: white; /* Text color for the selected option */
-          }
-          select {
-            color: white; /* Text color for the selected box */
-            background-color: transparent; /* Match the background */
-          }
-            select optgroup {
-      color: black; /* Text color for <optgroup> labels */
-      font-weight: bold; /* Make <optgroup> labels bold */
-    }
-        `}
+                select option {
+                    color: black; /* Text color for dropdown options */
+                }
+                select:focus option:checked {
+                    color: white; /* Text color for the selected option */
+                }
+                select {
+                    color: white; /* Text color for the selected box */
+                    background-color: transparent; /* Match the background */
+                }
+                select optgroup {
+                    color: black; /* Text color for <optgroup> labels */
+                    font-weight: bold; /* Make <optgroup> labels bold */
+                }
+                `}
             </style>
 
             {/* Header Section */}
             <div className="top-10 flex items-center justify-center relative">
                 <img
-                    src="../../../public/assets/karunyalogo.webp"
+                    src={karunyaLogo} // Use the imported image
                     alt="Left Logo"
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold text-white">MINDKRAFT 2K25</span>
                     <img
-                        src="../../../public/assets/mk_logo.webp"
+                        src={mkLogo} // Use the imported image
                         alt="Logo Final"
-                        className="h-10 2-10"
+                        className="h-10 w-10"
                     />
                 </div>
             </div>
