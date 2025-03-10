@@ -7,10 +7,15 @@ interface SideNavProps {
 }
 
 const SideNav: React.FC<SideNavProps> = ({ onFilter, isOpen, setIsOpen }) => {
+  if (!isOpen) return null; // Hides sidebar when closed
+
   return (
     <>
       {/* Sidebar */}
-      <div className="h-full p-6 mt-10">
+      <div
+        className="h-screen w-64 fixed top-0 left-0 text-white p-6 overflow-y-auto scrollbar-hide transition-transform duration-300"
+        style={{ transform: isOpen ? "translateX(0)" : "translateX(-100%)" }}
+      >
         <button
           className="absolute top-4 right-4 text-white text-2xl"
           onClick={() => setIsOpen(false)}
@@ -19,7 +24,9 @@ const SideNav: React.FC<SideNavProps> = ({ onFilter, isOpen, setIsOpen }) => {
         </button>
 
         <h2 className="text-lg font-bold mb-4">Filter by Department</h2>
-        <ul className="space-y-2">
+
+        {/* Scrollable list */}
+        <ul className="space-y-2 pb-10"> {/* Padding at bottom ensures last item is visible */}
           {[
             "All Departments",
             "Physical Sciences",
