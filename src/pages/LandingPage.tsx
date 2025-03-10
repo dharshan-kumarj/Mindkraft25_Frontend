@@ -159,7 +159,7 @@ const LandingPage: React.FC = () => {
 
   {/* New Grid Box - Centered and Wider */}
   <div className="flex justify-center w-full mt-8">
-    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg w-full max-w-4xl">
+    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-center shadow-lg w-full max-w-6xl">
       <h3 className="text-2xl font-bold mb-4">Committee Members</h3>
       <div className="text-gray-300 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <p>Dr. C. Joseph Kennady, Dean (SSAM),</p>
