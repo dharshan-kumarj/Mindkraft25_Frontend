@@ -6,6 +6,7 @@ import EventRegistrationPage from "./pages/events/EventRegistation";
 import EventCartPage from "./pages/events/EventCartPage";
 import LandingPage from "./pages/LandingPage";
 import EventsPage from "./pages/events/EventsPage";
+import ForgotPassword from "./pages/auth/Forgetpassword";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <Route path="/cart" element={<EventCartPage/>} />
         <Route path="/" element={<LandingPage/>} />
         <Route path="/events" element={<EventsPage/>} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
 
       </Routes>
     </Router>
