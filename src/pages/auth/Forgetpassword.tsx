@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import bgImage from "../../../public/assets/register_bg.webp"; // ✅ Importing background image correctly
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -46,8 +47,10 @@ const ForgotPassword: React.FC = () => {
     };
 
     return (
-        <div className="m-0 font-sans bg-cover bg-center bg-fixed flex flex-col justify-center items-center h-screen"
-            style={{ backgroundImage: "url('src/assets/register_bg.webp')" }}>
+        <div 
+            className="m-0 font-sans bg-cover bg-center bg-fixed flex flex-col justify-center items-center h-screen"
+            style={{ backgroundImage: `url(${bgImage})` }} // ✅ Fixed background image import
+        >
             <div className="bg-white bg-opacity-10 rounded-lg p-8 w-96 shadow-lg backdrop-blur-md text-center">
                 <h1 className="text-2xl font-bold mb-5 text-white">Forgot Password</h1>
 
@@ -116,7 +119,7 @@ const ForgotPassword: React.FC = () => {
                     </p>
                 )}
 
-                <a href="/" className="block mt-4 text-blue-400 no-underline hover:underline">Back to Login</a>
+                <a href="/login" className="block mt-4 text-blue-400 no-underline hover:underline">Back to Login</a>
             </div>
         </div>
     );

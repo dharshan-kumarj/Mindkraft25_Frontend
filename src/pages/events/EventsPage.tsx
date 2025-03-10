@@ -34,33 +34,36 @@ const EventsPage: React.FC = () => {
   };
 
   return (
-    <div 
-      className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100" 
+    <div
+      className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100"
       style={{ backgroundImage: `url('${bgImage}')` }} // Use the imported image
-  >  
+    >
       {/* Navbar with Solid Background (Fixed White Layer Issue) */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 bg-[#1e0635] shadow-lg">
-          
-          {/* Sidebar Toggle Button */}
-          <button
-              className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          >
-              <img src={menuIcon} width={30} height={30} alt="sidebar" /> {/* Use the imported image */}
-          </button>
+        {/* Sidebar Toggle Button */}
+        <button
+          className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          <img src={menuIcon} width={30} height={30} alt="sidebar" />{" "}
+          {/* Use the imported image */}
+        </button>
 
-          {/* Event Title */}
-          <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center flex-1">
-              MINDKRAFT 2K25
+        {/* Event Title */}
+        <a href="/" className="flex-1">
+          <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center">
+            MINDKRAFT 2K25
           </h1>
+        </a>
 
-          {/* Cart Button */}
-          <button
-              onClick={() => navigate("/cart")}
-              className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
-          >
-              <img src={cartIcon} width={20} height={20} alt="cart" /> {/* Use the imported image */}
-          </button>
+        {/* Cart Button */}
+        <button
+          onClick={() => navigate("/cart")}
+          className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
+        >
+          <img src={cartIcon} width={20} height={20} alt="cart" />{" "}
+          {/* Use the imported image */}
+        </button>
       </nav>
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
@@ -72,17 +75,27 @@ const EventsPage: React.FC = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-[#1e0635] text-white transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out shadow-lg z-50`}
+        className={`fixed top-0 left-0 h-full w-72 bg-[#1e0635] text-white transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out shadow-lg z-50`}
       >
-        <SideNav onFilter={handleFilterChange} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+        <SideNav
+          onFilter={handleFilterChange}
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
       </aside>
 
       {/* Main Content */}
       <main className="relative flex-1 p-6 mt-[64px] transition-all duration-300 min-h-screen">
         {/* Keep EventsList always rendered */}
-        <div className={`${selectedEvent ? "opacity-50 pointer-events-none" : ""}`}>
-          <EventsList onEventClick={handleEventSelect} filter={departmentFilter} />
+        <div
+          className={`${selectedEvent ? "opacity-50 pointer-events-none" : ""}`}
+        >
+          <EventsList
+            onEventClick={handleEventSelect}
+            filter={departmentFilter}
+          />
         </div>
 
         {/* Event Details as a Popup */}
@@ -93,7 +106,10 @@ const EventsPage: React.FC = () => {
                 <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
               </div>
             ) : (
-              <EventDetails eventId={selectedEvent} onClose={closeEventDetails} />
+              <EventDetails
+                eventId={selectedEvent}
+                onClose={closeEventDetails}
+              />
             )}
           </div>
         )}

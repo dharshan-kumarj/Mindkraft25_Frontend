@@ -61,7 +61,9 @@ const LoginPage: React.FC = () => {
           alt="Karunya Logo"
           className="h-20 w-20 object-cover rounded-full absolute left-5"
         />
+        <a href="/" className="">
         <h1 className="text-2xl font-bold uppercase text-white">MINDKRAFT 2K25</h1>
+        </a>
       </div>
 
       {/* Login Container */}

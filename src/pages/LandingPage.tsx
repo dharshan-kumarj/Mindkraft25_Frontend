@@ -49,7 +49,9 @@ const LandingPage: React.FC = () => {
           <img src={karunyalogo} alt="Mindkraft Logo" className="h-16 w-auto" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-wide text-center">MINDKRAFT 2K25</h1>
+          <a href="/">
+            <h1 className="text-2xl font-bold tracking-wide text-center">MINDKRAFT 2K25</h1>
+          </a>
         </div>
         <div className="flex space-x-4">
           <button

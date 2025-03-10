@@ -184,7 +184,7 @@ const RegistrationPage: React.FC = () => {
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-white">MINDKRAFT 2K25</span>
+                    <a href="/"><span className="text-2xl font-bold text-white">MINDKRAFT 2K25</span></a>
                     <img
                         src={mkLogo} // Use the imported image
                         alt="Logo Final"
