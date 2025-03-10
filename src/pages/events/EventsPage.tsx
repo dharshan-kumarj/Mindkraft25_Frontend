@@ -1,31 +1,101 @@
-import React, { useState } from 'react';
-import EventsList from '../../components/events/EventsList';
-import EventDetails from '../../components/events/EventDetails';
-import SideNav from '../../components/events/sidenav';
+import React, { useState } from "react";
+import EventsList from "../../components/events/EventsList";
+import EventDetails from "../../components/events/EventDetails";
+import SideNav from "../../components/events/sidenav";
+import { useNavigate } from "react-router-dom";
 
 const EventsPage: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
-  const [departmentFilter, setDepartmentFilter] = useState('all');
+  const [departmentFilter, setDepartmentFilter] = useState("all");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleEventSelect = (eventId: string) => {
-    setSelectedEvent(eventId);
+    setIsLoading(true);
+    setTimeout(() => {
+      setSelectedEvent(eventId);
+      setIsLoading(false);
+    }, 500);
+  };
+
+  const closeEventDetails = () => {
+    setSelectedEvent(null);
+  };
+
+  const handleFilterChange = (department: string) => {
+    setDepartmentFilter(department);
+    setIsSidebarOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#12022f] to-[#29075e] text-gray-100">
-      {/* Side Navigation */}
-      <SideNav onFilter={setDepartmentFilter} />
+    <div className="relative min-h-screen bg-gradient-to-br from-[#12022f] to-[#29075e] text-gray-100">
+      {/* Navbar */}
+      <nav className="flex items-center justify-between px-6 py-4 bg-[#1e0635] shadow-md">
+        {/* Sidebar Toggle Button */}
+        <button
+          className="p-2 bg-purple-700 text-white rounded-md shadow-md focus:outline-none"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          <i className="fa-solid fa-bar text-xl"></i>
+        </button>
+
+        {/* Event Title */}
+        <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center flex-1">
+          MINDKRAFT 2K25
+        </h1>
+
+        {/* Cart Button */}
+        <button
+          onClick={() => navigate("/cart")}
+          className="relative bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full transition-all flex items-center"
+        >
+          <span className="hidden md:inline ml-2">Cart</span>
+        </button>
+      </nav>
+
+      {/* Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 h-full w-72 bg-[#1e0635] text-white transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out shadow-lg z-50`}
+      >
+        <SideNav
+          onFilter={handleFilterChange}
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
+      </aside>
 
       {/* Main Content */}
-      <div className="ml-0 md:ml-64 transition-all duration-300">
-        <h1 className="text-center text-3xl font-bold py-5">MINDKRAFT 2K25</h1>
-        <div className="px-4 md:px-8">
-          <EventsList filter={departmentFilter} onEventClick={handleEventSelect} />
+      <main className="relative flex-1 p-6 transition-all duration-300">
+        {/* Keep EventsList always rendered */}
+        <div className={`${selectedEvent ? "opacity-50 pointer-events-none" : ""}`}>
+          <EventsList onEventClick={handleEventSelect} filter={departmentFilter} />
         </div>
+
+        {/* Event Details as a Popup */}
         {selectedEvent && (
-          <EventDetails eventId={selectedEvent} onClose={() => setSelectedEvent(null)} />
+          <div className="absolute inset-0 flex justify-center items-center bg-opacity-70 z-50">
+            {isLoading ? (
+              <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
+              </div>
+            ) : (
+              <EventDetails eventId={selectedEvent} onClose={closeEventDetails} />
+            )}
+          </div>
         )}
-      </div>
+      </main>
     </div>
   );
 };
