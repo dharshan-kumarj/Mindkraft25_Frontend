@@ -32,7 +32,7 @@ const EventsPage: React.FC = () => {
   return (
     <div 
       className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100" 
-      style={{ backgroundImage: "url('/src/assets/bg.png')" }} 
+      style={{ backgroundImage: "url('../../../public/assets/bg.png')" }} 
     >  
       {/* Navbar with Solid Background (Fixed White Layer Issue) */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 bg-[#1e0635] shadow-lg">
@@ -42,7 +42,7 @@ const EventsPage: React.FC = () => {
           className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-gray-800 rounded-md shadow-md focus:outline-none"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          <img src="/src/assets/menu.png" width={30} height={30} alt="sidebar" />
+          <img src="../../../public/assets/menu.png" width={30} height={30} alt="sidebar" />
         </button>
 
         {/* Event Title */}
@@ -55,7 +55,7 @@ const EventsPage: React.FC = () => {
           onClick={() => navigate("/cart")}
           className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
         >
-          <img src="/src/assets/cart.png" width={20} height={20} alt="" />
+          <img src="../../../public/assets/cart.png" width={20} height={20} alt="" />
         </button>
       </nav>
 

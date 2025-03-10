@@ -98,22 +98,39 @@ const EventCartPage: React.FC = () => {
     const handleDelete = async (eventid: string) => {
         try {
             const accessToken = Cookies.get("accessToken");
-
+    
             if (!accessToken) {
                 throw new Error("Authentication token not found. Please log in again.");
             }
-
+    
             console.log("Removing event from cart:", eventid);
-
+    
+            // Send DELETE request to remove event
+            const response = await fetch(`${API_BASE_URL}/api/cart/`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ eventid }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Failed to remove event from cart");
+            }
+    
+            console.log("Event removed successfully");
+    
+            // Update the UI after successful deletion
             const updatedCart = cartItems.filter((item) => item.eventid !== eventid);
             setCartItems(updatedCart);
             calculateTotal(updatedCart);
-
-            console.log("Item removed from cart");
         } catch (err) {
             console.error("Error removing item from cart:", err);
         }
     };
+    
 
     const formatPrice = (price: string | number) => {
         const numPrice = parseFloat(price as string) || 0;
@@ -149,19 +166,19 @@ const EventCartPage: React.FC = () => {
     return (
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center"
-            style={{ backgroundImage: "url('src/assets/register_bg.webp')" }}
+            style={{ backgroundImage: "url('../../../public/assets/register_bg.webp')" }}
         >
             {/* Header Section */}
             <div className="absolute top-5 w-full flex justify-center items-center">
                 <img
-                    src="src/assets/karunyalogo.webp"
+                    src="../../../public/assets/karunyalogo.webp"
                     alt="Left Logo"
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-bold uppercase text-white">MINDKRAFT 2K25</h1>
                     <img
-                        src="src/assets/mk_logo.webp"
+                        src="../../../public/assets/mk_logo.webp"
                         alt="Right Logo"
                         className="h-16 w-16 object-cover rounded-full"
                     />

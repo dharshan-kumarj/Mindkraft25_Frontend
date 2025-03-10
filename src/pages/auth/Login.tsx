@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import bgImage from "../../assets/login_bg.webp"; // ✅ Corrected import
-import karunyaLogo from "../../assets/karunyalogo.webp"; // ✅ Importing logo properly
-import mkLogo from "../../assets/mk_logo.webp"; // ✅ Importing MK logo properly
+import bgImage from "../../../public/assets/login_bg.webp"; // ✅ Corrected import
+import karunyaLogo from "../../../public/assets/karunyalogo.webp"; // ✅ Importing logo properly
+import mkLogo from "../../../public/assets/mk_logo.webp"; // ✅ Importing MK logo properly
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");

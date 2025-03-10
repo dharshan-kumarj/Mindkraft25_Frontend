@@ -151,7 +151,7 @@ const RegistrationPage: React.FC = () => {
     return (
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('src/assets/register_bg.webp')" }}
+            style={{ backgroundImage: "url('../../../public/assets/register_bg.webp')" }}
         >
             <style>
                 {`
@@ -175,14 +175,14 @@ const RegistrationPage: React.FC = () => {
             {/* Header Section */}
             <div className="top-10 flex items-center justify-center relative">
                 <img
-                    src="src/assets/karunyalogo.webp"
+                    src="../../../public/assets/karunyalogo.webp"
                     alt="Left Logo"
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold text-white">MINDKRAFT 2K25</span>
                     <img
-                        src="src/assets/mk_logo.webp"
+                        src="../../../public/assets/mk_logo.webp"
                         alt="Logo Final"
                         className="h-10 2-10"
                     />

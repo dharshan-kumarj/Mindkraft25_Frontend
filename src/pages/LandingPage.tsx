@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // If using images from "assets" folder
-import karunyalogo from "../assets/karunyalogo.webp";
-import image1 from "../assets/gallery1.png";
-import image2 from "../assets/gallery2.png";
-import image3 from "../assets/gallery3.png";
-import image4 from "../assets/gallery4.png";
-import image5 from "../assets/gallery5.png";
-import image6 from "../assets/gallery6.png";
-import image7 from "../assets/gallery7.png";
-import image8 from "../assets/gallery8.png";
-import image9 from "../assets/gallery9.png";
-import backgroundImage from "../assets/bg.png"; // Add your background image here
+import karunyalogo from "../../public/assets/karunyalogo.webp";
+import image1 from "../../public/assets/gallery1.png";
+import image2 from "../../public/assets/gallery2.png";
+import image3 from "../../public/assets/gallery3.png";
+import image4 from "../../public/assets/gallery4.png";
+import image5 from "../../public/assets/gallery5.png";
+import image6 from "../../public/assets/gallery6.png";
+import image7 from "../../public/assets/gallery7.png";
+import image8 from "../../public/assets/gallery8.png";
+import image9 from "../../public/assets/gallery9.png";
+import backgroundImage from "../../public/assets/bg.png"; // Add your background image here
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
