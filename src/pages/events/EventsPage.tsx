@@ -31,14 +31,14 @@ const EventsPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#12022f] to-[#29075e] text-gray-100">
-      {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-[#1e0635] shadow-md">
+      {/* Navbar - Fixed to top */}
+      <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-[#1e0635] border-b border-[#1e0635]">
         {/* Sidebar Toggle Button */}
         <button
-          className="p-2 bg-purple-700 text-white rounded-md shadow-md focus:outline-none"
+          className="p-1 bg-purple-700 text-white rounded-md shadow-md focus:outline-none"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          <i className="fa-solid fa-bar text-xl"></i>
+          <img src="src/assets/menu.png" width={30} height={30} alt="sidebar" />
         </button>
 
         {/* Event Title */}
@@ -51,8 +51,7 @@ const EventsPage: React.FC = () => {
           onClick={() => navigate("/cart")}
           className="relative bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full transition-all flex items-center"
         >
-          <span className="hidden md:inline ml-2">Cart</span>
-        </button>
+          <img src="src/assets/cart.png" width={20} height={20} alt="" />        </button>
       </nav>
 
       {/* Sidebar Overlay */}
@@ -65,19 +64,14 @@ const EventsPage: React.FC = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-[#1e0635] text-white transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out shadow-lg z-50`}
+        className={`fixed top-0 left-0 h-full w-72 bg-[#1e0635] text-white transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out shadow-lg z-50`}
       >
-        <SideNav
-          onFilter={handleFilterChange}
-          isOpen={isSidebarOpen}
-          setIsOpen={setIsSidebarOpen}
-        />
+        <SideNav onFilter={handleFilterChange} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       </aside>
 
       {/* Main Content */}
-      <main className="relative flex-1 p-6 transition-all duration-300">
+      <main className="relative flex-1 p-6 mt-[64px] transition-all duration-300">
         {/* Keep EventsList always rendered */}
         <div className={`${selectedEvent ? "opacity-50 pointer-events-none" : ""}`}>
           <EventsList onEventClick={handleEventSelect} filter={departmentFilter} />
