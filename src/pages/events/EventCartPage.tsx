@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import registerBg from "../../../public/assets/register_bg.webp";
+import karunyaLogo from "../../../public/assets/karunyalogo.webp";
+import mkLogo from "../../../public/assets/mk_logo.webp";
+
 
 interface EventDetail {
     eventid: string;
@@ -114,24 +118,46 @@ const EventCartPage: React.FC = () => {
     };
 
     const handleDelete = async (eventid: string) => {
+        if (eventid === "MK25E0063") {
+            alert("We cannot remove this item.");
+            return;
+        }
+    
         try {
             const accessToken = Cookies.get("accessToken");
-
+    
             if (!accessToken) {
                 throw new Error("Authentication token not found. Please log in again.");
             }
-
+    
             console.log("Removing event from cart:", eventid);
-
+    
+            const response = await fetch(`${API_BASE_URL}/api/cart/remove_item/`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ eventid }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Failed to remove item from cart");
+            }
+    
+            console.log("Item successfully removed from cart");
+    
+            // Update cart items after successful deletion
             const updatedCart = cartItems.filter((item) => item.eventid !== eventid);
             setCartItems(updatedCart);
             calculateTotal(updatedCart);
-
-            console.log("Item removed from cart");
         } catch (err) {
             console.error("Error removing item from cart:", err);
+            alert((err as Error).message);
         }
     };
+    
 
     const formatPrice = (price: string | number) => {
         const numPrice = parseFloat(price as string) || 0;
@@ -297,19 +323,19 @@ const EventCartPage: React.FC = () => {
     return (
         <div
             className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center"
-            style={{ backgroundImage: "url('src/assets/register_bg.webp')" }}
+            style={{ backgroundImage: `url(${registerBg})` }}
         >
             {/* Header Section */}
             <div className="absolute top-5 w-full flex justify-center items-center">
                 <img
-                    src="src/assets/karunyalogo.webp"
+                    src={karunyaLogo}
                     alt="Left Logo"
                     className="h-20 w-20 object-cover rounded-full absolute left-5"
                 />
                 <div className="flex items-center gap-2">
                     <h1 className="text-2xl font-bold uppercase text-white">MINDKRAFT 2K25</h1>
                     <img
-                        src="src/assets/mk_logo.webp"
+                        src={mkLogo}
                         alt="Right Logo"
                         className="h-16 w-16 object-cover rounded-full"
                     />
