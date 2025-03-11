@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 // Define the types
@@ -31,7 +31,7 @@ interface Event {
 // Replace these paths with your actual image locations
 const bgImage = "/assets/bg.png";
 const menuIcon = "/assets/menu.png";
-const cartIcon = "/assets/cart.png";
+// const cartIcon = "/assets/cart.png";
 
 const MindkraftEventsPage: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -41,7 +41,7 @@ const MindkraftEventsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [eventDetailsLoading, setEventDetailsLoading] = useState(false);
 
-  const navigate = useNavigate();
+
 
   // Cart status state
   const [cartStatus, setCartStatus] = useState<{
@@ -2239,6 +2239,24 @@ const MindkraftEventsPage: React.FC = () => {
     });
 
     try {
+      // Check for intercollege cookie value
+      const isInterCollege = Cookies.get('intercollege');
+      
+      // Redirect based on the cookie value
+      if (isInterCollege === 'false') {
+        window.location.href = 'https://eduserve.karunya.edu/online/PayAddOnFees.aspx';
+        return;
+      } else if (isInterCollege === 'true') {
+        window.location.href = 'https://eduserve.karunya.edu/Online/ExternalEvents.aspx';
+        return;
+      }
+      
+      // If cookie not found or has unexpected value, show error
+      if (!isInterCollege) {
+        throw new Error("User type not identified. Please login again.");
+      }
+      
+      // The code below will only execute if there's some issue with the redirect
       // Simulate API call with a timeout
       setTimeout(() => {
         // Get access token from cookies
@@ -2327,12 +2345,12 @@ const MindkraftEventsPage: React.FC = () => {
         </a>
 
         {/* Cart Button */}
-        <button
+        {/* <button
           onClick={() => navigate("/cart")}
           className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
         >
           <img src={cartIcon} width={20} height={20} alt="cart" />
-        </button>
+        </button> */}
       </nav>
       
       {/* Sidebar Overlay */}
@@ -2406,14 +2424,14 @@ const MindkraftEventsPage: React.FC = () => {
                     {/* Event Details */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {/* Event Date */}
-                      {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
                         <span className="mr-1">📅</span> {new Date(event.start_time).toLocaleDateString("en-GB")}
-                      </span> */}
+                      </span>
                       
                       {/* Event Time */}
-                      {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
                         <span className="mr-1">⏰</span> {new Date(event.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                      </span> */}
+                      </span>
 
                       {/* Participant Limit */}
                       <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
@@ -2426,7 +2444,8 @@ const MindkraftEventsPage: React.FC = () => {
                       </span>
 
                       {/* Price */}
-                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                                      {/* Price */}
+                                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
                         <span className="mr-1">💰</span> {event.price ? `₹${event.price}` : "Free"}
                       </span>
                     </div>
@@ -2442,7 +2461,7 @@ const MindkraftEventsPage: React.FC = () => {
               ) : (
                 <p className="text-center text-gray-400 col-span-full">No events available for this department.</p>
               )}
-                        </div>
+            </div>
           </div>
         )}
 
@@ -2578,7 +2597,7 @@ const MindkraftEventsPage: React.FC = () => {
                           </svg>
                           Adding...
                         </>
-                      ) : "Register"}
+                      ) : "Register Now"}
                     </button>
                   </div>
                 </>
@@ -2587,6 +2606,11 @@ const MindkraftEventsPage: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Current User Information (Optional) */}
+      <div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
+        Logged in as: {Cookies.get('username') || 'dharshan-kumarj'} | {new Date().toISOString().split('T')[0]}
+      </div>
     </div>
   );
 };
