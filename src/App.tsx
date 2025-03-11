@@ -12,15 +12,14 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/paymentsuccess" element={<PaymentSuccess/>} />
-        <Route path="/event-reg" element={<EventRegistrationPage/>} />
-        <Route path="/cart" element={<EventCartPage/>} />
-        <Route path="/" element={<LandingPage/>} />
-        <Route path="/events" element={<EventsPage/>} />
+        <Route path="/payment/registered" element={<PaymentSuccess />} />
+        <Route path="/event-reg" element={<EventRegistrationPage />} />
+        <Route path="/cart" element={<EventCartPage />} />
+        <Route path="/events" element={<EventsPage />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-
       </Routes>
     </Router>
   );

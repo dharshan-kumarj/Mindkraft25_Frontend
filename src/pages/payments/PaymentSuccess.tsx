@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import backgroundImage from "../../assets/login_bg.webp"; // Import background image directly
 
 const PaymentSuccess: React.FC = () => {
     const navigate = useNavigate();
@@ -8,14 +9,29 @@ const PaymentSuccess: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Extract transaction_id from the URL query parameters
+    // Extract parameters from the URL query parameters
     const queryParams = new URLSearchParams(location.search);
     const transactionId = queryParams.get("transaction_id");
+    const regNo = queryParams.get("regno");
+    const phoneNo = queryParams.get("phone");
 
     useEffect(() => {
-        if (transactionId) {
+        if (transactionId && (regNo || phoneNo)) {
+            // Build API URL with all available parameters
+            let apiUrl = `https://mindkraft.org/payment/registered?transaction_id=${transactionId}`;
+            
+            // Add registration number if available
+            if (regNo) {
+                apiUrl += `&regno=${regNo}`;
+            }
+            
+            // Add phone number if available
+            if (phoneNo) {
+                apiUrl += `&phone=${phoneNo}`;
+            }
+            
             // Fetch user details from the API
-            fetch(`https://mindkraft.org/payment/registered?transaction_id=${transactionId}`)
+            fetch(apiUrl)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Failed to fetch user details");
@@ -32,15 +48,19 @@ const PaymentSuccess: React.FC = () => {
                     setLoading(false);
                 });
         } else {
-            setError("Transaction ID is missing");
+            const missingParams = [];
+            if (!transactionId) missingParams.push("Transaction ID");
+            if (!regNo && !phoneNo) missingParams.push("Registration Number or Phone Number");
+            
+            setError(`Required parameters missing: ${missingParams.join(", ")}`);
             setLoading(false);
         }
-    }, [transactionId]);
+    }, [transactionId, regNo, phoneNo]);
 
     return (
         <div
             className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('src/assets/login_bg.webp')" }}
+            style={{ backgroundImage: `url(${backgroundImage})` }}
         >
             {/* Success Card */}
             <div className="bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20 shadow-lg rounded-lg p-8 w-96 flex flex-col items-center text-center">

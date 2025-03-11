@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-
-// ✅ Import assets correctly from `src/asset
-import bgImage from "../../../public/assets/login_bg.webp"
-import karunyaLogo from "../../../public/assets/karunyalogo.webp";
-import mkLogo from "../../../public/assets/mk_logo.webp";
+import bgImage from "../../assets/login_bg.webp";
+import karunyaLogo from "../../assets/karunyalogo.webp";
+import mkLogo from "../../assets/mk_logo.webp";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,14 +27,33 @@ const LoginPage: React.FC = () => {
       });
 
       if (response.status === 200) {
-        const { access, refresh, email, intercollege } = response.data;
+        const userData = response.data;
+        
+        // Set cookie expiration time (30 minutes)
+        const expirationTime = 1 / 48;
+        
+        // Save JWT tokens
+        Cookies.set("accessToken", userData.access, { expires: expirationTime });
+        Cookies.set("refreshToken", userData.refresh, { expires: expirationTime });
+        
+        // Save user information
+        Cookies.set("userEmail", userData.email, { expires: expirationTime });
+        Cookies.set("firstName", userData.first_name, { expires: expirationTime });
+        Cookies.set("lastName", userData.last_name, { expires: expirationTime });
+        Cookies.set("fullName", userData.full_name, { expires: expirationTime });
+        Cookies.set("registerNo", userData.register_no, { expires: expirationTime });
+        Cookies.set("mobileNo", userData.mobile_no, { expires: expirationTime });
+        Cookies.set("mkid", userData.mkid, { expires: expirationTime });
+        
+        // Save boolean values as strings
+        Cookies.set("intercollege", String(userData.intercollege), { expires: expirationTime });
+        Cookies.set("isFaculty", String(userData.is_faculty), { expires: expirationTime });
+        
+        // Additional approach: Save the entire response as JSON
+        Cookies.set("userData", JSON.stringify(userData), { expires: expirationTime });
 
-        Cookies.set("accessToken", access, { expires: 1 / 48 });
-        Cookies.set("refreshToken", refresh, { expires: 1 / 48 });
-        Cookies.set("userEmail", email, { expires: 1 / 48 });
-        Cookies.set("intercollege", intercollege.toString(), { expires: 1 / 48 });
-
-        navigate("/");
+        // Navigate to home page after successful login
+        navigate("/events");
       }
     } catch (error) {
       setErrorMessage(
@@ -52,18 +69,16 @@ const LoginPage: React.FC = () => {
   return (
     <div
       className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: `url(${bgImage})` }} // ✅ Fixed background image
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
       {/* Header Section */}
       <div className="absolute top-10 w-full flex justify-center items-center">
         <img
-          src={karunyaLogo} // ✅ Using imported logo
+          src={karunyaLogo}
           alt="Karunya Logo"
           className="h-20 w-20 object-cover rounded-full absolute left-5"
         />
-        <a href="/" className="">
         <h1 className="text-2xl font-bold uppercase text-white">MINDKRAFT 2K25</h1>
-        </a>
       </div>
 
       {/* Login Container */}
@@ -130,7 +145,7 @@ const LoginPage: React.FC = () => {
 
         {/* Additional Links */}
         <div className="w-full flex justify-between mt-4 text-sm">
-          <a href="/register" className="text-blue-400 hover:underline">Don’t have an account?</a>
+          <a href="/register" className="text-blue-400 hover:underline">Don't have an account?</a>
           <a href="/forgotpassword" className="text-blue-400 hover:underline">Forgot password?</a>
         </div>
       </div>
