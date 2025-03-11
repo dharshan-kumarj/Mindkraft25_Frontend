@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 // Define the types
@@ -31,7 +31,7 @@ interface Event {
 // Replace these paths with your actual image locations
 const bgImage = "/assets/bg.png";
 const menuIcon = "/assets/menu.png";
-// const cartIcon = "/assets/cart.png";
+const cartIcon = "/assets/cart.png";
 
 const MindkraftEventsPage: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -41,7 +41,7 @@ const MindkraftEventsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [eventDetailsLoading, setEventDetailsLoading] = useState(false);
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Cart status state
   const [cartStatus, setCartStatus] = useState<{
@@ -2190,7 +2190,7 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
-                "eventid": "MK25E0099",
+                "eventid": "MK25E0083",
                 "eventname": "Hashes over Roses",
                 "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as flags, that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
                 "type": "tech",
@@ -2240,7 +2240,7 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
-                "eventid": "MK25E0100",
+                "eventid": "MK25E0084",
                 "eventname": "Mini carnival",
                 "description": "1) Face artistry: Encouraging the participants to flow their creativity in the form of painting with the given spot topic. 2) Ring Toss: Entertaining the participants by throwing the rings on their desired materials that are arranged over the field with exciting prizes.3) Mehandhi: Encouraging the participants to flow their creative designs in the form mehandi.4) yummy Bic: Funful activity to eat biscuits on a different manner with 2 rounds fulfilling their stomach.",
                 "type": "non-tech",
@@ -2415,7 +2415,7 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
-                "eventid": "MK25E0101",
+                "eventid": "MK25E0091",
                 "eventname": "HANDS ON TRAINING ON TERRARIUM, AND CANDLE MAKING",
                 "description": "A hands on training on terrarium and candle making ",
                 "type": "tech",
@@ -2674,7 +2674,7 @@ const MindkraftEventsPage: React.FC = () => {
         }
         
         // Make API request
-        const response = await fetch('https://api.mindkraft.org/api/test/', {
+        const response = await fetch('http://localhost:8000/api/test/', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -2749,14 +2749,14 @@ const MindkraftEventsPage: React.FC = () => {
   };
 
   // Format date time
-//   const formatDateTime = (dateTimeStr: string) => {
-//     try {
-//       const date = new Date(dateTimeStr);
-//       return date.toLocaleString();
-//     } catch (e) {
-//       return dateTimeStr;
-//     }
-//   };
+  const formatDateTime = (dateTimeStr: string) => {
+    try {
+      const date = new Date(dateTimeStr);
+      return date.toLocaleString();
+    } catch (e) {
+      return dateTimeStr;
+    }
+  };
 
   // Filter events based on department
   const filteredEvents = departmentFilter === "all" 
@@ -2791,12 +2791,12 @@ const MindkraftEventsPage: React.FC = () => {
         </a>
 
         {/* Cart Button */}
-        {/* <button
+        <button
           onClick={() => navigate("/cart")}
           className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
         >
           <img src={cartIcon} width={20} height={20} alt="cart" />
-        </button> */}
+        </button>
       </nav>
       
       {/* Sidebar Overlay */}
@@ -2870,14 +2870,14 @@ const MindkraftEventsPage: React.FC = () => {
                     {/* Event Details */}
                     <div className="flex flex-wrap gap-2 mb-4">
   {/* Event Date */}
-  {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+  <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
     <span className="mr-1">📅</span> {new Date(event.start_time).toLocaleDateString("en-GB")}
-  </span> */}
+  </span>
   
   {/* Event Time */}
-  {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+  <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
     <span className="mr-1">⏰</span> {new Date(event.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-  </span> */}
+  </span>
 
   {/* Participant Limit */}
   <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
@@ -2986,9 +2986,9 @@ const MindkraftEventsPage: React.FC = () => {
           <p>
             <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
           </p>
-          {/* <p>
+          <p>
             <span className="text-white font-semibold">Start Time:</span> {formatDateTime(selectedEventDetails.start_time)}
-          </p> */}
+          </p>
         </div>
 
         {/* Price & Capacity */}
@@ -3050,7 +3050,12 @@ const MindkraftEventsPage: React.FC = () => {
   </div>
 </div>
 )}
-</main> 
+</main>
+
+{/* Current User Information (Optional) */}
+<div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
+  Logged in as: {Cookies.get('username') || 'dharshan-kumarj'} | 2025-03-11 20:34:19
+</div>
 </div>
 );
 };

@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
     setLoading(true);
 
-    const apiUrl = "https://mindkraft25-backend.onrender.com/user/login/";
+    const apiUrl = "https://api.mindkraft.org/user/login/";
     const payload = { email, password };
 
     try {

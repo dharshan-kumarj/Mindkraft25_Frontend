@@ -38,7 +38,7 @@ const RegistrationPage: React.FC = () => {
 
         try {
             const response = await axios.post(
-                "https://mindkraft25-backend.onrender.com/user/register/",
+                "https://api.mindkraft.org/user/register/",
                 data,
                 {
                     headers: {
@@ -83,7 +83,7 @@ const RegistrationPage: React.FC = () => {
 
         try {
             const response = await axios.post(
-                "https://mindkraft25-backend.onrender.com/user/register/",
+                "https://api.mindkraft.org/user/register/",
                 data,
                 {
                     headers: {
@@ -112,7 +112,7 @@ const RegistrationPage: React.FC = () => {
 
         try {
             const response = await axios.post(
-                "https://mindkraft25-backend.onrender.com/user/verify-otp/",
+                "https://api.mindkraft.org/user/verify-otp/",
                 { email, otp },
                 {
                     headers: {
