@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Cookies from 'js-cookie';
 
 interface Event {
   eventid: string;
   eventname: string;
   description: string;
-  coordinators?: {
-    student?: { name?: string };
-    faculty?: { name?: string };
-  };
-  division: string;
+  type: string;
+  category: number;
   category_name: string;
+  division: string;
   start_time: string;
-  price: number;
-  participation_strength_setlimit: number;
+  end_time: string;
+  price: string;
+  participation_strength_setlimit: string;
+  coordinators?: {
+    student?: { name?: string, phone?: string, email?: string };
+    faculty?: { name?: string, phone?: string, email?: string };
+  };
 }
 
 interface EventDetailsProps {
   eventId: string;
   onClose: () => void;
+  events: Event[]; // Pass events data directly as prop
 }
 
-const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
-  const [event, setEvent] = useState<Event | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose, events }) => {
+  // Find the selected event from the events array
+  const event = events.find(e => e.eventid === eventId);
+  
   const [cartStatus, setCartStatus] = useState<{
     loading: boolean;
     success: boolean;
@@ -34,31 +38,6 @@ const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
     success: false,
     error: null,
   });
-
-  // Define API base URL - can be changed based on environment
-  const API_BASE_URL = "https://mindkraft25-backend.onrender.com"; // Use this instead of localhost for production
-  // const API_BASE_URL = "http://localhost:8000"; // For local development
-
-  useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        console.log("Fetching event details for:", eventId);
-        const response = await fetch(`${API_BASE_URL}/api/events/${eventId}`);
-        if (!response.ok) throw new Error("Failed to fetch event details");
-
-        const data = await response.json();
-        console.log("Fetched event data:", data);
-        setEvent(data);
-      } catch (err) {
-        console.error("Error fetching event:", err);
-        setError((err as Error).message || "Failed to load event details");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvent();
-  }, [eventId, API_BASE_URL]);
 
   const addToCart = async () => {
     if (!event) return;
@@ -70,62 +49,32 @@ const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
     });
 
     try {
-      console.log("Adding event to cart:", event.eventid);
-      
-      // Get access token from cookies
-      const accessToken = Cookies.get('accessToken');
-      console.log("Access token retrieved:", accessToken ? "Found" : "Not found");
-      
-      if (!accessToken) {
-        throw new Error("Authentication token not found. Please log in again.");
-      }
-
-      // Log the request details for debugging
-      console.log("Making request to:", `${API_BASE_URL}/api/cart/`);
-      console.log("Request payload:", JSON.stringify({ events: [event.eventid] }));
-      
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/cart/`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            events: [event.eventid]
-          }),
-        });
-
-        console.log("Cart API response status:", response.status);
+      // Simulate API call with a timeout
+      setTimeout(() => {
+        // Get access token from cookies
+        const accessToken = Cookies.get('accessToken');
         
-        const data = await response.json();
-        console.log("Cart API response data:", data);
-        
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to add to cart");
+        if (!accessToken) {
+          throw new Error("Authentication token not found. Please log in again.");
         }
         
+        // Simulated successful response
         setCartStatus({
           loading: false,
           success: true,
           error: null,
         });
         
-      } catch (networkError) {
-        // Handle network errors specifically
-        console.error("Network error when adding to cart:", networkError);
-        throw new Error(
-          "Network error: Unable to connect to the server. Please check your internet connection or try again later."
-        );
-      }
-      
-      // Auto-hide success message after 3 seconds
-      setTimeout(() => {
-        setCartStatus(prev => ({
-          ...prev,
-          success: false
-        }));
-      }, 3000);
+        console.log(`Added event ${event.eventid} to cart`);
+        
+        // Auto-hide success message after 3 seconds
+        setTimeout(() => {
+          setCartStatus(prev => ({
+            ...prev,
+            success: false
+          }));
+        }, 3000);
+      }, 1000);
       
     } catch (err) {
       console.error("Error adding to cart:", err);
@@ -145,8 +94,6 @@ const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
     }
   };
 
-  if (loading) return <p className="text-center text-white">Loading event details...</p>;
-  if (error) return <p className="text-center text-red-500">Error: {error}</p>;
   if (!event) return null;
 
   const formatDateTime = (dateTimeStr: string) => {
@@ -179,11 +126,35 @@ const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
         <div className="grid grid-cols-2 gap-6 text-center mb-6">
           <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
             <p className="text-gray-300 text-sm">Student Coordinator</p>
-            <p className="text-white font-semibold">{event.coordinators?.student?.name || "Not available"}</p>
+            <p className="text-white font-semibold">
+              {event.coordinators?.student?.name || "Not available"}
+            </p>
+            {event.coordinators?.student?.phone !== "Not provided" && (
+              <p className="text-white text-sm">
+                {event.coordinators?.student?.phone}
+              </p>
+            )}
+            {event.coordinators?.student?.email !== "Not provided" && (
+              <p className="text-white text-sm">
+                {event.coordinators?.student?.email}
+              </p>
+            )}
           </div>
           <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
             <p className="text-gray-300 text-sm">Staff Coordinator</p>
-            <p className="text-white font-semibold">{event.coordinators?.faculty?.name || "Not available"}</p>
+            <p className="text-white font-semibold">
+              {event.coordinators?.faculty?.name || "Not available"}
+            </p>
+            {event.coordinators?.faculty?.phone !== "Not provided" && (
+              <p className="text-white text-sm">
+                {event.coordinators?.faculty?.phone}
+              </p>
+            )}
+            {event.coordinators?.faculty?.email !== "Not provided" && (
+              <p className="text-white text-sm">
+                {event.coordinators?.faculty?.email}
+              </p>
+            )}
           </div>
         </div>
 
@@ -203,11 +174,18 @@ const EventDetails: React.FC<EventDetailsProps> = ({ eventId, onClose }) => {
         {/* Price & Capacity */}
         <div className="flex justify-between items-center text-gray-200 text-sm px-4 mb-6">
           <p>
-            <span className="text-white font-semibold">Price:</span> ₹{event.price}
+            <span className="text-white font-semibold">Price:</span> {event.price ? `₹${event.price}` : "Free"}
           </p>
           <p>
-            <span className="text-white font-semibold">Max Participants:</span> {event.participation_strength_setlimit}
+            <span className="text-white font-semibold">Max Participants:</span> {event.participation_strength_setlimit || "No Limit"}
           </p>
+        </div>
+
+        {/* Event Type */}
+        <div className="flex justify-center items-center text-gray-200 text-sm px-4 mb-6">
+          <span className="bg-purple-600/60 px-4 py-2 rounded-full">
+            {event.type === "tech" ? "Technical Event" : "Non-technical Event"}
+          </span>
         </div>
 
         {/* Cart Status Notifications */}

@@ -1,13 +1,45 @@
 import React from "react";
 
+interface Event {
+  eventid: string;
+  eventname: string;
+  division: string;
+}
+
 interface SideNavProps {
   onFilter: (department: string) => void;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  events?: Event[]; // Make events optional
 }
 
-const SideNav: React.FC<SideNavProps> = ({ onFilter, isOpen, setIsOpen }) => {
+const SideNav: React.FC<SideNavProps> = ({ onFilter, isOpen, setIsOpen, events = [] }) => {
   if (!isOpen) return null; // Hides sidebar when closed
+
+  // Extract unique departments from the events data
+  const departments = events.length > 0
+    ? ["All Departments", ...new Set(events.map(event => event.division))]
+    : [
+        "All Departments",
+        "Physical Sciences",
+        "AIML",
+        "Food Processing Technology",
+        "Civil Engineering",
+        "Mechanical",
+        "EEE",
+        "Karunya School of Management",
+        "Computer Science and Engineering",
+        "English",
+        "Commerce and International Trade",
+        "Data Science and Cyber Security",
+        "Media",
+        "ECE",
+        "Robotics Engineering", 
+        "Biomedical Engineering",
+        "Division of Criminology and Forensic Science",
+        "Digital Sciences",
+        "Aerospace Engineering",
+      ];
 
   return (
     <>
@@ -27,32 +59,12 @@ const SideNav: React.FC<SideNavProps> = ({ onFilter, isOpen, setIsOpen }) => {
 
         {/* Scrollable list */}
         <ul className="space-y-2 pb-10"> {/* Padding at bottom ensures last item is visible */}
-          {[
-            "All Departments",
-            "Physical Sciences",
-            "AIML",
-            "Food Processing Technology",
-            "Civil Engineering",
-            "Mechanical",
-            "EEE",
-            "Karunya School of Management",
-            "Computer Science and Engineering",
-            "English",
-            "Commerce and International Trade",
-            "Data Science and Cyber Security",
-            "Media",
-            "ECE",
-            "Robotics Engineering",
-            "Biomedical Engineering",
-            "Division of Criminology and Forensic Science",
-            "Digital Sciences",
-            "Aerospace Engineering",
-          ].map((department) => (
+          {departments.map((department) => (
             <li
               key={department}
               className="cursor-pointer p-2 hover:bg-purple-700 rounded transition"
               onClick={() => {
-                onFilter(department);
+                onFilter(department === "All Departments" ? "all" : department);
                 setIsOpen(false);
               }}
             >

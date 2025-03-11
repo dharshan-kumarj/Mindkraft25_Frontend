@@ -273,7 +273,6 @@ const EventCartPage: React.FC = () => {
                 throw new Error(responseData.message || "Failed to process payment registration");
             }
 
-            // Define the payment URLs
             const internalPaymentURL = "https://eduservetest.karunya.edu/online/PayAddOnFeesMindKraft.aspx";
             const externalPaymentURL = "https://eduservetest.karunya.edu/online/ExternalEventsMindKraft.aspx";
 

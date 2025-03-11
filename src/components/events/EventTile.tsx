@@ -9,7 +9,7 @@ interface Event {
   start_time: string;
   end_time: string;
   price: string;
-  participation_strength_setlimit: number;
+  participation_strength_setlimit: string;
 }
 
 interface EventTileProps {
@@ -44,13 +44,13 @@ const EventTile: React.FC<EventTileProps> = ({ event, onClick }) => {
         />
 
         {/* Participant Limit */}
-        <EventTag icon="👥" text={event.participation_strength_setlimit} />
+        <EventTag icon="👥" text={event.participation_strength_setlimit || "No limit"} />
 
         {/* Event Category */}
-        <EventTag icon="🏷️" text={event.category_name} />
+        <EventTag icon="🏷️" text={event.type === "tech" ? "Technical" : "Non-Technical"} />
 
         {/* Price */}
-        <EventTag icon="💰" text={`₹${event.price}`} />
+        <EventTag icon="💰" text={event.price ? `₹${event.price}` : "Free"} />
       </div>
 
       {/* Register Button */}

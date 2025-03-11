@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import backgroundImage from "../../assets/login_bg.webp"; // Import background image directly
+import backgroundImage from "/assets/login_bg.webp"; // Import background image directly
 
 const PaymentSuccess: React.FC = () => {
     const navigate = useNavigate();
