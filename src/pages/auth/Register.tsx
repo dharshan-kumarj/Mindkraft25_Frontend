@@ -13,6 +13,24 @@ const RegistrationPage: React.FC = () => {
     const [timer, setTimer] = useState<number>(600); // 10 minutes in seconds
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
+    
+    // Add error state for validation errors
+    const [emailError, setEmailError] = useState<string>("");
+    const [collegeNameError, setCollegeNameError] = useState<string>("");
+
+    // Function to validate if email belongs to Karunya
+    const isKarunyaEmail = (email: string) => {
+        return email.toLowerCase().includes("@karunya.edu.in");
+    };
+
+    // Function to validate if college name is related to Karunya
+    const isKarunyaCollege = (collegeName: string) => {
+        const lowerCaseName = collegeName.toLowerCase();
+        return lowerCaseName.includes("karunya") || 
+               lowerCaseName.includes("kits") || 
+               lowerCaseName.includes("karunya institute") || 
+               lowerCaseName.includes("karunya university");
+    };
 
     const handleInternalRegistration = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -66,11 +84,31 @@ const RegistrationPage: React.FC = () => {
 
     const handleExternalRegistration = async (event: React.FormEvent) => {
         event.preventDefault();
-        setIsLoading(true); // Start loading animation
+        
+        // Reset previous errors
+        setEmailError("");
+        setCollegeNameError("");
+        
         const formData = new FormData(event.target as HTMLFormElement);
+        const extEmail = formData.get("ext-mail-id") as string;
+        const collegeName = formData.get("college-name") as string;
+        
+        // Validate if email belongs to Karunya
+        if (isKarunyaEmail(extEmail)) {
+            setEmailError("This appears to be a Karunya email. Please use the Internal Students registration form.");
+            return;
+        }
+        
+        // Validate if college name is related to Karunya
+        if (isKarunyaCollege(collegeName)) {
+            setCollegeNameError("Karunya University students should use the Internal Students registration form.");
+            return;
+        }
+        
+        setIsLoading(true); // Start loading animation
 
         const data = {
-            email: formData.get("ext-mail-id"),
+            email: extEmail,
             first_name: formData.get("ext-first-name"),
             last_name: formData.get("ext-last-name"),
             mobile_no: formData.get("ext-phone-number"),
@@ -79,7 +117,7 @@ const RegistrationPage: React.FC = () => {
             intercollege: true,
             is_enrolled: false,
             student: {
-                college_name: formData.get("college-name"),
+                college_name: collegeName,
                 branch: formData.get("ext-program"),
                 dept: formData.get("ext-course"),
                 year_of_study: parseInt(formData.get("ext-year") as string),
@@ -192,6 +230,12 @@ const RegistrationPage: React.FC = () => {
                 select optgroup {
                     color: black; /* Text color for <optgroup> labels */
                     font-weight: bold; /* Make <optgroup> labels bold */
+                }
+                .error-message {
+                    color: #ff6b6b;
+                    font-size: 0.875rem;
+                    margin-top: 4px;
+                    font-weight: 500;
                 }
                 `}
             </style>
@@ -406,262 +450,281 @@ const RegistrationPage: React.FC = () => {
                             </select>
                         </div>
                         <div className="flex flex-col">
-    <label className="text-white font-bold mb-1">Year</label>
-    <select
-        name="year"
-        required
-        className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
-    >
-        <option value="">Select Year</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
-</div>
-<div className="flex flex-col">
-    <label className="text-white font-bold mb-1">Password</label>
-    <input
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-        required
-        className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-    />
-</div>
-<div className="flex flex-col">
-    <label className="text-white font-bold mb-1">Confirm Password</label>
-    <input
-        type="password"
-        name="confirm-password"
-        placeholder="Confirm your password"
-        required
-        className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-    />
-</div>
-<button
-    type="submit"
-    className="col-span-2 p-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
->
-    {isLoading ? (
-        <svg
-            className="animate-spin h-5 w-5 text-white mx-auto"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-        >
-            <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-            ></circle>
-            <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-        </svg>
-    ) : (
-        "SUBMIT"
-    )}
-</button>
-</form>
-)}
-
-{/* External Registration Form */}
-{!isInternal && (
-    <form className="grid grid-cols-2 gap-4" onSubmit={handleExternalRegistration}>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">First Name</label>
-            <input
-                type="text"
-                name="ext-first-name"
-                placeholder="Enter your first name"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Last Name</label>
-            <input
-                type="text"
-                name="ext-last-name"
-                placeholder="Enter your last name"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Phone Number</label>
-            <input
-                type="tel"
-                name="ext-phone-number"
-                placeholder="Enter your phone number"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Mail ID</label>
-            <input
-                type="email"
-                name="ext-mail-id"
-                placeholder="Enter your mail ID"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">College Name</label>
-            <input
-                type="text"
-                name="college-name"
-                placeholder="Enter your college name"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Program</label>
-            <input
-                type="text"
-                name="ext-program"
-                placeholder="Enter your Program(Eg:B.Tech)"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Course</label>
-            <input
-                type="text"
-                name="ext-course"
-                placeholder="Enter your course"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Year</label>
-            <select
-                name="ext-year"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
-            >
-                <option value="">Select Year</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Password</label>
-            <input
-                type="password"
-                name="ext-password"
-                placeholder="Enter your password"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <div className="flex flex-col">
-            <label className="text-white font-bold mb-1">Confirm Password</label>
-            <input
-                type="password"
-                name="ext-confirm-password"
-                placeholder="Confirm your password"
-                required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-            />
-        </div>
-        <button
-            type="submit"
-            className="col-span-2 p-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
-        >
-            {isLoading ? (
-                <svg
-                    className="animate-spin h-5 w-5 text-white mx-auto"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                >
-                    <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                    ></circle>
-                    <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                </svg>
-            ) : (
-                "SUBMIT"
-            )}
-        </button>
-    </form>
-)}
-
-{/* OTP Popup */}
-{showOtpPopup && (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="bg-gray-800 p-6 rounded-lg text-center">
-            <h2 className="text-white text-2xl font-bold mb-4">Enter OTP</h2>
-            <input
-                type="text"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                placeholder="Enter 6-digit OTP"
-                maxLength={6}
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70 mb-4"
-                disabled={isLoading}
-            />
-            <button
-                onClick={handleVerifyOtp}
-                className="p-2 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
-                disabled={isLoading}
-            >
-                {isLoading ? (
-                    <svg
-                        className="animate-spin h-5 w-5 text-white mx-auto"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                    >
-                        <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                        ></circle>
-                        <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                    </svg>
-                ) : (
-                    "Verify OTP"
+                            <label className="text-white font-bold mb-1">Year</label>
+                            <select
+                                name="year"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
+                            >
+                                <option value="">Select Year</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Confirm Password</label>
+                            <input
+                                type="password"
+                                name="confirm-password"
+                                placeholder="Confirm your password"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="col-span-2 p-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
+                        >
+                            {isLoading ? (
+                                <svg
+                                    className="animate-spin h-5 w-5 text-white mx-auto"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                            ) : (
+                                "SUBMIT"
+                            )}
+                        </button>
+                    </form>
                 )}
-            </button>
-            <p className="text-white mt-4">Time Remaining: {formatTime(timer)}</p>
-            {message && <p className="text-white mt-4">{message}</p>}
-        </div>
-    </div>
-)}
-    </div>
-  </div>
-);
-};
-export default RegistrationPage;
+
+                {/* External Registration Form */}
+                {!isInternal && (
+                    <form className="grid grid-cols-2 gap-4" onSubmit={handleExternalRegistration}>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">First Name</label>
+                            <input
+                                type="text"
+                                name="ext-first-name"
+                                placeholder="Enter your first name"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Last Name</label>
+                            <input
+                                type="text"
+                                name="ext-last-name"
+                                placeholder="Enter your last name"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Phone Number</label>
+                            <input
+                                type="tel"
+                                name="ext-phone-number"
+                                placeholder="Enter your phone number"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Mail ID</label>
+                            <input
+                                type="email"
+                                name="ext-mail-id"
+                                placeholder="Enter your mail ID"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                                onChange={(e) => {
+                                    if (isKarunyaEmail(e.target.value)) {
+                                        setEmailError("This appears to be a Karunya email. Please use the Internal Students registration form.");
+                                    } else {
+                                        setEmailError("");
+                                    }
+                                }}
+                            />
+                            {emailError && <p className="error-message">{emailError}</p>}
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">College Name</label>
+                            <input
+                                type="text"
+                                name="college-name"
+                                placeholder="Enter your college name"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                                onChange={(e) => {
+                                    if (isKarunyaCollege(e.target.value)) {
+                                        setCollegeNameError("Karunya University students should use the Internal Students registration form.");
+                                    } else {
+                                        setCollegeNameError("");
+                                    }
+                                }}
+                            />
+                            {collegeNameError && <p className="error-message">{collegeNameError}</p>}
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Program</label>
+                            <input
+                                type="text"
+                                name="ext-program"
+                                placeholder="Enter your Program(Eg:B.Tech)"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Course</label>
+                            <input
+                                type="text"
+                                name="ext-course"
+                                placeholder="Enter your course"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Year</label>
+                            <select
+                                name="ext-year"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
+                            >
+                                <option value="">Select Year</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Password</label>
+                            <input
+                                type="password"
+                                name="ext-password"
+                                placeholder="Enter your password"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <label className="text-white font-bold mb-1">Confirm Password</label>
+                            <input
+                                type="password"
+                                name="ext-confirm-password"
+                                placeholder="Confirm your password"
+                                required
+                                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+                            />
+                        </div>
+                        <button
+                                                        type="submit"
+                                                        className="col-span-2 p-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
+                                                        disabled={!!emailError || !!collegeNameError}
+                                                    >
+                                                        {isLoading ? (
+                                                            <svg
+                                                                className="animate-spin h-5 w-5 text-white mx-auto"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <circle
+                                                                    className="opacity-25"
+                                                                    cx="12"
+                                                                    cy="12"
+                                                                    r="10"
+                                                                    stroke="currentColor"
+                                                                    strokeWidth="4"
+                                                                ></circle>
+                                                                <path
+                                                                    className="opacity-75"
+                                                                    fill="currentColor"
+                                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                                ></path>
+                                                            </svg>
+                                                        ) : (
+                                                            "SUBMIT"
+                                                        )}
+                                                    </button>
+                                                </form>
+                                            )}
+                            
+                                            {/* OTP Popup */}
+                                            {showOtpPopup && (
+                                                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                                    <div className="bg-gray-800 p-6 rounded-lg text-center">
+                                                        <h2 className="text-white text-2xl font-bold mb-4">Enter OTP</h2>
+                                                        <input
+                                                            type="text"
+                                                            value={otp}
+                                                            onChange={(e) => setOtp(e.target.value)}
+                                                            placeholder="Enter 6-digit OTP"
+                                                            maxLength={6}
+                                                            className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70 mb-4"
+                                                            disabled={isLoading}
+                                                        />
+                                                        <button
+                                                            onClick={handleVerifyOtp}
+                                                            className="p-2 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
+                                                            disabled={isLoading}
+                                                        >
+                                                            {isLoading ? (
+                                                                <svg
+                                                                    className="animate-spin h-5 w-5 text-white mx-auto"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="none"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <circle
+                                                                        className="opacity-25"
+                                                                        cx="12"
+                                                                        cy="12"
+                                                                        r="10"
+                                                                        stroke="currentColor"
+                                                                        strokeWidth="4"
+                                                                    ></circle>
+                                                                    <path
+                                                                        className="opacity-75"
+                                                                        fill="currentColor"
+                                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                                    ></path>
+                                                                </svg>
+                                                            ) : (
+                                                                "Verify OTP"
+                                                            )}
+                                                        </button>
+                                                        <p className="text-white mt-4">Time Remaining: {formatTime(timer)}</p>
+                                                        {message && <p className="text-white mt-4">{message}</p>}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            };
+                            
+                            export default RegistrationPage;
+                
