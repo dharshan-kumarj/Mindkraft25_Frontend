@@ -87,7 +87,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0004",
-            "eventname": "EcoAero: Sustainable Aero-Modelling Challenget",
+            "eventname": "EcoAero: Sustainable Aero-Modelling Challenge",
             "description": "EcoAero is a unique aeromodelling competition that challenges participants to design and build functional model aircraft using only waste or recycled materials. \n",
             "type": "tech",
             "category": 1,
@@ -285,12 +285,12 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0012",
-            "eventname": "FREE FIRE BATTLE GROUNDS GAMEZONE",
+            "eventname": "Free Fire Battle Grounds Gamezone",
             "description": "\"This is a event on free fire battle grounds game \nHere there will be 12 teams minimum for each game and the players will be selected according to the points they get from the match and those who win the match will get the final prize money\"",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
-            "division": "AIML",
+            "division": "Artificial Intelligence and Machine Learning",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "200",
@@ -315,7 +315,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "AIML",
+            "division": "Artificial Intelligence and Machine Learning",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
@@ -340,7 +340,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "AIML",
+            "division": "Artificial Intelligence and Machine Learning",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "150",
@@ -358,6 +358,206 @@ const MindkraftEventsPage: React.FC = () => {
               }
             }
           },
+          {
+            "eventid": "MK25E0101",
+            "eventname": "Hands on Training on Terrarium, and Candle Making",
+            "description": "A hands on training on terrarium and candle making ",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Seminar/ Workshop",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 100,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Manjula and Dr. Sangamesh ",
+                    "phone": "9480747364, 9036202550",
+                    "email": "manjula@karunya.edu"
+                },
+                "student": {
+                    "name": "Nithya Shree B.R.",
+                    "phone": "9385536179",
+                    "email": "nithyashree@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0092",
+            "eventname": "Hands on Training on Resin Art and Clay Modelling ",
+            "description": "Resin art and Clay modelling is an upcoming art model among all age groups. Through this event we will be providing demonstration and hands on training on resin art and clay modelling ",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 100,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Dhanusha",
+                    "phone": "7907199503",
+                    "email": "dhanusha@karunya.edu"
+                },
+                "student": {
+                    "name": "Harishni Premkumar",
+                    "phone": "7812893648",
+                    "email": "harishnipremkumar@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0093",
+            "eventname": "Production Technology of Mushrooms",
+            "description": "A visit will be organized to the mushroom farm. The production practices and value added products of mushroom will be explained in detail. ",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "50",
+            "participation_strength_setlimit": 50,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Madhumitha",
+                    "phone": "8072798107",
+                    "email": "madhumitha@karunya.edu"
+                },
+                "student": {
+                    "name": "Krishnendhu",
+                    "phone": "7736058083",
+                    "email": "krishnendua21@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0094",
+            "eventname": "Agri- Cine Spark",
+            "description": "This is a short film event. Each team comprises of four members. They will be asked to prepare a short film of three minutes on the allocated topic. The best film will be awarded with prize. ",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 50,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Vimalin Hena ",
+                    "phone": "6381937293",
+                    "email": "vimalinhena@karunya.edu"
+                },
+                "student": {
+                    "name": "KHARISH A",
+                    "phone": "6383483265",
+                    "email": "harisha22@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0095",
+            "eventname": "Face Art Frenzy ",
+            "description": "Face painting based on a specified theme. A group activity consisting of two members ",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 50,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Sumaiya Parveen",
+                    "phone": "9443925493",
+                    "email": "sumaiyaparveen@karunya.edu"
+                },
+                "student": {
+                    "name": "Abeeshwar",
+                    "phone": "7904859694",
+                    "email": "abeeshwarra@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0096",
+            "eventname": "Henna Art ",
+            "description": "Team event consisting of two members. The best design will be selected as the winner ",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 30,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Sharmili",
+                    "phone": "8754750516",
+                    "email": "sharmili@karunya.edu"
+                },
+                "student": {
+                    "name": "Fathima Nesrin",
+                    "phone": "8072952101",
+                    "email": "fathimanesrin@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0097",
+            "eventname": "Mind Maze",
+            "description": "A Puzzle Game Consisting of Groups of Two Members",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "",
+            "participation_strength_setlimit": 50,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Dinesh Kumar ",
+                    "phone": "8675334438",
+                    "email": "dineshkumarp@karunya.edu"
+                },
+                "student": {
+                    "name": "Jeba Samuel",
+                    "phone": "7418595187",
+                    "email": "jebasamuel23@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0098",
+            "eventname": "Personal care products using honey and beeswax (Lip balm, pain balm, lipstick, dry fruit honey energy bars) ",
+            "description": "Join us for a one-day hands-on training program on Personal Care Products Using Honey and Beeswax! This workshop will introduce participants to the natural benefits of honey and beeswax in skincare and personal care formulations.",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Technical",
+            "division": "Agriculture",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "250",
+            "participation_strength_setlimit": 25,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr. Sangamesh Hiremath ",
+                    "phone": "7892417226",
+                    "email": "sangamesh@karunya.edu"
+                },
+                "student": {
+                    "name": "Kiran Kumar P.",
+                    "phone": "9688407081",
+                    "email": "kirankumar21@karunya.edu.in"
+                }
+            }
+        },
           {
             "eventid": "MK25E0014",
             "eventname": "Tech- wizz",
@@ -485,8 +685,133 @@ const MindkraftEventsPage: React.FC = () => {
             }
         },
         {
+            "eventid": "MK25E0086",
+            "eventname": "Escape Room",
+            "description": "Theme of the Event: Unlock the Unknown. A Race Against Time! Step into a world of mystery and challenge in this thrilling Escape Room experience! Unlock hidden keys, analyze a crime scene, maintain balance while hitting a target, and piece together scattered clues to escape.",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Biotechnology",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "50",
+            "participation_strength_setlimit": 100,
+            "coordinators": {
+                "faculty": {
+                    "name": "Dr.M.Lakshmi Prabha",
+                    "phone": "99442424136",
+                    "email": "lakshmi@karunya.edu "
+                },
+                "student": {
+                    "name": "Rupesh Raj, Johanna",
+                    "phone": "8870234794 , 8865914780",
+                    "email": "roopeshraj@karunya.edu.in , joannamathew@karunya.edu.in"
+                }
+            }
+        },
+        {
+        "eventid": "MK25E0087",
+        "eventname": "Bioconnections",
+        "description": "Theme of the Event: Bioconnections: Decode, Recall, Conquer! Embark on an exciting journey where biology meets brainpower! Challenge your mind with thrilling word games, put your memory to the test in a fast-paced picture relay, and tune in to guess the melodies of life. Think fast, connect the dots, and race against time to claim victory.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biotechnology",
+        "start_time": "2025-03-21T09:00:00Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 150,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Rebu Sundar, Dr. Jissin Mathew",
+                "phone": "8111955514, 9944386579",
+                "email": "rebu@karunya.edu, jissin@karunya.edu"
+            },
+            "student": {
+                "name": "Litta Roy, Rebecca Jacey",
+                "phone": "85474 72935 , 70124009230",
+                "email": "vikasbalaji@karunya.edu.in"
+            }
+        }
+        },
+        {
+        "eventid": "MK25E0088",
+        "eventname": "Brain Buzz",
+        "description": "THEME OF THE EVENT: The game proposed is a time based event where each team which consists of 4 participants race against time to complete 4 rounds/games and click the buzzer placed at the end.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biotechnology",
+        "start_time": "2025-03-21T09:00:00Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr.Anu Jacob",
+                "phone": "8903521079",
+                "email": "anujacob@karunya.edu "
+            },
+            "student": {
+                "name": "Swathi Devi. S, D. Jabez Ravikumar Samraj",
+                "phone": "8098959023 , 9840393573",
+                "email": "vikasbalaji@karunya.edu.in"
+            }
+        }
+        },
+        {
+        "eventid": "MK25E0089",
+        "eventname": "Ideathon",
+        "description": "Theme Of The Event: BIOINNOVATE: PIONEERING SOLUTIONS FOR A SUSTAINABLE FUTURE ",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biotechnology",
+        "start_time": "2025-03-21T09:00:00Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "100",
+        "participation_strength_setlimit": 120,
+        "coordinators": {
+            "faculty": {
+                "name": "Dr. Kavitha",
+                "phone": "9443390590",
+                "email": "kavibiotec@karunya.edu "
+            },
+            "student": {
+                "name": "C. L. Brijesh, Harshini. M",
+                "phone": "9788226611, 9952340649",
+                "email": "brijeshc@karunya.edu.in , harshinim@karunya.edu.in"
+            }
+        }
+        },
+        {
+        "eventid": "MK25E0090",
+        "eventname": "Poster presentation",
+        "description": "Shaping the Future of Science and Medicine.Discover revolutionary innovation in biotechnology, from gene editing and synthetic biology to health and environmental advancements.",
+        "type": "tech",
+        "category": 1,
+        "category_name": "Technical",
+        "division": "Biotechnology",
+        "start_time": "2025-03-21T09:00:00Z",
+        "end_time": "2025-02-10T18:55:36Z",
+        "price": "50",
+        "participation_strength_setlimit": 100,
+        "coordinators": {
+            "faculty": {
+                "name": "Mrs. Uma Priya & Dr. Satya Sundar Mahanty ",
+                "phone": "8220866023, 8895528225",
+                "email": "umapriya@karunya.edu , satyasundar@karunya.edu"
+            },
+            "student": {
+                "name": "Austy Evangeline R, Jeffina Glory J",
+                "phone": "9361451179, 9342520366",
+                "email": "austyevangeline@karunya.edu , jeffinaglory@karunya.edu.in"
+            }
+        }
+        },
+        {
             "eventid": "MK25E0019",
-            "eventname": "EXQUIZITE",
+            "eventname": "Exquizite",
             "description": "The quiz will have multiple rounds with a preliminary round open for\nall the participants. Top 4 teams will be selected for the final rounds.",
             "type": "tech",
             "category": 1,
@@ -963,9 +1288,9 @@ const MindkraftEventsPage: React.FC = () => {
             }
         },
         {
-            "eventid": "MK25E0038",
-            "eventname": " Capture the Flag (CTF)",
-            "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as \"flags\", that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
+            "eventid": "MK25E0099",
+            "eventname": "Hashes over Roses 2.0",
+            "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as flags, that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
@@ -976,14 +1301,114 @@ const MindkraftEventsPage: React.FC = () => {
             "participation_strength_setlimit": 150,
             "coordinators": {
                 "faculty": {
-                    "name": "Mr. D. Shibin - 1756",
-                    "phone": "8072542091\nName: 14",
+                    "name": "Mr. D. Shibin",
+                    "phone": "8072542091",
                     "email": "shibin@karunya.edu"
                 },
                 "student": {
-                    "name": "Nitha",
+                    "name": "Nitha Zachariah",
                     "phone": "8921853641",
-                    "email": "nithazachariah@karunya.edu.in "
+                    "email": "nithazachariah@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0084",
+            "eventname": "Cash or Crash",
+            "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as flags, that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
+            "type": "non-tech",
+            "category": 1,
+            "category_name": "Non-Technical",
+            "division": "Civil Engineering",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "75",
+            "participation_strength_setlimit": 100,
+            "coordinators": {
+                "faculty": {
+                    "name": "Cyril Samuel JS",
+                    "phone": "9344835708",
+                    "email": "cyrilsamuel88@karunya.edu"
+                },
+                "student": {
+                    "name": "Milan",
+                    "phone": "9497189017",
+                    "email": "milan@karunya.edu.in"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0051",
+            "eventname": "OG Detective",
+            "description": "Step into the shoes of a forensic expert! Analyze evidence, decode clues, and unravel the mystery in this thrilling crime scene investigation challenge.",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Technical",
+            "division": "Criminology and Forensic Science",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 50,
+            "coordinators": {
+                "faculty": {
+                    "name": "Ms. Labhini Rahangdale",
+                    "phone": "7066339242",
+                    "email": "labhini@karunya.edu "
+                },
+                "student": {
+                    "name": "Aleen Godwin",
+                    "phone": "9500771887",
+                    "email": "aleengodina92@gmail.com"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0052",
+            "eventname": "Lights Camera Investigation\u00a0!",
+            "description": " Themes: Participants will be given 4 forensic-related themes.  \n- Format: Teams must create a 3-minute Instagram reel based on one of the themes. \nTeam members : 4",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Technical",
+            "division": "Criminology and Forensic Science",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "50 per person ",
+            "participation_strength_setlimit": "80 Participants (20 Teams)",
+            "coordinators": {
+                "faculty": {
+                    "name": "Ms. Marvel Bhosle",
+                    "phone": "9511981087",
+                    "email": "marvelbhosle@karunya.edu"
+                },
+                "student": {
+                    "name": "Sridhar ",
+                    "phone": "7708323663",
+                    "email": "bemotivated36@gmail.com"
+                }
+            }
+        },
+        {
+            "eventid": "MK25E0053",
+            "eventname": "TATA - DOCOMO",
+            "description": "TATA - DOCOMO\n\nA new day a new crime,Tata Docomo begins by giving an overview of an case with suspects along with the 1st clue. After tackling unlock other clues by performing a task.Keep on eliminating suspects and by the end of 8th clue the culprit\u00a0is\u00a0cornered..",
+            "type": "tech",
+            "category": 1,
+            "category_name": "Technical",
+            "division": "Criminology and Forensic Science",
+            "start_time": "2025-03-21T09:00:00Z",
+            "end_time": "2025-02-10T18:55:36Z",
+            "price": "100",
+            "participation_strength_setlimit": 80,
+            "coordinators": {
+                "faculty": {
+                    "name": "Ms. Poonam Moon, Dr. Shifa Shine",
+                    "phone": "9373439852, 8304877881",
+                    "email": "shifashine@karunya.edu"
+                },
+                "student": {
+                    "name": "ABINAYAA.B",
+                    "phone": "7418466931s",
+                    "email": "babinayaa@karunya.edu.in"
                 }
             }
         },
@@ -1015,7 +1440,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0040",
-            "eventname": "MODEL MASTERS",
+            "eventname": "Model Masters",
             "description": "Model Masters is a technical event where registered participants will train machine learning models using a provided dataset. The challenge tests their skills in data preprocessing, model selection, and optimization to achieve the best results.",
             "type": "tech",
             "category": 1,
@@ -1116,10 +1541,11 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             }
         },
+        
         {
             "eventid": "MK25E0044",
-            "eventname": "KARUNYA'S IPL AUCTION",
-            "description": "IPL Mock Auction\nOverview:\nAn engaging event testing cricket knowledge and strategic team-building through a\nsimulated IPL auction\n\nEvent Details:\n- Purse: INR 100 Crore\n- Team Size:16-18 players (6-8 overseas)\n- Rounds: 2\n- Scoring:\n- Team Points: Based on squad strength.\n - Bonus Points: Based on remaining purse.\n\nEvent Model:\nRound 1: Cricket Quiz\n- 50 questions, 25 minutes.\n- Top 10 teams advance.\n\nRound 2: Bidding War\n- Teams assigned an IPL franchise.\n- INR 120 Crore budget for auction.\n- Balanced squad building is key.\n\nScoring:\n- Team Points: Squad composition, player quality.\n- Bonus Points: Effective budget management.",
+            "eventname": "Karunya's IPL Auction",
+            "description": "IPL Mock Auction Overview: An engaging event testing cricket knowledge and strategic team-building through a simulated IPL auction Event Details: - Purse: INR 100 Crore - Team Size:14-16 players (6 overseas) - Rounds: 2 - Scoring: - Team Points: Based on squad strength. - Bonus Points: Based on remaining purse. Event Model: Round 1: Cricket Quiz - 50 questions, 25 minutes. - Top 10 teams advance. Round 2: Bidding War - Teams assigned an IPL franchise. - INR 100 Crore budget for auction. - Balanced squad building is key. Scoring: - Team Points: Squad composition, player quality. - Bonus Points: Effective budget management.",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
@@ -1194,7 +1620,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0047",
-            "eventname": "TUF BROTHERS",
+            "eventname": "TUF Brothers",
             "description": "Encouraging the youth generation to involve in fitness activities to keep their body healthy as wealth.",
             "type": "non-tech",
             "category": 1,
@@ -1267,106 +1693,7 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             }
         },
-        {
-            "eventid": "MK25E0084",
-            "eventname": "Cash or Crash",
-            "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as flags, that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Civil Engineering",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "75",
-            "participation_strength_setlimit": 100,
-            "coordinators": {
-                "faculty": {
-                    "name": "Cyril Samuel JS",
-                    "phone": "9344835708",
-                    "email": "cyrilsamuel88@karunya.edu"
-                },
-                "student": {
-                    "name": "Milan",
-                    "phone": "9497189017",
-                    "email": "milan@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0051",
-            "eventname": "OG DETECTIVE",
-            "description": "Step into the shoes of a forensic expert! Analyze evidence, decode clues, and unravel the mystery in this thrilling crime scene investigation challenge.",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Criminology and Forensic Science",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
-            "coordinators": {
-                "faculty": {
-                    "name": "Ms. Labhini Rahangdale",
-                    "phone": "7066339242",
-                    "email": "labhini@karunya.edu "
-                },
-                "student": {
-                    "name": "Aleen Godwin",
-                    "phone": "9500771887",
-                    "email": "aleengodina92@gmail.com"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0052",
-            "eventname": "Lights Camera Investigation\u00a0!",
-            "description": " Themes: Participants will be given 4 forensic-related themes.  \n- Format: Teams must create a 3-minute Instagram reel based on one of the themes. \nTeam members : 4",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Criminology and Forensic Science",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "50 per person ",
-            "participation_strength_setlimit": "80 Participants (20 Teams)",
-            "coordinators": {
-                "faculty": {
-                    "name": "Ms. Marvel Bhosle",
-                    "phone": "9511981087",
-                    "email": "marvelbhosle@karunya.edu"
-                },
-                "student": {
-                    "name": "Sridhar ",
-                    "phone": "7708323663",
-                    "email": "bemotivated36@gmail.com"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0053",
-            "eventname": "TATA - DOCOMO",
-            "description": "TATA - DOCOMO\n\nA new day a new crime,Tata Docomo begins by giving an overview of an case with suspects along with the 1st clue. After tackling unlock other clues by performing a task.Keep on eliminating suspects and by the end of 8th clue the culprit\u00a0is\u00a0cornered..",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Criminology and Forensic Science",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 80,
-            "coordinators": {
-                "faculty": {
-                    "name": "Ms. Poonam Moon, Dr. Shifa Shine",
-                    "phone": "9373439852, 8304877881",
-                    "email": "shifashine@karunya.edu"
-                },
-                "student": {
-                    "name": "ABINAYAA.B",
-                    "phone": "7418466931s",
-                    "email": "babinayaa@karunya.edu.in"
-                }
-            }
-        },
+        
         {
             "eventid": "MK25E0100",
             "eventname": "Mini carnival",
@@ -1399,7 +1726,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "ECE",
+            "division": "Electronics and Communication Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
@@ -1424,7 +1751,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "ECE",
+            "division": "Electronics and Communication Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
@@ -1449,7 +1776,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "ECE",
+            "division": "Electronics and Communication Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
@@ -1474,7 +1801,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "EEE",
+            "division": "Electrical and Electronics Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "75",
@@ -1499,7 +1826,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
-            "division": "EEE",
+            "division": "Electrical and Electronics Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
@@ -1524,7 +1851,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
-            "division": "EEE",
+            "division": "Electrical and Electronics Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "75",
@@ -1549,7 +1876,7 @@ const MindkraftEventsPage: React.FC = () => {
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
-            "division": "EEE",
+            "division": "Electrical and Electronics Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "75",
@@ -1870,11 +2197,11 @@ const MindkraftEventsPage: React.FC = () => {
             {
                 "eventid": "MK25E0074",
                 "eventname": "RACE X",
-                "description": "REMOTE CONTROL CAR SWILL BE PROVIDED TO TH EPARTICIPANTS FOR RACING ON A TRACK WITH OBSTACLES",
+                "description": "Remote Control Car Swill Be Provided to The Participants for Racing on a Track With Obstacles",
                 "type": "tech",
                 "category": 1,
                 "category_name": "Technical",
-                "division": "MECHANICAL",
+                "division": "Mechanical Engineering",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
                 "price": "250",
@@ -1899,7 +2226,7 @@ const MindkraftEventsPage: React.FC = () => {
                 "type": "tech",
                 "category": 1,
                 "category_name": "Technical",
-                "division": "MECHANICAL",
+                "division": "Mechanical Engineering",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
                 "price": "150",
@@ -1924,7 +2251,7 @@ const MindkraftEventsPage: React.FC = () => {
                 "type": "tech",
                 "category": 1,
                 "category_name": "Technical",
-                "division": "MECHANICAL",
+                "division": "Mechanical Engineering",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
                 "price": "150",
@@ -1945,12 +2272,12 @@ const MindkraftEventsPage: React.FC = () => {
             
             {
                 "eventid": "MK25E0077",
-                "eventname": "TALENT SHOW'25",
+                "eventname": "Talent Show'25",
                 "description": "The students will be showcasing their talents (dancing, singing, mime, stand up comedy etc)",
                 "type": "non-tech",
                 "category": 1,
                 "category_name": "Non - Technical",
-                "division": "MEDIA",
+                "division": "Media",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
                 "price": "100",
@@ -2096,7 +2423,7 @@ const MindkraftEventsPage: React.FC = () => {
             {
                 "eventid": "MK25E0083",
                 "eventname": "Maze Master",
-                "description": "",
+                "description": "Robo Maze: Navigate the Labyrinth of Innovation. Prepare to be amazed by the ingenuity and precision of robotics at Robo Maze! This captivating event challenges participants to design and build autonomous robots capable of conquering a complex maze.  Starting from a designated point, these intelligent machines will navigate a labyrinthine course filled with twists, turns, and dead ends.  The objective is clear: reach the finish line in the shortest time possible.  But the path to victory won't be easy.  Robots must demonstrate exceptional obstacle avoidance skills, strategic path planning, and robust maneuverability to successfully traverse the maze.  Join us to witness these robotic contenders as they showcase their problem-solving abilities and compete for supremacy in a thrilling race against time and the intricate twists and turns of the Robo Maze",
                 "type": "tech",
                 "category": 1,
                 "category_name": "Technical",
@@ -2118,307 +2445,8 @@ const MindkraftEventsPage: React.FC = () => {
                     }
                 }
             },
-            {
-                "eventid": "MK25E0086",
-                "eventname": "Escape Room",
-                "description": "Theme of the Event: Unlock the Unknown. A Race Against Time! Step into a world of mystery and challenge in this thrilling Escape Room experience! Unlock hidden keys, analyze a crime scene, maintain balance while hitting a target, and piece together scattered clues to escape.",
-                "type": "non-tech",
-                "category": 1,
-                "category_name": "Non-Technical",
-                "division": "Biotechnology",
-                "start_time": "2025-03-21T09:00:00Z",
-                "end_time": "2025-02-10T18:55:36Z",
-                "price": "50",
-                "participation_strength_setlimit": 100,
-                "coordinators": {
-                    "faculty": {
-                        "name": "Dr.M.Lakshmi Prabha",
-                        "phone": "99442424136",
-                        "email": "lakshmi@karunya.edu "
-                    },
-                    "student": {
-                        "name": "Rupesh Raj, Johanna",
-                        "phone": "8870234794 , 8865914780",
-                        "email": "roopeshraj@karunya.edu.in , joannamathew@karunya.edu.in"
-                    }
-                }
-        },
-        {
-            "eventid": "MK25E0087",
-            "eventname": "Bioconnections",
-            "description": "Theme of the Event: Bioconnections: Decode, Recall, Conquer! Embark on an exciting journey where biology meets brainpower! Challenge your mind with thrilling word games, put your memory to the test in a fast-paced picture relay, and tune in to guess the melodies of life. Think fast, connect the dots, and race against time to claim victory.",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Biotechnology",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "50",
-            "participation_strength_setlimit": 150,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Rebu Sundar, Dr. Jissin Mathew",
-                    "phone": "8111955514, 9944386579",
-                    "email": "rebu@karunya.edu, jissin@karunya.edu"
-                },
-                "student": {
-                    "name": "Litta Roy, Rebecca Jacey",
-                    "phone": "85474 72935 , 70124009230",
-                    "email": "vikasbalaji@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0088",
-            "eventname": "Brain Buzz",
-            "description": "THEME OF THE EVENT: The game proposed is a time based event where each team which consists of 4 participants race against time to complete 4 rounds/games and click the buzzer placed at the end.",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Biotechnology",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "50",
-            "participation_strength_setlimit": 100,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr.Anu Jacob",
-                    "phone": "8903521079",
-                    "email": "anujacob@karunya.edu "
-                },
-                "student": {
-                    "name": "Swathi Devi. S, D. Jabez Ravikumar Samraj",
-                    "phone": "8098959023 , 9840393573",
-                    "email": "vikasbalaji@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0089",
-            "eventname": "Ideathon",
-            "description": "Theme Of The Event: BIOINNOVATE: PIONEERING SOLUTIONS FOR A SUSTAINABLE FUTURE ",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Biotechnology",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 120,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Kavitha",
-                    "phone": "9443390590",
-                    "email": "kavibiotec@karunya.edu "
-                },
-                "student": {
-                    "name": "C. L. Brijesh, Harshini. M",
-                    "phone": "9788226611, 9952340649",
-                    "email": "brijeshc@karunya.edu.in , harshinim@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0090",
-            "eventname": "Poster presentation",
-            "description": "Shaping the Future of Science and Medicine.Discover revolutionary innovation in biotechnology, from gene editing and synthetic biology to health and environmental advancements.",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Biotechnology",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "50",
-            "participation_strength_setlimit": 100,
-            "coordinators": {
-                "faculty": {
-                    "name": "Mrs. Uma Priya & Dr. Satya Sundar Mahanty ",
-                    "phone": "8220866023, 8895528225",
-                    "email": "umapriya@karunya.edu , satyasundar@karunya.edu"
-                },
-                "student": {
-                    "name": "Austy Evangeline R, Jeffina Glory J",
-                    "phone": "9361451179, 9342520366",
-                    "email": "austyevangeline@karunya.edu , jeffinaglory@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0101",
-            "eventname": "HANDS ON TRAINING ON TERRARIUM, AND CANDLE MAKING",
-            "description": "A hands on training on terrarium and candle making ",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Seminar/ Workshop",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 100,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Manjula and Dr. Sangamesh ",
-                    "phone": "9480747364, 9036202550",
-                    "email": "manjula@karunya.edu"
-                },
-                "student": {
-                    "name": "Nithya Shree B.R.",
-                    "phone": "9385536179",
-                    "email": "nithyashree@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0092",
-            "eventname": "Hands on training on resin art and clay modelling ",
-            "description": "Resin art and Clay modelling is an upcoming art model among all age groups. Through this event we will be providing demonstration and hands on training on resin art and clay modelling ",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 100,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Dhanusha",
-                    "phone": "7907199503",
-                    "email": "dhanusha@karunya.edu"
-                },
-                "student": {
-                    "name": "Harishni Premkumar",
-                    "phone": "7812893648",
-                    "email": "harishnipremkumar@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0093",
-            "eventname": "Production technology of mushrooms",
-            "description": "A visit will be organized to the mushroom farm. The production practices and value added products of mushroom will be explained in detail. ",
-            "type": "tech",
-            "category": 1,
-            "category_name": "Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "50",
-            "participation_strength_setlimit": 50,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Madhumitha",
-                    "phone": "8072798107",
-                    "email": "madhumitha@karunya.edu"
-                },
-                "student": {
-                    "name": "Krishnendhu",
-                    "phone": "7736058083",
-                    "email": "krishnendua21@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0094",
-            "eventname": "Agri- Cine Spark",
-            "description": "This is a short film event. Each team comprises of four members. They will be asked to prepare a short film of three minutes on the allocated topic. The best film will be awarded with prize. ",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Vimalin Hena ",
-                    "phone": "6381937293",
-                    "email": "vimalinhena@karunya.edu"
-                },
-                "student": {
-                    "name": "KHARISH A",
-                    "phone": "6383483265",
-                    "email": "harisha22@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0095",
-            "eventname": "Face Art Frenzy ",
-            "description": "Face painting based on a specified theme. A group activity consisting of two members ",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Sumaiya Parveen",
-                    "phone": "9443925493",
-                    "email": "sumaiyaparveen@karunya.edu"
-                },
-                "student": {
-                    "name": "Abeeshwar",
-                    "phone": "7904859694",
-                    "email": "abeeshwarra@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0096",
-            "eventname": "Henna Art ",
-            "description": "Team event consisting of two members. The best design will be selected as the winner ",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 30,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Sharmili",
-                    "phone": "8754750516",
-                    "email": "sharmili@karunya.edu"
-                },
-                "student": {
-                    "name": "Fathima Nesrin",
-                    "phone": "8072952101",
-                    "email": "fathimanesrin@karunya.edu.in"
-                }
-            }
-        },
-        {
-            "eventid": "MK25E0097",
-            "eventname": "Mind Maze",
-            "description": "A PUZZLE GAME CONSISTING OF GROUPS OF TWO MEMBERS",
-            "type": "non-tech",
-            "category": 1,
-            "category_name": "Non-Technical",
-            "division": "Agriculture",
-            "start_time": "2025-03-21T09:00:00Z",
-            "end_time": "2025-02-10T18:55:36Z",
-            "price": "",
-            "participation_strength_setlimit": 50,
-            "coordinators": {
-                "faculty": {
-                    "name": "Dr. Dinesh Kumar ",
-                    "phone": "8675334438",
-                    "email": "dineshkumarp@karunya.edu"
-                },
-                "student": {
-                    "name": "Jeba Samuel",
-                    "phone": "7418595187",
-                    "email": "jebasamuel23@karunya.edu.in"
-                }
-            }
-        },
-                    {
+            
+                  {
                         "eventid": "MK25E0061",
                         "eventname": " Kidz cracker ",
                         "description": "Cracking : The Moto of the first round is to crack the given md5 or sha hash value driven from the given puzzle and identifying the password.\n\nDebugging: The second round is to debug the given code and making it run and generate the output .\n\nIdeathon: The final round is to giving the participants a chance to flow their creativity and giving ideas for the problems given.",
@@ -2444,32 +2472,7 @@ const MindkraftEventsPage: React.FC = () => {
                         }
                     },
                                  
-                    {
-                        "eventid": "MK25E0099",
-                        "eventname": "Hashes over Roses",
-                        "description": "A Capture the Flag (CTF) competition is a cybersecurity event where participants engage in hacking challenges designed to test their knowledge, skills, and problem-solving abilities in a technical environment. The primary goal is for participants to find specific pieces of text, known as flags, that are hidden within intentionally vulnerable programs or websites. These flags are usually found by exploiting flaws or vulnerabilities within the system or application. The competition is often divided into categories such as reverse engineering, web security, cryptography, forensics, and binary exploitation. Participants or teams work through various challenges to capture these flags, earn points, and improve their ranking on the competition board.",
-                        "type": "tech",
-                        "category": 1,
-                        "category_name": "Technical",
-                        "division": "Computer Science and Engineering",
-                        "start_time": "2025-03-21T09:00:00Z",
-                        "end_time": "2025-02-10T18:55:36Z",
-                        "price": "150",
-                        "participation_strength_setlimit": 150,
-                        "coordinators": {
-                            "faculty": {
-                                "name": "Mr. D. Shibin",
-                                "phone": "8072542091",
-                                "email": "shibin@karunya.edu"
-                            },
-                            "student": {
-                                "name": "Nitha Zachariah",
-                                "phone": "8921853641",
-                                "email": "nithazachariah@karunya.edu.in"
-                            }
-                        }
-                    },
-                               
+                                        
                     {
                         "eventid": "MK25E0085",
                         "eventname": "Echo-Innovators Pitch",
@@ -2477,7 +2480,7 @@ const MindkraftEventsPage: React.FC = () => {
                         "type": "tech",
                         "category": 1,
                         "category_name": "Technical",
-                        "division": "EEE",
+                        "division": "Electrical and Electronics Engineering",
                         "start_time": "2025-03-21T09:00:00Z",
                         "end_time": "2025-02-10T18:55:36Z",
                         "price": "75",
@@ -2496,34 +2499,7 @@ const MindkraftEventsPage: React.FC = () => {
                         }
                     },
                        
-                    {
-                        "eventid": "MK25E0098",
-                        "eventname": "Personal care products using honey and beeswax (Lip balm, pain balm, lipstick, dry fruit honey energy bars) ",
-                        "description": "Join us for a one-day hands-on training program on Personal Care Products Using Honey and Beeswax! This workshop will introduce participants to the natural benefits of honey and beeswax in skincare and personal care formulations.",
-                        "type": "tech",
-                        "category": 1,
-                        "category_name": "Technical",
-                        "division": "Agriculture",
-                        "start_time": "2025-03-21T09:00:00Z",
-                        "end_time": "2025-02-10T18:55:36Z",
-                        "price": "250",
-                        "participation_strength_setlimit": 25,
-                        "coordinators": {
-                            "faculty": {
-                                "name": "Dr. Sangamesh Hiremath ",
-                                "phone": "7892417226",
-                                "email": "sangamesh@karunya.edu"
-                            },
-                            "student": {
-                                "name": "Kiran Kumar P.",
-                                "phone": "9688407081",
-                                "email": "kirankumar21@karunya.edu.in"
-                            }
-                        }
-                    }
-        
-        
-        ];
+                    ];
       
       setEvents(sampleData);
       setIsLoading(false);
@@ -2559,6 +2535,8 @@ const MindkraftEventsPage: React.FC = () => {
     });
 
     try {
+      console.log(`Adding event ${eventId} to cart...`);
+
       // Find the event to check its price
       const event = events.find(e => e.eventid === eventId);
       
@@ -2580,6 +2558,8 @@ const MindkraftEventsPage: React.FC = () => {
           throw new Error("Authentication token not found. Please log in again.");
         }
         
+        console.log(`Using access token: ${accessToken}`);
+        
         // Make API request
         const response = await fetch('https://api.mindkraft.org/api/test/', {
           method: 'POST',
@@ -2588,12 +2568,13 @@ const MindkraftEventsPage: React.FC = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            events: [eventId]
+            event_name: [eventId]
           })
         });
         
         if (!response.ok) {
           const errorData = await response.json();
+          console.error("API response error:", errorData);
           throw new Error(errorData.message || "Failed to register for the event");
         }
         
@@ -2654,16 +2635,6 @@ const MindkraftEventsPage: React.FC = () => {
       }, 5000);
     }
   };
-
-  // Format date time
-//   const formatDateTime = (dateTimeStr: string) => {
-//     try {
-//       const date = new Date(dateTimeStr);
-//       return date.toLocaleString();
-//     } catch (e) {
-//       return dateTimeStr;
-//     }
-//   };
 
   // Filter events based on department
   const filteredEvents = departmentFilter === "all" 
@@ -2776,190 +2747,195 @@ const MindkraftEventsPage: React.FC = () => {
 
                     {/* Event Details */}
                     <div className="flex flex-wrap gap-2 mb-4">
-  {/* Event Date */}
-  {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-    <span className="mr-1">📅</span> {new Date(event.start_time).toLocaleDateString("en-GB")}
-  </span> */}
-  
-  {/* Event Time */}
-  {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-    <span className="mr-1">⏰</span> {new Date(event.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-  </span> */}
+                      {/* Event Date */}
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                        <span className="mr-1">📅</span> {new Date(event.start_time).toLocaleDateString("en-GB")}
+                      </span>
+                      
+                      {/* Event Time */}
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                        <span className="mr-1">⏰</span> {new Date(event.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                      </span>
 
-  {/* Participant Limit */}
-  <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-    <span className="mr-1">👥</span> {event.participation_strength_setlimit || "No limit"}
-  </span>
+                      {/* Participant Limit */}
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                        <span className="mr-1">👥</span> {event.participation_strength_setlimit || "No limit"}
+                      </span>
 
-  {/* Event Category */}
-  <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-    <span className="mr-1">🏷️</span> {event.type === "tech" ? "Technical" : "Non-Technical"}
-  </span>
+                      {/* Event Category */}
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                        <span className="mr-1">🏷️</span> {event.type === "tech" ? "Technical" : "Non-Technical"}
+                      </span>
 
-  {/* Price */}
-  <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-    <span className="mr-1">💰</span> {event.price ? `₹${event.price}` : "Free"}
-  </span>
-</div>
+                      {/* Price */}
+                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                        <span className="mr-1">💰</span> {event.price ? `₹${event.price}` : "Free"}
+                      </span>
+                    </div>
 
-{/* Register Button */}
-<button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 
-                hover:from-purple-700 hover:to-indigo-700 text-white font-medium 
-                py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/50">
-  View Details
-</button>
-</div>
-))
-) : (
-<p className="text-center text-gray-400 col-span-full">No events available for this department.</p>
-)}
-</div>
-</div>
-)}
+                    {/* Register Button */}
+                    <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 
+                                      hover:from-purple-700 hover:to-indigo-700 text-white font-medium 
+                                      py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/50">
+                      View Details
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p className="text-center text-gray-400 col-span-full">No events available for this department.</p>
+              )}
+            </div>
+          </div>
+        )}
 
-{/* Event Details Modal */}
-{selectedEvent && selectedEventDetails && (
-<div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
-  <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl text-white rounded-xl p-6 max-w-2xl w-full mx-4">
-    {/* Close Button */}
-    <button
-      onClick={closeEventDetails}
-      className="absolute top-3 right-4 text-white text-2xl hover:text-gray-300 transition"
-    >
-      &times;
-    </button>
+        {/* Event Details Modal */}
+        {selectedEvent && selectedEventDetails && (
+          <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
+            <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl text-white rounded-xl p-6 max-w-2xl w-full mx-4">
+              {/* Close Button */}
+              <button
+                onClick={closeEventDetails}
+                className="absolute top-3 right-4 text-white text-2xl hover:text-gray-300 transition"
+              >
+                &times;
+              </button>
 
-    {eventDetailsLoading ? (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
+              {eventDetailsLoading ? (
+                <div className="flex justify-center items-center h-64">
+                  <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
+                </div>
+              ) : (
+                <>
+                  {/* Event Name */}
+                  <h2 className="text-3xl font-extrabold text-white mb-4 text-center">
+                    {selectedEventDetails.eventname}
+                  </h2>
+
+                  {/* Description */}
+                  <p className="text-gray-200 text-sm mb-6 text-center">
+                    {selectedEventDetails.description}
+                  </p>
+
+                  {/* Coordinator Info */}
+                  <div className="grid grid-cols-2 gap-6 text-center mb-6">
+                    <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
+                      <p className="text-gray-300 text-sm">Student Coordinator</p>
+                      <p className="text-white font-semibold">
+                        {selectedEventDetails.coordinators?.student?.name || "Not available"}
+                      </p>
+                      {selectedEventDetails.coordinators?.student?.phone !== "Not provided" && 
+                      selectedEventDetails.coordinators?.student?.phone && (
+                        <p className="text-white text-sm">
+                          {selectedEventDetails.coordinators.student.phone}
+                        </p>
+                      )}
+                      {selectedEventDetails.coordinators?.student?.email !== "Not provided" && 
+                      selectedEventDetails.coordinators?.student?.email && (
+                        <p className="text-white text-sm">
+                          {selectedEventDetails.coordinators.student.email}
+                        </p>
+                      )}
+                    </div>
+                    <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
+                      <p className="text-gray-300 text-sm">Staff Coordinator</p>
+                      <p className="text-white font-semibold">
+                        {selectedEventDetails.coordinators?.faculty?.name || "Not available"}
+                      </p>
+                      {selectedEventDetails.coordinators?.faculty?.phone !== "Not provided" && 
+                      selectedEventDetails.coordinators?.faculty?.phone && (
+                        <p className="text-white text-sm">
+                          {selectedEventDetails.coordinators.faculty.phone}
+                        </p>
+                      )}
+                      {selectedEventDetails.coordinators?.faculty?.email !== "Not provided" && 
+                      selectedEventDetails.coordinators?.faculty?.email && (
+                        <p className="text-white text-sm">
+                          {selectedEventDetails.coordinators.faculty.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                                    {/* Additional Details */}
+                                    <div className="flex flex-col md:flex-row justify-between items-center text-gray-200 text-sm px-4 mb-6 space-y-2 md:space-y-0">
+                    <p>
+                      <span className="text-white font-semibold">Division:</span> {selectedEventDetails.division}
+                    </p>
+                    <p>
+                      <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
+                    </p>
+                    <p>
+                      <span className="text-white font-semibold">Start Time:</span> {new Date(selectedEventDetails.start_time).toLocaleString()}
+                    </p>
+                  </div>
+
+                  {/* Price & Capacity */}
+                  <div className="flex justify-between items-center text-gray-200 text-sm px-4 mb-6">
+                    <p>
+                      <span className="text-white font-semibold">Price:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
+                    </p>
+                    <p>
+                      <span className="text-white font-semibold">Max Participants:</span> {selectedEventDetails.participation_strength_setlimit || "No Limit"}
+                    </p>
+                  </div>
+
+                  {/* Event Type */}
+                  <div className="flex justify-center items-center text-gray-200 text-sm px-4 mb-6">
+                    <span className="bg-purple-600/60 px-4 py-2 rounded-full">
+                      {selectedEventDetails.type === "tech" ? "Technical Event" : "Non-technical Event"}
+                    </span>
+                  </div>
+
+                  {/* Cart Status Notifications */}
+                  {cartStatus.success && (
+                    <div className="mb-4 p-2 bg-green-600/80 text-white text-center rounded-lg">
+                      Event Registered successfully!
+                    </div>
+                  )}
+                  
+                  {cartStatus.error && (
+                    <div className="mb-4 p-2 bg-red-600/80 text-white text-center rounded-lg">
+                      Error: {cartStatus.error}
+                    </div>
+                  )}
+
+                  {/* Buttons */}
+                  <div className="flex justify-center gap-6">
+                    <button
+                      onClick={closeEventDetails}
+                      className="px-6 py-2 bg-gray-600/60 backdrop-blur-sm hover:bg-gray-700 rounded-lg transition shadow-md text-white"
+                    >
+                      Close
+                    </button>
+                    <button 
+                      onClick={() => addToCart(selectedEventDetails.eventid)}
+                      disabled={cartStatus.loading}
+                      className={`px-6 py-2 ${cartStatus.loading ? 'bg-purple-400/60' : 'bg-purple-600/80 hover:bg-purple-700'} backdrop-blur-sm rounded-lg transition shadow-md text-white flex items-center justify-center`}
+                    >
+                      {cartStatus.loading ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Adding...
+                        </>
+                      ) : "Register Now"}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </main>
+
+      {/* Current User Information (Optional) */}
+      <div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
+        Logged in as: {Cookies.get('username') || 'dharshan-kumarj'} | {new Date().toISOString().split('T')[0]}
       </div>
-    ) : (
-      <>
-        {/* Event Name */}
-        <h2 className="text-3xl font-extrabold text-white mb-4 text-center">
-          {selectedEventDetails.eventname}
-        </h2>
-
-        {/* Description */}
-        <p className="text-gray-200 text-sm mb-6 text-center">
-          {selectedEventDetails.description}
-        </p>
-
-        {/* Coordinator Info */}
-        <div className="grid grid-cols-2 gap-6 text-center mb-6">
-          <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
-            <p className="text-gray-300 text-sm">Student Coordinator</p>
-            <p className="text-white font-semibold">
-              {selectedEventDetails.coordinators?.student?.name || "Not available"}
-            </p>
-            {selectedEventDetails.coordinators?.student?.phone !== "Not provided" && 
-             selectedEventDetails.coordinators?.student?.phone && (
-              <p className="text-white text-sm">
-                {selectedEventDetails.coordinators.student.phone}
-              </p>
-            )}
-            {selectedEventDetails.coordinators?.student?.email !== "Not provided" && 
-             selectedEventDetails.coordinators?.student?.email && (
-              <p className="text-white text-sm">
-                {selectedEventDetails.coordinators.student.email}
-              </p>
-            )}
-          </div>
-          <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
-            <p className="text-gray-300 text-sm">Staff Coordinator</p>
-            <p className="text-white font-semibold">
-              {selectedEventDetails.coordinators?.faculty?.name || "Not available"}
-            </p>
-            {selectedEventDetails.coordinators?.faculty?.phone !== "Not provided" && 
-             selectedEventDetails.coordinators?.faculty?.phone && (
-              <p className="text-white text-sm">
-                {selectedEventDetails.coordinators.faculty.phone}
-              </p>
-            )}
-            {selectedEventDetails.coordinators?.faculty?.email !== "Not provided" && 
-             selectedEventDetails.coordinators?.faculty?.email && (
-              <p className="text-white text-sm">
-                {selectedEventDetails.coordinators.faculty.email}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Additional Details */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-gray-200 text-sm px-4 mb-6 space-y-2 md:space-y-0">
-          <p>
-            <span className="text-white font-semibold">Division:</span> {selectedEventDetails.division}
-          </p>
-          <p>
-            <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
-          </p>
-          {/* <p>
-            <span className="text-white font-semibold">Start Time:</span> {formatDateTime(selectedEventDetails.start_time)}
-          </p> */}
-        </div>
-
-        {/* Price & Capacity */}
-        <div className="flex justify-between items-center text-gray-200 text-sm px-4 mb-6">
-          <p>
-            <span className="text-white font-semibold">Price:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
-          </p>
-          <p>
-            <span className="text-white font-semibold">Max Participants:</span> {selectedEventDetails.participation_strength_setlimit || "No Limit"}
-          </p>
-        </div>
-
-        {/* Event Type */}
-        <div className="flex justify-center items-center text-gray-200 text-sm px-4 mb-6">
-          <span className="bg-purple-600/60 px-4 py-2 rounded-full">
-            {selectedEventDetails.type === "tech" ? "Technical Event" : "Non-technical Event"}
-          </span>
-        </div>
-
-        {/* Cart Status Notifications */}
-        {cartStatus.success && (
-          <div className="mb-4 p-2 bg-green-600/80 text-white text-center rounded-lg">
-            Event added to cart successfully!
-          </div>
-        )}
-        
-        {cartStatus.error && (
-          <div className="mb-4 p-2 bg-red-600/80 text-white text-center rounded-lg">
-            Error: {cartStatus.error}
-          </div>
-        )}
-
-        {/* Buttons */}
-        <div className="flex justify-center gap-6">
-          <button
-            onClick={closeEventDetails}
-            className="px-6 py-2 bg-gray-600/60 backdrop-blur-sm hover:bg-gray-700 rounded-lg transition shadow-md text-white"
-          >
-            Close
-          </button>
-          <button 
-            onClick={() => addToCart(selectedEventDetails.eventid)}
-            disabled={cartStatus.loading}
-            className={`px-6 py-2 ${cartStatus.loading ? 'bg-purple-400/60' : 'bg-purple-600/80 hover:bg-purple-700'} backdrop-blur-sm rounded-lg transition shadow-md text-white flex items-center justify-center`}
-          >
-            {cartStatus.loading ? (
-              <>
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Adding...
-              </>
-            ) : "Register Now"}
-          </button>
-        </div>
-      </>
-    )}
-  </div>
-</div>
-)}
-</main> 
-</div>
-);
+    </div>
+  );
 };
 
 export default MindkraftEventsPage;
