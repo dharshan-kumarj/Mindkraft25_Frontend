@@ -2750,14 +2750,14 @@ const MindkraftEventsPage: React.FC = () => {
                     {/* Event Details */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {/* Event Date */}
-                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                      {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
                         <span className="mr-1">📅</span> {new Date(event.start_time).toLocaleDateString("en-GB")}
-                      </span>
+                      </span> */}
                       
                       {/* Event Time */}
-                      <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
+                      {/* <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
                         <span className="mr-1">⏰</span> {new Date(event.start_time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                      </span>
+                      </span> */}
 
                       {/* Participant Limit */}
                       <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
@@ -2866,9 +2866,9 @@ const MindkraftEventsPage: React.FC = () => {
                     <p>
                       <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
                     </p>
-                    <p>
+                    {/* <p>
                       <span className="text-white font-semibold">Start Time:</span> {new Date(selectedEventDetails.start_time).toLocaleString()}
-                    </p>
+                    </p> */}
                   </div>
 
                   {/* Price & Capacity */}
@@ -2933,9 +2933,9 @@ const MindkraftEventsPage: React.FC = () => {
       </main>
 
       {/* Current User Information (Optional) */}
-      <div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
+      {/* <div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
         Logged in as: {Cookies.get('username') || 'dharshan-kumarj'} | {new Date().toISOString().split('T')[0]}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -309,6 +309,9 @@ const RegistrationPage: React.FC = () => {
                                 <option value="">Select Program</option>
                                 <option value="btech">B.Tech</option>
                                 <option value="mtech">M.Tech</option>
+                                <option value="bschons">B.Sc(Hons)</option>
+                                <option value="bsc">B.Sc</option>
+                                <option value="bcom">B.Com</option>
                             </select>
                         </div>
                         <div className="flex flex-col">
@@ -523,15 +526,13 @@ const RegistrationPage: React.FC = () => {
         </div>
         <div className="flex flex-col">
             <label className="text-white font-bold mb-1">Program</label>
-            <select
+            <input
+                type="text"
                 name="ext-program"
+                placeholder="Enter your Program(Eg:B.Tech)"
                 required
-                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
-            >
-                <option value="">Select Program</option>
-                <option value="btech">B.Tech</option>
-                <option value="mtech">M.Tech</option>
-            </select>
+                className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
+            />
         </div>
         <div className="flex flex-col">
             <label className="text-white font-bold mb-1">Course</label>
@@ -555,6 +556,7 @@ const RegistrationPage: React.FC = () => {
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
+                <option value="5">5</option>
             </select>
         </div>
         <div className="flex flex-col">
