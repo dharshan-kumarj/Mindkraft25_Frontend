@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../src/pages/auth/Login";
 import Register from "../src/pages/auth/Register";
 import PaymentSuccess from "../src/pages/payments/PaymentSuccess";
@@ -7,6 +7,7 @@ import EventCartPage from "./pages/events/EventCartPage";
 import LandingPage from "./pages/LandingPage";
 import EventsPage from "./pages/events/EventsPage";
 import ForgotPassword from "./pages/auth/Forgetpassword";
+
 
 const App: React.FC = () => {
   return (

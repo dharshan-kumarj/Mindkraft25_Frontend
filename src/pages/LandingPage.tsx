@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaAngleDown, FaBars, FaTimes } from "react-icons/fa";
+import { FaAngleDown, FaTimes } from "react-icons/fa";
 
 // If using images from "assets" folder
 import karunyalogo from "../../public/assets/karunyalogo.webp";
