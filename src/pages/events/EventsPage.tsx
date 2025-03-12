@@ -1545,7 +1545,7 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0044",
             "eventname": "Karunya's IPL Auction",
-            "description": "IPL Mock Auction Overview: An engaging event testing cricket knowledge and strategic team-building through a simulated IPL auction Event Details: - Purse: INR 100 Crore - Team Size:14-16 players (6 overseas) - Rounds: 2 - Scoring: - Team Points: Based on squad strength. - Bonus Points: Based on remaining purse. Event Model: Round 1: Cricket Quiz - 50 questions, 25 minutes. - Top 10 teams advance. Round 2: Bidding War - Teams assigned an IPL franchise. - INR 100 Crore budget for auction. - Balanced squad building is key. Scoring: - Team Points: Squad composition, player quality. - Bonus Points: Effective budget management.",
+            "description": "IPL Mock Auction\nOverview:\nAn engaging event testing cricket knowledge and strategic team-building through a\nsimulated IPL auction\n\nEvent Details:\n- Purse: INR 100 Crore\n- Team Size:16-18 players (6-8 overseas)\n- Rounds: 2\n- Scoring:\n- Team Points: Based on squad strength.\n - Bonus Points: Based on remaining purse.\n\nEvent Model:\nRound 1: Cricket Quiz\n- 50 questions, 25 minutes.\n- Top 10 teams advance.\n\nRound 2: Bidding War\n- Teams assigned an IPL franchise.\n- INR 120 Crore budget for auction.\n- Balanced squad building is key.\n\nScoring:\n- Team Points: Squad composition, player quality.\n- Bonus Points: Effective budget management.",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
@@ -2449,7 +2449,7 @@ const MindkraftEventsPage: React.FC = () => {
                   {
                         "eventid": "MK25E0061",
                         "eventname": " Kidz cracker ",
-                        "description": "Cracking : The Moto of the first round is to crack the given md5 or sha hash value driven from the given puzzle and identifying the password.\n\nDebugging: The second round is to debug the given code and making it run and generate the output .\n\nIdeathon: The final round is to giving the participants a chance to flow their creativity and giving ideas for the problems given.",
+                        "description": "A mix of technical and non-technical events that test your logical coding abilities and mental stability, Qualifiers will be required to participate in the ideathon.",
                         "type": "tech",
                         "category": 1,
                         "category_name": "Technical",
@@ -2466,7 +2466,7 @@ const MindkraftEventsPage: React.FC = () => {
                             },
                             "student": {
                                 "name": "Brightina S, Avinaash Isaac",
-                                "phone": "9043054504 and 9944604672",
+                                "phone": "9043054504 and 9944611312",
                                 "email": "brightinas24@karunya.edu.in, avinaashisaac24@karunya.edu.in"
                             }
                         }
@@ -2498,6 +2498,8 @@ const MindkraftEventsPage: React.FC = () => {
                             }
                         }
                     },
+                       
+                   
                        
                     ];
       
