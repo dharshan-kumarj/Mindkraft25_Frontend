@@ -1545,7 +1545,7 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0044",
             "eventname": "Karunya's IPL Auction",
-            "description": "IPL Mock Auction\nOverview:\nAn engaging event testing cricket knowledge and strategic team-building through a\nsimulated IPL auction\n\nEvent Details:\n- Purse: INR 100 Crore\n- Team Size:16-18 players (6-8 overseas)\n- Rounds: 2\n- Scoring:\n- Team Points: Based on squad strength.\n - Bonus Points: Based on remaining purse.\n\nEvent Model:\nRound 1: Cricket Quiz\n- 50 questions, 25 minutes.\n- Top 10 teams advance.\n\nRound 2: Bidding War\n- Teams assigned an IPL franchise.\n- INR 120 Crore budget for auction.\n- Balanced squad building is key.\n\nScoring:\n- Team Points: Squad composition, player quality.\n- Bonus Points: Effective budget management.",
+            "description": "IPL Mock Auction Overview: An engaging event testing cricket knowledge and strategic team-building through a simulated IPL auction Event Details: - Purse: INR 100 Crore - Team Size:14-16 players (6 overseas) - Rounds: 2 - Scoring: - Team Points: Based on squad strength. - Bonus Points: Based on remaining purse. Event Model: Round 1: Cricket Quiz - 50 questions, 25 minutes. - Top 10 teams advance. Round 2: Bidding War - Teams assigned an IPL franchise. - INR 100 Crore budget for auction. - Balanced squad building is key. Scoring: - Team Points: Squad composition, player quality. - Bonus Points: Effective budget management.",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
@@ -2233,14 +2233,14 @@ const MindkraftEventsPage: React.FC = () => {
                 "participation_strength_setlimit": 75,
                 "coordinators": {
                     "faculty": {
-                        "name": "Ebenezer Jacob Dhas",
-                        "phone": "99409858825",
-                        "email": "ebenezer@karunya.edu"
+                        "name": "Dr. D. S. Ebenezer Jacob Dhas",
+                        "phone": "9600861640",
+                        "email": "ebenezerjacob@karunya.edu"
                     },
                     "student": {
                         "name": "Abhishek Nair",
                         "phone": "9497452916",
-                        "email": "amal@karunya.edu.in"
+                        "email": "abhishekr21@karunya.edu.in"
                     }
                 }
             },
@@ -2501,6 +2501,8 @@ const MindkraftEventsPage: React.FC = () => {
                        
                    
                        
+                   
+                       
                     ];
       
       setEvents(sampleData);
@@ -2538,6 +2540,23 @@ const MindkraftEventsPage: React.FC = () => {
 
     try {
       console.log(`Adding event ${eventId} to cart...`);
+      
+      // Check for access token first - before doing anything else
+      const accessToken = Cookies.get('accessToken');
+      
+      if (!accessToken) {
+        setCartStatus({
+          loading: false,
+          success: false,
+          error: "Please log in again to Register the events.",
+        });
+        
+        // Show error message briefly then redirect to login
+        setTimeout(() => {
+          window.location.href = "/#/login"; // Redirect to login page
+        }, 1500);
+        return;
+      }
 
       // Find the event to check its price
       const event = events.find(e => e.eventid === eventId);
@@ -2552,13 +2571,6 @@ const MindkraftEventsPage: React.FC = () => {
       if (isFreeEvent) {
         // For free events, make API request to register directly
         console.log("Free event detected. Sending API request for direct registration.");
-        
-        // Get access token from cookies
-        const accessToken = Cookies.get('accessToken');
-        
-        if (!accessToken) {
-          throw new Error("Authentication token not found. Please log in again.");
-        }
         
         console.log(`Using access token: ${accessToken}`);
         
@@ -2614,10 +2626,18 @@ const MindkraftEventsPage: React.FC = () => {
           return;
         }
         
-        // If cookie not found or has unexpected value, show error
-        if (!isInterCollege) {
-          throw new Error("User type not identified. Please login again.");
-        }
+        // If isInterCollege cookie not found or has unexpected value, show error and redirect to login
+        setCartStatus({
+          loading: false,
+          success: false,
+          error: "User type not identified. Please login again.",
+        });
+        
+        // Show error message briefly then redirect to login
+        setTimeout(() => {
+          window.location.href = "/#/login"; // Redirect to login page
+        }, 1500);
+        return;
       }
       
     } catch (err) {
@@ -2628,7 +2648,21 @@ const MindkraftEventsPage: React.FC = () => {
         error: (err as Error).message,
       });
       
-      // Auto-hide error message after 5 seconds
+      // Check if error is related to authentication
+      const errorMsg = (err as Error).message.toLowerCase();
+      if (errorMsg.includes("authentication") || 
+          errorMsg.includes("token") || 
+          errorMsg.includes("login") || 
+          errorMsg.includes("unauthorized")) {
+        
+        // Show error message briefly then redirect to login
+        setTimeout(() => {
+          window.location.href = "/#/login"; // Redirect to login page
+        }, 1500);
+        return;
+      }
+      
+      // Auto-hide error message after 5 seconds for other errors
       setTimeout(() => {
         setCartStatus(prev => ({
           ...prev,
@@ -2932,10 +2966,6 @@ const MindkraftEventsPage: React.FC = () => {
         )}
       </main>
 
-      {/* Current User Information (Optional) */}
-      {/* <div className="fixed bottom-2 right-2 text-xs text-gray-400 bg-black/30 p-2 rounded-lg backdrop-blur-sm">
-        Logged in as: {Cookies.get('username') || 'dharshan-kumarj'} | {new Date().toISOString().split('T')[0]}
-      </div> */}
     </div>
   );
 };

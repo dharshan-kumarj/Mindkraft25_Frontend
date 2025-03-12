@@ -146,10 +146,10 @@ const LoginPage: React.FC = () => {
       </form>
 
       {/* Additional Links */}
-      {/* <div className="w-full flex justify-between mt-4 text-sm">
-        <a href="/register" className="text-blue-400 hover:underline">Don't have an account?</a>
-        <a href="/forgotpassword" className="text-blue-400 hover:underline">Forgot password?</a>
-      </div> */}
+      <div className="w-full flex justify-between mt-4 text-sm">
+        <a href="/#/register" className="text-blue-400 hover:underline">Don't have an account?</a>
+        {/* <a href="/forgotpassword" className="text-blue-400 hover:underline">Forgot password?</a> */}
+      </div>
     </div>
   </div>
   );
