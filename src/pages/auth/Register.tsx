@@ -435,6 +435,7 @@ const RegistrationPage: React.FC = () => {
                 <option value="bcom">B.Com</option>
                 <option value="Ph.D">Ph.D</option>
                 <option value="M.B.A">M.B.A</option>
+                <option value="M.Sc"> M.Sc</option>
 
                 
               </select>
@@ -469,6 +470,9 @@ const RegistrationPage: React.FC = () => {
                   </option>
                   <option value="B.Tech Biotechnology (Specialisation in Medical Biotechnology)">
                     B.Tech Biotechnology (Specialisation in Medical Biotechnology)
+                  </option>B.Tech. Biotechnology (Specialisation in Genome Engineering and Technology) 
+                  <option value="B.Tech. Biotechnology (Specialisation in Genome Engineering and Technology)">
+                  B.Tech. Biotechnology (Specialisation in Genome Engineering and Technology)
                   </option>
                   <option value="B.Tech Civil Engineering">B.Tech Civil Engineering</option>
                   <option value="B.Tech. Electrical and Electronics Engineering">B.Tech. Electrical and Electronics Engineering</option>
@@ -586,9 +590,12 @@ const RegistrationPage: React.FC = () => {
                   <option value="M.B.A.">
                   M.B.A.
                   </option>
+                </optgroup>
+                <optgroup label="Research">
                   <option value="Ph.D. Aerospace Engineering">
                   Ph.D. Aerospace Engineering
                   </option>
+                  <option value="Ph.D. Mathematics">Ph.D. Mathematics</option>
                   <option value="Ph.D. Civil Engineering">Ph.D. Civil Engineering</option>
                   <option value="Ph.D. Computer Applications">Ph.D. Computer Applications</option>
                   <option value="Ph.D. Computer Science and Engineering">Ph.D. Computer Science and Engineering</option>
