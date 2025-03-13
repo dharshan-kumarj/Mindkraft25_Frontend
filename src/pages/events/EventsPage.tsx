@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 // Define the types
@@ -40,6 +40,11 @@ const MindkraftEventsPage: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [eventDetailsLoading, setEventDetailsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage] = useState("");
+
+
+
 
 //   const navigate = useNavigate();
 
@@ -310,7 +315,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0013",
-            "eventname": "TradeMAster Challenge: 24-Hour Profit Hunt",
+            "eventname": "TradeMaster Challenge: 24-Hour Profit Hunt",
             "description": "Think you can conquer the stock market in just 24 hours? Join the TradeMaster Challenge, a high-intensity virtual trading competition using the Frontpage paper trading app! Compete against fellow students to make the highest profit within a day. The top three traders will win exciting prizes. No real money, just skill and strategy\u2014analyze, trade, and rise to the top. Are you ready to prove you're the ultimate trader? Let the challenge begin!",
             "type": "tech",
             "category": 1,
@@ -2589,14 +2594,23 @@ const MindkraftEventsPage: React.FC = () => {
         });
         
         if (!response.ok) {
-          const errorData = await response.json();
-          console.error("API response error:", errorData);
-          throw new Error(errorData.message || "Failed to register for the event");
-        }
-        
-        const data = await response.json();
-        console.log("Registration successful:", data);
-        
+            const errorData = await response.json();
+            console.error("API response error:", errorData);
+          
+            // Check if the error message or error key indicates duplicate registration
+            if (
+              errorData.message?.includes("already registered") || 
+              errorData.error === "No new events registered"
+            ) {
+              alert("You are already registered for this event!");
+            } else {
+              alert(errorData.message || "Failed to register for the event. Please try again.");
+            }
+          
+            setCartStatus({ loading: false, success: false, error:''});
+            return;
+          }
+          
         // Update cart status
         setCartStatus({
           loading: false,
@@ -2684,11 +2698,52 @@ const MindkraftEventsPage: React.FC = () => {
     ? events.find(event => event.eventid === selectedEvent) 
     : null;
 
+    // const navigate = useNavigate(); // ✅ Correct way to use useNavigate
+
+
   return (
     <div
       className="relative min-h-screen w-full bg-cover bg-center bg-fixed text-gray-100"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
+      {showAlert && (
+        <div
+            className="fixed top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-6 py-4 rounded-lg shadow-lg flex items-center justify-between w-96 max-w-full transition-all duration-300 ease-in-out opacity-100 translate-y-0"
+        >
+            {/* Alert Icon */}
+            <div className="flex items-center">
+            <svg
+                className="w-6 h-6 text-white mr-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+            >
+                <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.7-3l-7.07-12a2 2 0 00-3.42 0l-7.07 12a2 2 0 001.7 3z"
+                />
+            </svg>
+            <p className="text-lg font-semibold">{alertMessage}</p>
+            </div>
+
+            {/* Close Button */}
+            <button
+            onClick={() => { 
+                setShowAlert(false); 
+                setCartStatus({ loading: false, success: false, error: "" });
+            }} 
+            className="ml-4 px-3 py-1 bg-white text-purple-700 font-bold rounded-md hover:bg-gray-300 hover:text-purple-900 transition duration-300"
+            >
+            OK
+            </button>
+        </div>
+        )}
+
+
+
+
       {/* Navbar with Solid Background */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-4 bg-[#1e0635] shadow-lg">
         {/* Sidebar Toggle Button */}
@@ -2708,11 +2763,11 @@ const MindkraftEventsPage: React.FC = () => {
 
         {/* Cart Button */}
         {/* <button
-          onClick={() => navigate("/cart")}
-          className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
-        >
-          <img src={cartIcon} width={20} height={20} alt="cart" />
-        </button> */}
+      onClick={() => navigate("/registered")}
+      className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
+    >
+      <h2 className="text-white font-bold">My Events</h2>
+    </button> */}
       </nav>
       
       {/* Sidebar Overlay */}
@@ -2825,147 +2880,134 @@ const MindkraftEventsPage: React.FC = () => {
             </div>
           </div>
         )}
-
         {/* Event Details Modal */}
         {selectedEvent && selectedEventDetails && (
-          <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
-            <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl text-white rounded-xl p-6 max-w-2xl w-full mx-4">
-              {/* Close Button */}
-              <button
+        <div className="fixed inset-0 flex items-center justify-center px-4 bg-black/60 backdrop-blur-md z-50" style={{ overflow: "hidden", height: "100vh", width: "100vw" }}>
+            <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl text-white rounded-xl p-6 max-w-2xl w-full mx-4 max-h-[70vh] overflow-y-auto">
+            
+            {/* Close Button */}
+            <button
                 onClick={closeEventDetails}
-                className="absolute top-3 right-4 text-white text-2xl hover:text-gray-300 transition"
-              >
+                className="absolute top-3 right-4 text-white text-3xl hover:text-gray-300 transition"
+            >
                 &times;
-              </button>
+            </button>
 
-              {eventDetailsLoading ? (
+            {eventDetailsLoading ? (
                 <div className="flex justify-center items-center h-64">
-                  <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
+                <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-white"></div>
                 </div>
-              ) : (
+            ) : (
                 <>
-                  {/* Event Name */}
-                  <h2 className="text-3xl font-extrabold text-white mb-4 text-center">
+                {/* Event Name */}
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-center mb-4">
                     {selectedEventDetails.eventname}
-                  </h2>
+                </h2>
 
-                  {/* Description */}
-                  <p className="text-gray-200 text-sm mb-6 text-center">
+                {/* Description */}
+                <p className="text-gray-300 text-sm sm:text-base text-center mb-6">
                     {selectedEventDetails.description}
-                  </p>
+                </p>
 
-                  {/* Coordinator Info */}
-                  <div className="grid grid-cols-2 gap-6 text-center mb-6">
-                    <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
-                      <p className="text-gray-300 text-sm">Student Coordinator</p>
-                      <p className="text-white font-semibold">
+                {/* Coordinator Info */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-center mb-6">
+                    <div className="bg-white/20 p-4 rounded-xl shadow-md">
+                    <p className="text-gray-300 text-xs sm:text-sm">Student Coordinator</p>
+                    <p className="text-white font-semibold text-sm sm:text-base">
                         {selectedEventDetails.coordinators?.student?.name || "Not available"}
-                      </p>
-                      {selectedEventDetails.coordinators?.student?.phone !== "Not provided" && 
-                      selectedEventDetails.coordinators?.student?.phone && (
-                        <p className="text-white text-sm">
-                          {selectedEventDetails.coordinators.student.phone}
-                        </p>
-                      )}
-                      {selectedEventDetails.coordinators?.student?.email !== "Not provided" && 
-                      selectedEventDetails.coordinators?.student?.email && (
-                        <p className="text-white text-sm">
-                          {selectedEventDetails.coordinators.student.email}
-                        </p>
-                      )}
+                    </p>
+                    {selectedEventDetails.coordinators?.student?.phone && (
+                        <p className="text-white text-xs sm:text-sm">{selectedEventDetails.coordinators.student.phone}</p>
+                    )}
+                    {selectedEventDetails.coordinators?.student?.email && (
+                        <p className="text-white text-xs sm:text-sm">{selectedEventDetails.coordinators.student.email}</p>
+                    )}
                     </div>
-                    <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm shadow-md">
-                      <p className="text-gray-300 text-sm">Staff Coordinator</p>
-                      <p className="text-white font-semibold">
+
+                    <div className="bg-white/20 p-4 rounded-xl shadow-md">
+                    <p className="text-gray-300 text-xs sm:text-sm">Staff Coordinator</p>
+                    <p className="text-white font-semibold text-sm sm:text-base">
                         {selectedEventDetails.coordinators?.faculty?.name || "Not available"}
-                      </p>
-                      {selectedEventDetails.coordinators?.faculty?.phone !== "Not provided" && 
-                      selectedEventDetails.coordinators?.faculty?.phone && (
-                        <p className="text-white text-sm">
-                          {selectedEventDetails.coordinators.faculty.phone}
-                        </p>
-                      )}
-                      {selectedEventDetails.coordinators?.faculty?.email !== "Not provided" && 
-                      selectedEventDetails.coordinators?.faculty?.email && (
-                        <p className="text-white text-sm">
-                          {selectedEventDetails.coordinators.faculty.email}
-                        </p>
-                      )}
+                    </p>
+                    {selectedEventDetails.coordinators?.faculty?.phone && (
+                        <p className="text-white text-xs sm:text-sm">{selectedEventDetails.coordinators.faculty.phone}</p>
+                    )}
+                    {selectedEventDetails.coordinators?.faculty?.email && (
+                        <p className="text-white text-xs sm:text-sm">{selectedEventDetails.coordinators.faculty.email}</p>
+                    )}
                     </div>
-                  </div>
+                </div>
 
-                                    {/* Additional Details */}
-                                    <div className="flex flex-col md:flex-row justify-between items-center text-gray-200 text-sm px-4 mb-6 space-y-2 md:space-y-0">
+                {/* Event Details */}
+                <div className="flex flex-col sm:flex-row justify-between items-center text-gray-300 text-xs sm:text-sm px-4 mb-6 space-y-2 sm:space-y-0">
                     <p>
-                      <span className="text-white font-semibold">Division:</span> {selectedEventDetails.division}
+                    <span className="text-white font-semibold">Division:</span> {selectedEventDetails.division}
                     </p>
                     <p>
-                      <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
+                    <span className="text-white font-semibold">Category:</span> {selectedEventDetails.category_name}
                     </p>
-                    {/* <p>
-                      <span className="text-white font-semibold">Start Time:</span> {new Date(selectedEventDetails.start_time).toLocaleString()}
-                    </p> */}
-                  </div>
+                </div>
 
-                  {/* Price & Capacity */}
-                  <div className="flex justify-between items-center text-gray-200 text-sm px-4 mb-6">
+                {/* Price & Capacity */}
+                <div className="flex justify-between items-center text-gray-300 text-xs sm:text-sm px-4 mb-6">
                     <p>
-                      <span className="text-white font-semibold">Price:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
+                    <span className="text-white font-semibold">Price:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
                     </p>
                     <p>
-                      <span className="text-white font-semibold">Max Participants:</span> {selectedEventDetails.participation_strength_setlimit || "No Limit"}
+                    <span className="text-white font-semibold">Max Participants:</span> {selectedEventDetails.participation_strength_setlimit || "No Limit"}
                     </p>
-                  </div>
+                </div>
 
-                  {/* Event Type */}
-                  <div className="flex justify-center items-center text-gray-200 text-sm px-4 mb-6">
-                    <span className="bg-purple-600/60 px-4 py-2 rounded-full">
-                      {selectedEventDetails.type === "tech" ? "Technical Event" : "Non-technical Event"}
+                {/* Event Type Tag */}
+                <div className="flex justify-center items-center text-gray-200 text-xs sm:text-sm px-4 mb-6">
+                    <span className="bg-purple-600/60 px-4 py-2 rounded-full text-sm sm:text-base">
+                    {selectedEventDetails.type === "tech" ? "Technical Event" : "Non-Technical Event"}
                     </span>
-                  </div>
+                </div>
 
-                  {/* Cart Status Notifications */}
-                  {cartStatus.success && (
-                    <div className="mb-4 p-2 bg-green-600/80 text-white text-center rounded-lg">
-                      Event Registered successfully!
+                {/* Cart Status Messages */}
+                {cartStatus.success && (
+                    <div className="mb-4 p-2 bg-green-600/80 text-white text-center rounded-lg text-sm sm:text-base">
+                    Event Registered successfully!
                     </div>
-                  )}
-                  
-                  {cartStatus.error && (
-                    <div className="mb-4 p-2 bg-red-600/80 text-white text-center rounded-lg">
-                      Error: {cartStatus.error}
+                )}
+                
+                {cartStatus.error && (
+                    <div className="mb-4 p-2 bg-red-600/80 text-white text-center rounded-lg text-sm sm:text-base">
+                    Error: {cartStatus.error}
                     </div>
-                  )}
+                )}
 
-                  {/* Buttons */}
-                  <div className="flex justify-center gap-6">
-                    <button
-                      onClick={closeEventDetails}
-                      className="px-6 py-2 bg-gray-600/60 backdrop-blur-sm hover:bg-gray-700 rounded-lg transition shadow-md text-white"
-                    >
-                      Close
-                    </button>
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <button 
-                      onClick={() => addToCart(selectedEventDetails.eventid)}
-                      disabled={cartStatus.loading}
-                      className={`px-6 py-2 ${cartStatus.loading ? 'bg-purple-400/60' : 'bg-purple-600/80 hover:bg-purple-700'} backdrop-blur-sm rounded-lg transition shadow-md text-white flex items-center justify-center`}
+                    onClick={() => addToCart(selectedEventDetails.eventid)}
+                    disabled={cartStatus.loading}
+                    className={`px-6 py-2 w-full sm:w-auto ${cartStatus.loading ? 'bg-purple-400/60' : 'bg-purple-600/80 hover:bg-purple-700'} rounded-lg transition shadow-md text-white flex items-center justify-center text-sm sm:text-base`}
                     >
-                      {cartStatus.loading ? (
+                    {cartStatus.loading ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Adding...
+                        </svg>
+                        Adding...
                         </>
-                      ) : "Register Now"}
+                    ) : "Register Now"}
                     </button>
-                  </div>
+                    <button
+                    onClick={closeEventDetails}
+                    className="px-6 py-2 w-full sm:w-auto bg-gray-600/80 hover:bg-gray-700 rounded-lg transition shadow-md text-white text-sm sm:text-base"
+                    >
+                    Close
+                    </button>
+                </div>
                 </>
-              )}
+            )}
             </div>
-          </div>
+        </div>
         )}
+
       </main>
 
     </div>

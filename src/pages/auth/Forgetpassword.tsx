@@ -15,7 +15,7 @@ const ForgotPassword: React.FC = () => {
         setMessage("");
 
         try {
-            const response = await axios.post("https://mindkraft25-backend.onrender.com/user/forgot-password/", { email });
+            const response = await axios.post("https://api.mindkraft.org/user/forgot-password/", { email });
             setMessage(response.data.message);
             setStep(2); // Move to OTP verification step
         } catch (error: any) {
@@ -33,7 +33,7 @@ const ForgotPassword: React.FC = () => {
         }
 
         try {
-            const response = await axios.post("https://mindkraft25-backend.onrender.com/user/reset-password/", {
+            const response = await axios.post("https://api.mindkraft.org/user/reset-password/", {
                 email,
                 otp,
                 new_password: newPassword,
@@ -119,7 +119,7 @@ const ForgotPassword: React.FC = () => {
                     </p>
                 )}
 
-                <a href="/login" className="block mt-4 text-blue-400 no-underline hover:underline">Back to Login</a>
+                <a href="/#/login" className="block mt-4 text-blue-400 no-underline hover:underline">Back to Login</a>
             </div>
         </div>
     );
