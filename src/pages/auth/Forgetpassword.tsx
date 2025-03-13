@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import bgImage from "../../../public/assets/register_bg.webp"; // ✅ Importing background image correctly
 
 const ForgotPassword: React.FC = () => {
@@ -9,26 +10,47 @@ const ForgotPassword: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [step, setStep] = useState(1); // Step 1: Enter Email, Step 2: Verify OTP
     const [message, setMessage] = useState("");
+    const [, setError] = useState("");
+    const [otpError, setOtpError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    
 
     const handleSendOTP = async (e: React.FormEvent) => {
         e.preventDefault();
         setMessage("");
+        setError("");
+        setOtpError("");
+        setLoading(true);
 
         try {
             const response = await axios.post("https://api.mindkraft.org/user/forgot-password/", { email });
             setMessage(response.data.message);
             setStep(2); // Move to OTP verification step
         } catch (error: any) {
-            setMessage(error.response?.data?.message || "Failed to send OTP");
+            setOtpError(error.response?.data?.message || "Failed to send OTP");
         }
+        setLoading(false);
     };
 
     const handleResetPassword = async (e: React.FormEvent) => {
         e.preventDefault();
         setMessage("");
+        setError("");
+        setOtpError("");
+        setPasswordError("");
+        setLoading(true);
+
+        if (newPassword.length < 8) {
+            setPasswordError("Password must be at least 8 characters long.");
+            setLoading(false);
+            return;
+        }
 
         if (newPassword !== confirmPassword) {
-            setMessage("Passwords do not match.");
+            setPasswordError("Passwords do not match.");
+            setLoading(false);
             return;
         }
 
@@ -40,10 +62,11 @@ const ForgotPassword: React.FC = () => {
                 confirm_password: confirmPassword,
             });
             setMessage(response.data.message);
-            setStep(3); // Move to success message step
+            setTimeout(() => navigate("/login"), 2000); // Redirect to login after success
         } catch (error: any) {
-            setMessage(error.response?.data?.message || "Failed to reset password");
+            setOtpError(error.response?.data?.message || "Invalid OTP");
         }
+        setLoading(false);
     };
 
     return (
@@ -65,13 +88,14 @@ const ForgotPassword: React.FC = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full mb-4 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
+                            className="w-full mb-6 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
                         />
                         <button
                             type="submit"
                             className="w-full p-3 bg-gradient-to-r from-blue-800 to-blue-400 rounded-lg text-white font-semibold transition-transform duration-200 hover:scale-105"
+                            disabled={loading}
                         >
-                            Send OTP
+                            {loading ? "Sending..." : "Send OTP"}
                         </button>
                     </form>
                 )}
@@ -85,29 +109,33 @@ const ForgotPassword: React.FC = () => {
                             value={otp}
                             onChange={(e) => setOtp(e.target.value)}
                             required
-                            className="w-full mb-3 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
+                            className="w-full mb-6 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
                         />
+                        {otpError && <p className="text-red-500 text-sm mt-1 text-left">{otpError}</p>}
                         <input
                             type="password"
                             placeholder="New Password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             required
-                            className="w-full mb-3 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
+                            className="w-full mb-6 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
                         />
+                        {passwordError && <p className="text-red-500 text-sm mt-1 text-left">{passwordError}</p>}
                         <input
                             type="password"
                             placeholder="Confirm Password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            className="w-full mb-4 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
+                            className="w-full mb-6 p-2.5 rounded border border-white border-opacity-30 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
                         />
+                        {passwordError && <p className="text-red-500 text-sm mt-1 text-left">{passwordError}</p>}
                         <button
                             type="submit"
                             className="w-full p-3 bg-gradient-to-r from-blue-800 to-blue-400 rounded-lg text-white font-semibold transition-transform duration-200 hover:scale-105"
+                            disabled={loading}
                         >
-                            Reset Password
+                            {loading ? "Resetting..." : "Reset Password"}
                         </button>
                     </form>
                 )}
