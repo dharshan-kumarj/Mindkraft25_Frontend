@@ -63,30 +63,33 @@ const LandingPage: React.FC = () => {
   }, [showVideoBanner]);
 
   // Calculate blur intensity based on scroll position
-  const blurIntensity = Math.min(scrollY / 50, 10); // Adjust the divisor for sensitivity
+  const blurIntensity = Math.min(scrollY / 100, 0); // Adjust the divisor for sensitivity
 
   return (
     <div className="relative text-white">
       {/* Video Banner */}
       {showVideoBanner && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-transparent" 
-          style={{ top: '10%' }}
-        >
-          <div className="w-[100%] max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl">
-            <video
-              autoPlay
-              muted
-              loop
-              className="w-full h-full object-cover"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <source src={banner} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      )}
+  <div 
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg p-4"
+    onClick={() => setShowVideoBanner(false)} // Close on any tap
+  >
+    <div 
+      className="w-[90%] max-w-5xl h-screen md:max-h-[90vh] rounded-lg overflow-hidden shadow-2xl"
+      onClick={() => setShowVideoBanner(false)} // Also close if clicking on video itself (only for mobile)
+    >
+      <video
+        autoPlay
+        muted
+        loop
+        className="w-full h-full object-contain"
+      >
+        <source src={banner} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+)}
+
 
       {/* Rest of the code remains the same */}
       {/* Navbar */}

@@ -1416,15 +1416,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0039",
             "eventname": "Cyber Hunt",
-            "description": "The Cyber Hunt is an interactive cybersecurity challenge where QR codes containing CTF puzzles will be placed across the university. Participants must locate, scan, and solve these challenges, which test skills in cryptography and cybersecurity. The winner will be the first to solve the most challenges. This event aims to enhance problem-solving abilities and cybersecurity awareness in a fun and engaging way.",
+            "description": "The Cyber Hunt is an interactive cybersecurity challenge where QR codes containing CTF puzzles will be placed across the university. Participants must locate, scan, and solve these challenges, which test skills in cryptography and cybersecurity. The winner will be the first to solve the most challenges. This event aims to enhance problem-solving abilities and cybersecurity awareness in a fun and engaging way.Team max size=2",
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
+            "price": "100 per team",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Ms. Bertia A",
@@ -1441,15 +1441,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0040",
             "eventname": "Model Masters",
-            "description": "Model Masters is a technical event where registered participants will train machine learning models using a provided dataset. The challenge tests their skills in data preprocessing, model selection, and optimization to achieve the best results.",
+            "description": "Model Masters is a technical event where registered participants will train machine learning models using a provided dataset. The challenge tests their skills in data preprocessing, model selection, and optimization to achieve the best results.Team max size=1.",
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
+            "price": "100 per person",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Darshika Kelin",
@@ -1468,7 +1468,7 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0041",
             "eventname": "Last Man Standing",
-            "description": "Last Man Standing is the ultimate Free Fire battle royale competition where only the strongest survive! Compete in intense solo or squad matches, fight through knockout rounds, and claim victory by being the last one standing. With epic prizes and fierce competition, it's time to prove your dominance on the battleground!",
+            "description": "Last Man Standing is the ultimate Free Fire battle royale competition where only the strongest survive! Compete in intense solo or squad matches, fight through knockout rounds, and claim victory by being the last one standing. With epic prizes and fierce competition, it's time to prove your dominance on the battleground! Team max size=4.",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
@@ -1476,7 +1476,7 @@ const MindkraftEventsPage: React.FC = () => {
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "200 (per team)",
-            "participation_strength_setlimit": "50 teams (200 members) ",
+            "participation_strength_setlimit": "200 ",
             "coordinators": {
                 "faculty": {
                     "name": "Nirmal Varghese Babu",
@@ -1494,15 +1494,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0042",
             "eventname": "Dare to survive",
-            "description": "A high-stakes game of wit, skill, and endurance where players must survive a series of thrilling challenges. Each round pushes contestants to their limits, eliminating those who fail until only one remains victorious. Do you have what it takes to outlast and claim the ultimate prize.",
+            "description": "A high-stakes game of wit, skill, and endurance where players must survive a series of thrilling challenges. Each round pushes contestants to their limits, eliminating those who fail until only one remains victorious. Do you have what it takes to outlast and claim the ultimate prize.Team max size:2",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "75",
-            "participation_strength_setlimit": 50,
+            "price": "90 per team",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Dr. A. Jenefa",
@@ -1519,15 +1519,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0043",
             "eventname": "Cyber Chronicles",
-            "description": "A crime has taken place, and the only clues left behind are hidden in the digital world! In Cyber Chronicles, you become a detective, searching for secrets buried in messages, images, and files. Follow the digital trail, connect the dots, and solve the case before time runs out.\n\nCan you crack the mystery and uncover the truth? The challenge begins now!",
+            "description": "A crime has taken place, and the only clues left behind are hidden in the digital world! In Cyber Chronicles, you become a detective, searching for secrets buried in messages, images, and files. Follow the digital trail, connect the dots, and solve the case before time runs out.\n\nCan you crack the mystery and uncover the truth? The challenge begins now!Team max size:1",
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
+            "price": "100 per person",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Mr. Rahul R",
@@ -1545,15 +1545,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0044",
             "eventname": "Karunya's IPL Auction",
-            "description": "IPL Mock Auction Overview: An engaging event testing cricket knowledge and strategic team-building through a simulated IPL auction Event Details: - Purse: INR 100 Crore - Team Size:14-16 players (6 overseas) - Rounds: 2 - Scoring: - Team Points: Based on squad strength. - Bonus Points: Based on remaining purse. Event Model: Round 1: Cricket Quiz - 50 questions, 25 minutes. - Top 10 teams advance. Round 2: Bidding War - Teams assigned an IPL franchise. - INR 100 Crore budget for auction. - Balanced squad building is key. Scoring: - Team Points: Squad composition, player quality. - Bonus Points: Effective budget management.",
+            "description": "IPL Mock Auction Overview: An engaging event testing cricket knowledge and strategic team-building through a simulated IPL auction Event Details: - Purse: INR 100 Crore - Team Size:14-16 players (6 overseas) - Rounds: 2 - Scoring: - Team Points: Based on squad strength. - Bonus Points: Based on remaining purse. Event Model: Round 1: Cricket Quiz - 50 questions, 25 minutes. - Top 10 teams advance. Round 2: Bidding War - Teams assigned an IPL franchise. - INR 100 Crore budget for auction. - Balanced squad building is key. Scoring: - Team Points: Squad composition, player quality. - Bonus Points: Effective budget management. Team max size: 4.",
             "type": "non-tech",
             "category": 1,
             "category_name": "Non - Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "150 per person",
-            "participation_strength_setlimit": 80,
+            "price": "200 per team",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Mrs. Antony Taurshia",
@@ -1561,9 +1561,9 @@ const MindkraftEventsPage: React.FC = () => {
                     "email": "antonytaurshia@karunya.edu"
                 },
                 "student": {
-                    "name": "SANJAY NESAN J",
-                    "phone": "9944064709",
-                    "email": "sanjaynesan@karunya.edu.in"
+                    "name": "SANJAY NESAN J, Chris Vivian",
+                    "phone": "9944064709,  98679 44844",
+                    "email": "sanjaynesan@karunya.edu.in, chrisvivian@karunya.edu.in"
                 }
             }
         },
@@ -1571,15 +1571,15 @@ const MindkraftEventsPage: React.FC = () => {
         {
             "eventid": "MK25E0045",
             "eventname": "Bot fest",
-            "description": "A Bot Fest is typically an event where students showcase their skills in robotics, AI, and automation through projects, competitions, and interactive sessions.",
+            "description": "A Bot Fest is typically an event where students showcase their skills in robotics, AI, and automation through projects, competitions, and interactive sessions.Team max size=2.",
             "type": "tech",
             "category": 1,
             "category_name": "Technical",
             "division": "Data Science and Cyber Security",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
-            "participation_strength_setlimit": 50,
+            "price": "100 per team",
+            "participation_strength_setlimit": 200,
             "coordinators": {
                 "faculty": {
                     "name": "Mrs. M. Bhuvaneshwari",
@@ -2498,6 +2498,8 @@ const MindkraftEventsPage: React.FC = () => {
                             }
                         }
                     },
+                       
+                   
                        
                    
                        
