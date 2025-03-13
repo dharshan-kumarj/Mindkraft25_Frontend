@@ -243,7 +243,7 @@ const LandingPage: React.FC = () => {
       <ul className="list-disc list-inside pl-4">
         <li>
           Select Event Name in Eduserve as{" "}
-          <strong>MK25E0002 - Registration (Internal Participants)</strong>.
+          <strong>MK25E0001 - Registration (KITS Students)</strong>.
         </li>
         <li>Registration Fee: <strong>Rs. 250 (Mandatory)</strong>.</li>
       </ul>
