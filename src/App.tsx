@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import EventsPage from "./pages/events/EventsPage";
 import ForgotPassword from "./pages/auth/Forgetpassword";
 import Testd from "./pages/auth/Testd";
+import MyEvents from "./pages/events/DisplayEvents";
 
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/test" element={<Testd />} />
+        <Route path="/registered" element={<MyEvents />} />
       </Routes>
     </Router>
   );

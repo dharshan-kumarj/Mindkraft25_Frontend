@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import {  useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 // Define the types
@@ -46,7 +46,7 @@ const MindkraftEventsPage: React.FC = () => {
 
 
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Cart status state
   const [cartStatus, setCartStatus] = useState<{
@@ -324,7 +324,7 @@ const MindkraftEventsPage: React.FC = () => {
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
             "price": "100",
-            "participation_strength_setlimit": 30,
+            "participation_strength_setlimit": 100,
             "coordinators": {
                 "faculty": {
                     "name": "Dr. Srinitya G",
@@ -354,7 +354,7 @@ const MindkraftEventsPage: React.FC = () => {
               "faculty": {
                 "name": "Mrs. Angelin Jeba",
                 "phone": "7094687611",
-                "email": "angelinjeba@karunya.edu.in"
+                "email": "angelinjeba@karunya.edu"
               },
               "student": {
                 "name": "Johan Joseph",
@@ -810,7 +810,7 @@ const MindkraftEventsPage: React.FC = () => {
             "student": {
                 "name": "Austy Evangeline R, Jeffina Glory J",
                 "phone": "9361451179, 9342520366",
-                "email": "austyevangeline@karunya.edu , jeffinaglory@karunya.edu.in"
+                "email": "austyevangeline@karunya.edu.in, jeffinaglory@karunya.edu.in"
             }
         }
         },
@@ -1082,7 +1082,7 @@ const MindkraftEventsPage: React.FC = () => {
                 "faculty": {
                     "name": "Dr. V. Palanisingh",
                     "phone": "8940194307",
-                    "email": "palanisingh@karunya.edu.in"
+                    "email": "palanisingh@karunya.edu"
                 },
                 "student": {
                     "name": "T Raj Dinakaran",
@@ -2477,32 +2477,8 @@ const MindkraftEventsPage: React.FC = () => {
                         }
                     },
                                  
-                                        
-                    {
-                        "eventid": "MK25E0085",
-                        "eventname": "Echo-Innovators Pitch",
-                        "description": "Eco-Innovators Pitch is a startup-style competition where participants present innovative solutions for sustainable energy and environmental challenges. Teams or individuals pitch their ideas—ranging from renewable energy technologies to smart energy management systems—to a panel of judges, including industry experts and professors. Each pitch must highlight the problem, proposed solution, feasibility, and potential impact. Participants can use prototypes, business models, or presentations to strengthen their case. The goal is to encourage creative thinking, entrepreneurship, and real-world problem-solving in the field of sustainability.",
-                        "type": "tech",
-                        "category": 1,
-                        "category_name": "Technical",
-                        "division": "Electrical and Electronics Engineering",
-                        "start_time": "2025-03-21T09:00:00Z",
-                        "end_time": "2025-02-10T18:55:36Z",
-                        "price": "75",
-                        "participation_strength_setlimit": 50,
-                        "coordinators": {
-                            "faculty": {
-                                "name": "Dr. V. Evelyn Brindha",
-                                "phone": "9790601852",
-                                "email": "evelynbrindha@karunya.edu "
-                            },
-                            "student": {
-                                "name": "Vikas balaji, Shojan Vignesh, K. Isaac James, Giftlin Joy",
-                                "phone": "7695949750",
-                                "email": "vikasbalaji@karunya.edu.in"
-                            }
-                        }
-                    },
+                            
+                   
                        
                    
                        
@@ -2762,12 +2738,12 @@ const MindkraftEventsPage: React.FC = () => {
         </a>
 
         {/* Cart Button */}
-        {/* <button
-      onClick={() => navigate("/registered")}
-      className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
-    >
-      <h2 className="text-white font-bold">My Events</h2>
-    </button> */}
+        <button
+        onClick={() => navigate("/#/registered")}
+        className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
+        >
+        <h2 className="text-white font-bold">My Events</h2>
+        </button>
       </nav>
       
       {/* Sidebar Overlay */}

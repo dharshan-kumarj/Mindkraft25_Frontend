@@ -433,6 +433,10 @@ const RegistrationPage: React.FC = () => {
                 <option value="bschons">B.Sc(Hons)</option>
                 <option value="bsc">B.Sc</option>
                 <option value="bcom">B.Com</option>
+                <option value="Ph.D">Ph.D</option>
+                <option value="M.B.A">M.B.A</option>
+
+                
               </select>
             </div>
             <div className="flex flex-col">
@@ -443,204 +447,190 @@ const RegistrationPage: React.FC = () => {
                 className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white"
               >
                 <option value="">Select Course</option>
-                <optgroup label="B.Tech">
-                  <option value="aerospace">
+                <optgroup>
+                  <option value="B.Tech Aerospace Engineering">
                     B.Tech Aerospace Engineering
                   </option>
-                  <option value="ai-data-science">
-                    B.Tech Artificial Intelligence and Data Science
+                  <option value="B.Tech. Aerospace Engineering (Specialisation in Artificial Intelligence and Machine Learning)">
+                    B.Tech. Aerospace Engineering (Specialisation in Artificial Intelligence and Machine Learning)
                   </option>
-                  <option value="biomedical">
-                    B.Tech Biomedical Engineering
+                  <option value="B.Tech. Aerospace Engineering (Specialisation in Unmanned Aerial Vehicles)">
+                    B.Tech. Aerospace Engineering (Specialisation in Unmanned Aerial Vehicles) 
                   </option>
-                  <option value="biomedical-ai-ml">
-                    B.Tech Biomedical Engineering (Specialization in Artificial
-                    Intelligence and Machine Learning)
+                  <option value=" B.Tech. Biomedical Engineering">
+                    B.Tech. Biomedical Engineering
                   </option>
-                  <option value="biomedical-data-science">
-                    B.Tech Biomedical Engineering (Specialization in Data
-                    Science)
+                  <option value="B.Tech. Biomedical Engineering (Specialisation in Artificial Intelligence and Machine Learning)">
+                    B.Tech. Biomedical Engineering (Specialisation in Artificial Intelligence and Machine Learning)
                   </option>
-                  <option value="biotechnology">B.Tech Biotechnology</option>
-                  <option value="biotech-drug-eng">
-                    B.Tech Biotechnology (Specialization in Drug Engineering)
+                  <option value="B.Tech Biotechnology">B.Tech Biotechnology</option>
+                  <option value="B.Tech Biotechnology (Specialization in Artificial Intelligence)">
+                    B.Tech Biotechnology (Specialization in Artificial Intelligence)
                   </option>
-                  <option value="biotech-genome-eng">
-                    B.Tech Biotechnology (Specialization in Genome Engineering
-                    and Technology)
+                  <option value="B.Tech Biotechnology (Specialisation in Medical Biotechnology)">
+                    B.Tech Biotechnology (Specialisation in Medical Biotechnology)
                   </option>
-                  <option value="biotech-precision-health">
-                    B.Tech Biotechnology (Specialization in Precision Health
-                    Technology)
+                  <option value="B.Tech Civil Engineering">B.Tech Civil Engineering</option>
+                  <option value="B.Tech. Electrical and Electronics Engineering">B.Tech. Electrical and Electronics Engineering</option>
+                  <option value="B.Tech. Electrical and Electronics Engineering (Specialisation in Artificial Intelligence and Machine Learning)">
+                  B.Tech. Electrical and Electronics Engineering (Specialisation in Artificial Intelligence and Machine Learning)
                   </option>
-                  <option value="civil">B.Tech Civil Engineering</option>
-                  <option value="computer-eng">
-                    B.Tech Computer Engineering
+                  <option value=" B.Tech. Electronics and Communication Engineering">
+                  B.Tech. Electronics and Communication Engineering
                   </option>
-                  <option value="cse">
-                    B.Tech Computer Science and Engineering
+                  <option value="B.Tech. Electronics and Communication Engineering (Specialisation in Artificial Intelligence and Machine Learning)">
+                  B.Tech. Electronics and Communication Engineering (Specialisation in Artificial Intelligence and Machine Learning) 
                   </option>
-                  <option value="cse-cyber-security">
-                    B.Tech Computer Science and Engineering (Specialization in
-                    Cyber Security)
+                  <option value="B.Tech. Food Processing and Engineering">
+                  B.Tech. Food Processing and Engineering
                   </option>
-                  <option value="cse-ai">
-                    B.Tech Computer Science and Engineering (Specialization in
-                    Artificial Intelligence)
+                  <option value="B.Tech. Food Processing and Engineering (Specialisation in IoT)">
+                  B.Tech. Food Processing and Engineering (Specialisation in IoT) 
                   </option>
-                  <option value="cse-data-analytics">
-                    B.Tech Computer Science and Engineering (Specialization in
-                    Data Analytics)
+                  <option value="B.Tech. Mechanical Engineering">
+                  B.Tech. Mechanical Engineering
                   </option>
-                  <option value="cse-ai-ml">
-                    B.Tech Computer Science and Engineering (Specialization in
-                    Artificial Intelligence & Machine Learning)
+                  <option value="B.Tech. Mechanical Engineering (Specialisation in Artificial Intelligence and Machine Learning)">
+                  B.Tech. Mechanical Engineering (Specialisation in Artificial Intelligence and Machine Learning)
                   </option>
-                  <option value="ece">
-                    B.Tech Electronics and Communication Engineering
+                  <option value=" B.Tech. Robotics and Automation">
+                  B.Tech. Robotics and Automation
                   </option>
-                  <option value="ece-ai">
-                    B.Tech Electronics and Communication Engineering
-                    (Specialization in Artificial Intelligence)
+                  <option value="B.Tech. Robotics and Automation (Specialisation in Artificial Intelligence and Data Science) ">
+                  B.Tech. Robotics and Automation (Specialisation in Artificial Intelligence and Data Science) 
                   </option>
-                  <option value="ece-iot">
-                    B.Tech Electronics and Communication Engineering
-                    (Specialization in IoT)
-                  </option>
-                  <option value="ece-computer">
-                    B.Tech Electronics and Computer Engineering
-                  </option>
-                  <option value="ece-computer-ai-ds">
-                    B.Tech Electronics and Computer Engineering (Specialization
-                    in Artificial Intelligence and Data Science)
-                  </option>
-                  <option value="ece-computer-ds">
-                    B.Tech Electronics and Computer Engineering (Specialization
-                    in Data Science)
-                  </option>
-                  <option value="food-processing">
-                    B.Tech Food Processing and Engineering
-                  </option>
-                  <option value="food-processing-iot">
-                    B.Tech Food Processing and Engineering (Specialization in
-                    IoT)
-                  </option>
-                  <option value="mechanical">
-                    B.Tech Mechanical Engineering
-                  </option>
-                  <option value="mechanical-3d-printing">
-                    B.Tech Mechanical Engineering (Specialization in 3D
-                    Printing)
-                  </option>
-                  <option value="mechanical-ev">
-                    B.Tech Mechanical Engineering (Specialization in Electric
-                    Vehicles)
-                  </option>
-                  <option value="robotics">
-                    B.Tech Robotics and Automation
-                  </option>
-                  <option value="robotics-ai">
-                    B.Tech Robotics and Automation (Specialization in Artificial
-                    Intelligence)
+                  <option value="B.Tech. Robotics and Automation (Specialisation in Artificial Intelligence and Machine Learning)">
+                  B.Tech. Robotics and Automation (Specialisation in Artificial Intelligence and Machine Learning)
                   </option>
                 </optgroup>
-                <optgroup label="B.A.">
-                  <option value="criminology">B.A. Criminology</option>
+                <optgroup label="School of Computer Science and Technology">
+                  <option value="B.Tech. Computer Science and Engineering">B.Tech. Computer Science and Engineering</option>
+                  <option value="B.Tech Computer Science & Engineering (Specialisation in Artificial Intelligence and Machine Learning) ">B.Tech Computer Science & Engineering (Specialisation in Artificial Intelligence and Machine Learning) </option>
+                  <option value="B.Tech- Computer Science and Engineering (Specialisation in Cyber Security)">B.Tech- Computer Science and Engineering (Specialisation in Cyber Security)</option>
+                  <option value="B.Tech. Computer Science and Engineering (Artificial Intelligence)">B.Tech. Computer Science and Engineering (Artificial Intelligence)</option>
+                  <option value="B.Tech Computer Science & Engineering (Artificial Intelligence and Machine Learning)">B.Tech Computer Science & Engineering (Artificial Intelligence and Machine Learning)</option>
+                  <option value="B.Tech. Artificial Intelligence and Data Science">B.Tech. Artificial Intelligence and Data Science</option>
+                  <option value="B.Tech. Computer Engineering">B.Tech. Computer Engineering</option>
+                  <option value="B.Tech. Computer Engineering (Specialisation in Cyber Security) ">B.Tech. Computer Engineering (Specialisation in Cyber Security) </option>
+
                 </optgroup>
-                <optgroup label="B.B.A.">
-                  <option value="bba">B.B.A.</option>
+                <optgroup label="School of Agriculture">
+                  <option value="B.Sc. (Hons.) Agriculture">B.Sc. (Hons.) Agriculture</option>
                 </optgroup>
-                <optgroup label="B.Com.">
-                  <option value="bcom">B.Com.</option>
-                  <option value="bcom-banking">
-                    B.Com. Banking and Capital Markets
+                <optgroup label="School of Science, Arts & Media">
+                  <option value="B.Sc. Forensic Science">B.Sc. Forensic Science</option>
+                  <option value="B.Sc. Information Security and Digital Forensics">
+                  B.Sc. Information Security and Digital Forensics
                   </option>
-                  <option value="bcom-fintech">
-                    B.Com. Financial Technologies
+                  <option value="B.Com. (Specialisation in Professional Accounting and Financial Technology)">
+                  B.Com. (Specialisation in Professional Accounting and Financial Technology)
                   </option>
-                </optgroup>
-                <optgroup label="B.Sc.">
-                  <option value="bsc-cs-ai">
-                    B.Sc. Computer Science (Specialization in Artificial
-                    Intelligence)
-                  </option>
-                  <option value="bsc-cs-ds">
-                    B.Sc. Computer Science (Specialization in Data Science and
-                    Analytics)
-                  </option>
-                  <option value="bsc-infosec">
-                    B.Sc. Information Security and Digital Forensics
-                  </option>
-                  <option value="bsc-forensic">B.Sc. Forensic Science</option>
-                  <option value="bsc-optometry">B.Sc. Optometry</option>
-                  <option value="bsc-visual-comm">
-                    B.Sc. Visual Communication (Specialization in Multimedia and
-                    Animation)
+                  <option value="B.Sc. Computer Science and Media Production">
+                  B.Sc. Computer Science and Media Production
                   </option>
                 </optgroup>
-                <optgroup label="M.Tech.">
-                  <option value="mtech-advanced-manu">
-                    M.Tech. Advanced Manufacturing Technology
+                <optgroup label="School of Engineering & Technology">
+                  <option value="M.Tech. Aerospace Engineering">
+                  M.Tech. Aerospace Engineering
                   </option>
-                  <option value="mtech-aerospace">
-                    M.Tech. Aerospace Engineering
+                  <option value="M.Tech. Biomedical Instrumentation">
+                  M.Tech. Biomedical Instrumentation
                   </option>
-                  <option value="mtech-biomedical-instr">
-                    M.Tech. Biomedical Instrumentation
+                  <option value="M.Tech. Biotechnology">
+                  M.Tech. Biotechnology
                   </option>
-                  <option value="mtech-biotech">M.Tech. Biotechnology</option>
-                  <option value="mtech-comm-sys">
-                    M.Tech. Communication Systems
+                  <option value="M.Tech. Computer Science and Engineering">M.Tech. Computer Science and Engineering</option>
+                  <option value="M.Tech. Cyber Security">M.Tech. Cyber Security</option>
+                  <option value="M.Tech. Food Processing and Engineering">
+                  M.Tech. Food Processing and Engineering
                   </option>
-                  <option value="mtech-cse">
-                    M.Tech. Computer Science and Engineering
+                  <option value="M.Tech. Integrated Water Resources Management">
+                  M.Tech. Integrated Water Resources Management
                   </option>
-                  <option value="mtech-cse-ai-ds">
-                    M.Tech. Computer Science and Engineering (Specialization in
-                    Artificial Intelligence and Data Science)
+                  <option value="M.Tech. Robotics and Automation">
+                  M.Tech. Robotics and Automation
                   </option>
-                  <option value="mtech-cyber-security">
-                    M.Tech. Cyber Security
+                  <option value="M.Tech. Structural Engineering">
+                  M.Tech. Structural Engineering
                   </option>
-                  <option value="mtech-env-water">
-                    M.Tech. Environment and Water Resources Engineering
+                  <option value="M.Tech. VLSI Design">
+                  M.Tech. VLSI Design
                   </option>
-                  <option value="mtech-food-processing">
-                    M.Tech. Food Processing and Engineering
+                  <option value="M.Sc. Biotechnology">
+                  M.Sc. Biotechnology
                   </option>
-                  <option value="mtech-robotics">
-                    M.Tech. Robotics and Automation
+                  <option value="M.Sc. Food Science and Technology">
+                  M.Sc. Food Science and Technology
                   </option>
-                  <option value="mtech-structural">
-                    M.Tech. Structural Engineering
-                  </option>
-                  <option value="mtech-vlsi">M.Tech. VLSI Design</option>
+                 
                 </optgroup>
-                <optgroup label="M.B.A.">
-                  <option value="mba">M.B.A.</option>
+                <optgroup label="School of Agriculture">
+                  <option value="M.Sc. (Agri.) in Genetics and Plant Breeding">
+                  M.Sc. (Agri.) in Genetics and Plant Breeding
+                  </option>
+                  <option value="M.Sc. (Agri.) in Agronomy">
+                  M.Sc. (Agri.) in Agronomy
+                  </option>
+                  <option value="M.Sc. (Hort.) in Fruit Science">
+                  M.Sc. (Hort.) in Fruit Science
+                  </option>
+
                 </optgroup>
-                <optgroup label="M.Sc.">
-                  <option value="msc-agri-agronomy">
-                    M.Sc. Agriculture (Specialization in Agronomy)
-                  </option>
-                  <option value="msc-agri-plant-breeding">
-                    M.Sc. Agriculture (Specialization in Plant Breeding and
-                    Genetics)
-                  </option>
-                  <option value="msc-horticulture">M.Sc. Horticulture</option>
-                  <option value="msc-biotech">M.Sc. Biotechnology</option>
-                  <option value="msc-chemistry">M.Sc. Chemistry</option>
-                  <option value="msc-forensic">M.Sc. Forensic Science</option>
-                  <option value="msc-food-sci">
-                    M.Sc. Food Science and Technology
-                  </option>
-                  <option value="msc-physics">M.Sc. Physics</option>
+                <optgroup label="School of Science, Arts & Media">
+                  <option value="M.Sc. Forensic Science">M.Sc. Forensic Science</option>
+                  <option value="M.Sc. Information Security and Digital Forensics">M.Sc. Information Security and Digital Forensics</option>
+                  <option value="M.Sc. Artificial Intelligence and Data Science">M.Sc. Artificial Intelligence and Data Science</option>
                 </optgroup>
-                <optgroup label="Ph.D.">
-                  <option value="phd">
-                    Ph.D. (Engineering / Management / Sciences / Arts)
+
+                <optgroup label="School of Management">
+                  <option value="M.B.A.">
+                  M.B.A.
                   </option>
+                  <option value="Ph.D. Aerospace Engineering">
+                  Ph.D. Aerospace Engineering
+                  </option>
+                  <option value="Ph.D. Civil Engineering">Ph.D. Civil Engineering</option>
+                  <option value="Ph.D. Computer Applications">Ph.D. Computer Applications</option>
+                  <option value="Ph.D. Computer Science and Engineering">Ph.D. Computer Science and Engineering</option>
+                  <option value="Ph.D. Criminology">Ph.D. Criminology</option>
+                  <option value="Ph.D. Electrical and Electronics Engineering">
+                  Ph.D. Electrical and Electronics Engineering
+                  </option>
+                  <option value="Ph.D. Electronics and Communications Engineering">Ph.D. Electronics and Communications Engineering</option>
+                  <option value="Ph.D. Electronics and Instrumentation Engineering">
+                  Ph.D. Electronics and Instrumentation Engineering
+                  </option>
+                  <option value="Ph.D. Mechanical Engineering">
+                  Ph.D. Mechanical Engineering
+                  </option>
+                  <option value="Ph.D. Biotechnology">
+                  Ph.D. Biotechnology
+                  </option>
+                  <option value="Ph.D. Chemistry">
+                  Ph.D. Chemistry
+                  </option>
+                  <option value="Ph.D. Commerce">
+                  Ph.D. Commerce
+                  </option>
+                  <option value="Ph.D. Food Processing and Engineering">
+                  Ph.D. Food Processing and Engineering
+                  </option>
+                  <option value="Ph.D. Management Sciences">
+                  Ph.D. Management Sciences
+                  </option>
+                  <option value="Ph.D. Nanoscience and Technology">
+                  Ph.D. Nanoscience and Technology
+                  </option>
+                  <option value="Ph.D. Physics">
+                  Ph.D. Physics
+                  </option>
+                  <option value="Ph.D. Library and Information Science">
+                  Ph.D. Library and Information Science
+                  </option>
+                  
+
                 </optgroup>
+  
               </select>
             </div>
             <div className="flex flex-col">
