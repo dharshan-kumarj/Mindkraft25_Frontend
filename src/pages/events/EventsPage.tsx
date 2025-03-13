@@ -2927,7 +2927,7 @@ const MindkraftEventsPage: React.FC = () => {
                 {/* Price & Capacity */}
                 <div className="flex justify-between items-center text-gray-300 text-xs sm:text-sm px-4 mb-6">
                     <p>
-                    <span className="text-white font-semibold">Price:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
+                    <span className="text-white font-semibold">Fees:</span> {selectedEventDetails.price ? `₹${selectedEventDetails.price}` : "Free"}
                     </p>
                     <p>
                     <span className="text-white font-semibold">Max Participants:</span> {selectedEventDetails.participation_strength_setlimit || "No Limit"}
