@@ -78,7 +78,7 @@ const LoginPage: React.FC = () => {
       
       {/* Title */}
       <a href="/" className="text-xl font-bold uppercase text-white tracking-wide md:text-2xl">
-        MINDKRAFT 2K25
+        MINDKRAFT'25
       </a>
       <div></div>
     </nav>

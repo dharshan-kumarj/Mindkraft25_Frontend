@@ -316,7 +316,7 @@ const RegistrationPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <a href="/">
             <span className="text-2xl font-bold text-white">
-              MINDKRAFT 2K25
+              MINDKRAFT'25
             </span>
           </a>
           <img
