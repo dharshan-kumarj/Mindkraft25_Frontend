@@ -2733,7 +2733,7 @@ const MindkraftEventsPage: React.FC = () => {
         {/* Event Title */}
         <a href="/" className="flex-1">
           <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide text-center">
-            MINDKRAFT 2K25
+            MINDKRAFT'25
           </h1>
         </a>
 
@@ -2838,7 +2838,7 @@ const MindkraftEventsPage: React.FC = () => {
 
                       {/* Price */}
                       <span className="flex items-center bg-gray-800 px-3 py-1 rounded-full text-sm text-gray-300">
-                        <span className="mr-1">💰</span> {event.price ? `₹${event.price}` : "Free"}
+                        <span className="mr-1">🎟️</span> {event.price ? `₹${event.price}` : "Free"}
                       </span>
                     </div>
 

@@ -69,26 +69,26 @@ const LandingPage: React.FC = () => {
     <div className="relative text-white">
       {/* Video Banner */}
       {showVideoBanner && (
-  <div 
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg p-4"
-    onClick={() => setShowVideoBanner(false)} // Close on any tap
-  >
-    <div 
-      className="w-[90%] max-w-5xl h-screen md:max-h-[90vh] rounded-lg overflow-hidden shadow-2xl"
-      onClick={() => setShowVideoBanner(false)} // Also close if clicking on video itself (only for mobile)
-    >
-      <video
-        autoPlay
-        muted
-        loop
-        className="w-full h-full object-contain"
-      >
-        <source src={banner} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-)}
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg p-4"
+          onClick={() => setShowVideoBanner(false)} // Close on any tap
+        >
+          <div
+            className="w-[90%] max-w-5xl h-screen md:max-h-[90vh] rounded-lg overflow-hidden shadow-2xl"
+            onClick={() => setShowVideoBanner(false)} // Also close if clicking on video itself (only for mobile)
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              className="w-full h-full object-contain"
+            >
+              <source src={banner} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
 
 
       {/* Rest of the code remains the same */}
@@ -107,7 +107,7 @@ const LandingPage: React.FC = () => {
         <div className="w-full md:w-auto text-center md:text-left">
           <a href="/">
             <h1 className="text-lg md:text-2xl font-bold tracking-wide">
-              MINDKRAFT 2K25
+              MINDKRAFT'25
             </h1>
           </a>
         </div>
@@ -176,13 +176,14 @@ const LandingPage: React.FC = () => {
       {/* Hero Section - Full Page */}
       <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10">
         <h1 className="text-4xl md:text-6xl font-bold drop-shadow-lg leading-tight">
-          WELCOME TO MINDKRAFT 2K25
+          WELCOME TO MINDKRAFT'25
         </h1>
+        
+        <br></br>
         <p className="text-lg md:text-xl mt-4 text-gray-300 max-w-xl">
-          Redefining Technology for Sustainable Synergies
-        </p>
+          “Redefining Technology for Sustainable Synergies”        </p>
         <p className="text-xl md:text-2xl font-semibold text-yellow-400 mt-2">
-          21 & 22 MARCH 2025
+          21 & 22 MARCH'25
         </p>
 
         {/* CTA Button */}
@@ -194,74 +195,94 @@ const LandingPage: React.FC = () => {
         </button>
       </div>
       // Add this section above the Gallery Section
+      <div className="text-xl min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10">
+        <div className="w-full max-w-6xl px-6">
+          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-10 text-left text-gray-300 space-y-4">
+            <span className="block mt-5">
+              The Annual National Level Technical Fiesta is a flagship event organized by the students of the University and has served as a perfect launch pad for the brilliant and innovative ideas of budding technologists all over the nation.
+            </span>
+
+            <span className="block mt-5">
+              Ever since its take off in 2007, MINDKRAFT has grown leaps and bounds by providing a plethora of exciting and enthusiastic events, thoughtfully designed to rekindle the passion for innovation, technology and entrepreneurship amongst the promising young minds.
+            </span>
+
+            <span className="block mt-5">
+              It is with great joy we announce the launch of MINDKRAFT’25 where participants from all over the nation are invited to join and witness the saga of exciting events and experience the joy of enthusiasm and fun-filled learning.
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <br></br>
+
       <div className="min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10">
-  <div className="w-full max-w-6xl px-6">
-    <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-      Instructions for Internal & External Participants
-    </h2>
-    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-left text-gray-300 space-y-4">
-      <p>
-        <strong>Step 1:</strong> Register at{" "}
-        <a
-          href="https://mindkraft.org/#/register"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 hover:underline"
-        >
-          Mindkraft
-        </a>{" "}
-        → Click Register → Login.
-      </p>
-      <p>
-        <strong>Step 2:</strong> Explore Events at{" "}
-        <a
-          href="https://mindkraft.org/#/events"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 hover:underline"
-        >
-          Mindkraft Events
-        </a>{" "}
-        → Click View Details → Register Now → You will be redirected to the Eduserve portal for further registration.
-      </p>
-      <p>
-        <strong>Step 3:</strong> For paid events, you will be redirected to the Eduserve portal for payment processing. Multiple paid event registrations are allowed.
-      </p>
-      <p>
-        <strong>Step 4:</strong> Mindkraft 2025 - Main Registration Fee (External Participants):
-      </p>
-      <ul className="list-disc list-inside pl-4">
-        <li>
-          Select Event Name in Eduserve as{" "}
-          <strong>MK25E0001 - Registration (External Participants)</strong>.
-        </li>
-        <li>Registration Fee: <strong>Rs. 400 (Mandatory)</strong>.</li>
-      </ul>
-      <p>
-        <strong>Step 5:</strong> Mindkraft 2025 - Main Registration Fee (Internal Participants):
-      </p>
-      <ul className="list-disc list-inside pl-4">
-        <li>
-          Select Event Name in Eduserve as{" "}
-          <strong>MK25E0001 - Registration (KITS Students)</strong>.
-        </li>
-        <li>Registration Fee: <strong>Rs. 250 (Mandatory)</strong>.</li>
-      </ul>
-      <p>
-        <strong>Step 6:</strong> Registration for non-paid events can be completed directly on the{" "}
-        <a
-          href="https://mindkraft.org/#/events"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 hover:underline"
-        >
-          Mindkraft Events Page
-        </a>
-        . These events will not redirect to the Eduserve portal.
-      </p>
-    </div>
-  </div>
-</div>
+        <div className="w-full max-w-6xl px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Instructions for Internal & External Participants
+          </h2>
+          <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 text-left text-gray-300 space-y-4">
+            <p>
+              <strong>Step 1:</strong> Register at{" "}
+              <a
+                href="https://mindkraft.org/#/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline"
+              >
+                Mindkraft
+              </a>{" "}
+              → Click Register → Login.
+            </p>
+            <p>
+              <strong>Step 2:</strong> Explore Events at{" "}
+              <a
+                href="https://mindkraft.org/#/events"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline"
+              >
+                Mindkraft Events
+              </a>{" "}
+              → Click View Details → Register Now → You will be redirected to the Eduserve portal for further registration.
+            </p>
+            <p>
+              <strong>Step 3:</strong> For paid events, you will be redirected to the Eduserve portal for payment processing. Multiple paid event registrations are allowed.
+            </p>
+            <p>
+              <strong>Step 4:</strong> Mindkraft'25 - Main Registration Fee (External Participants):
+            </p>
+            <ul className="list-disc list-inside pl-4">
+              <li>
+                Select Event Name in Eduserve as{" "}
+                <strong>MK25E0001 - Registration (External Participants)</strong>.
+              </li>
+              <li>Registration Fee: <strong>Rs. 400 (Mandatory)</strong>.</li>
+            </ul>
+            <p>
+              <strong>Step 5:</strong> Mindkraft'25 - Main Registration Fee (Internal Participants):
+            </p>
+            <ul className="list-disc list-inside pl-4">
+              <li>
+                Select Event Name in Eduserve as{" "}
+                <strong>MK25E0001 - Registration (KITS Students)</strong>.
+              </li>
+              <li>Registration Fee: <strong>Rs. 250 (Mandatory)</strong>.</li>
+            </ul>
+            <p>
+              <strong>Step 6:</strong> Registration for non-paid events can be completed directly on the{" "}
+              <a
+                href="https://mindkraft.org/#/events"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline"
+              >
+                Mindkraft Events Page
+              </a>
+              . These events will not redirect to the Eduserve portal.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Gallery Section - Next Page */}
       <div className="min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10">
@@ -322,11 +343,10 @@ const LandingPage: React.FC = () => {
       {/* Committee Section - Next Page */}
       <div
         id="committee-section"
-        className={`min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10 transition-opacity duration-1000 ease-out ${
-          isCommitteeVisible
+        className={`min-h-screen flex flex-col items-center justify-center bg-opacity-20 py-16 relative z-10 transition-opacity duration-1000 ease-out ${isCommitteeVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-20"
-        }`}
+          }`}
       >
         <h2 className="text-4xl font-bold text-center mb-8 text-white">
           COMMITTEE
@@ -402,16 +422,16 @@ const LandingPage: React.FC = () => {
       </div>
 
       {/* Footer Section */}
-<footer className="bg-gray-800 bg-opacity-50 py-6 relative z-10">
-  <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-    <p className="text-gray-300">
-      &copy; {new Date().getFullYear()} Mindkraft 2K25. All rights reserved.
-    </p>
-    <p className="text-gray-300">
-      Contact: <a href="mailto:mindkraft@karunya.edu.in" className="text-blue-400 hover:underline">mindkraft@karunya.edu.in</a>
-    </p>
-  </div>
-</footer>
+      <footer className="bg-gray-800 bg-opacity-50 py-6 relative z-10">
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <p className="text-gray-300">
+            &copy; {new Date().getFullYear()} Mindkraft'25. All rights reserved.
+          </p>
+          <p className="text-gray-300">
+            Contact: <a href="mailto:mindkraft@karunya.edu.in" className="text-blue-400 hover:underline">mindkraft@karunya.edu.in</a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
