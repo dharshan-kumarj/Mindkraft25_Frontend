@@ -2739,7 +2739,7 @@ const MindkraftEventsPage: React.FC = () => {
 
         {/* Cart Button */}
         <button
-        onClick={() => navigate("/#/registered")}
+        onClick={() => navigate("/registered")}
         className="relative bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-full transition-all flex items-center"
         >
         <h2 className="text-white font-bold">My Events</h2>
