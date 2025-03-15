@@ -75,7 +75,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100\u20b9",
+            "price": "100",
             "participation_strength_setlimit": 60,
             "coordinators": {
                 "faculty": {
@@ -100,7 +100,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "150\u20b9",
+            "price": "150",
             "participation_strength_setlimit": 70,
             "coordinators": {
                 "faculty": {
@@ -125,7 +125,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "75\u20b9",
+            "price": "75",
             "participation_strength_setlimit": "",
             "coordinators": {
                 "faculty": {
@@ -315,7 +315,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0013",
-            "eventname": "TradeMaster Challenge: 24-Hour Profit Hunt",
+            "eventname": "TradeMAster Challenge: 24-Hour Profit Hunt",
             "description": "Think you can conquer the stock market in just 24 hours? Join the TradeMaster Challenge, a high-intensity virtual trading competition using the Frontpage paper trading app! Compete against fellow students to make the highest profit within a day. The top three traders will win exciting prizes. No real money, just skill and strategy\u2014analyze, trade, and rise to the top. Are you ready to prove you're the ultimate trader? Let the challenge begin!",
             "type": "tech",
             "category": 1,
@@ -975,7 +975,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Commerce and International Trade",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "Rs.100",
+            "price": "100",
             "participation_strength_setlimit": 80,
             "coordinators": {
                 "faculty": {
@@ -2125,6 +2125,31 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
+                "eventid": "MK25E3010",
+                "eventname": "Gastronomer",
+                "description": "Savor the thrill at Gastronomer, an eating competition where participants eat their way to victory! Join us for a feast of competitive indulgence, as contenders showcase their appetites and determination in this ultimate gastronomic showdown.",
+                "type": "non-tech",
+                "category": 1,
+                "category_name": "Non - Technical",
+                "division": "Food Processing Technology",
+                "start_time": "2025-03-21T09:00:00Z",
+                "end_time": "2025-02-10T18:55:36Z",
+                "price": "200",
+                "participation_strength_setlimit": 100,
+                "coordinators": {
+                    "faculty": {
+                        "name": "Dr.Wasiya Farzana",
+                        "phone": "7999271860",
+                        "email": "wasiya@karunya.edu"
+                    },
+                    "student": {
+                        "name": "Aishwariya K and Merryl Abigail",
+                        "phone": "9840169360 and 8015222012",
+                        "email": "merrylabigail@karunyaa.edu.in"
+                    }
+                }
+            },
+            {
                 "eventid": "MK25E0071",
                 "eventname": "Business Plan",
                 "description": "The Business Plan Contest will provide students with the opportunity to showcase their business ideas.",
@@ -2376,6 +2401,32 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
+                "eventid": "MK25E3009",
+                "eventname": "Workshop on Nanotechnology",
+                "description": "Workshop will consist of a special lecture from an Industrial expert in Nanotechnology and demo session on Synthesis of nanomaterials : Material Characterization instruments- Thin film deposition instruments [Thin film devices] – Device Characterizations. Scanning Electron Microscope (SEM), X-ray Diffraction (XRD), Atomic Force Microscopy (AFM), UV-Visible Spectroscopy, Particle Size Analyzer, Spin coating, I-V characterization Workstation and Impedance Analyzer.",
+                "type": "tech",
+                "category": 1,
+                "category_name": "Workshop",
+                "division": "Physical Sciences",
+                "start_time": "2025-03-21T09:00:00Z",
+                "end_time": "2025-02-10T18:55:36Z",
+                "price": "200",
+                "participation_strength_setlimit": "30",
+                "coordinators": {
+                    "faculty": {
+                        "name": "Dr.S.K.Suresh Babu",
+                        "phone": "9994621546",
+                        "email": "sksureshbabu@karunya.edu"
+                    },
+                    "student": {
+                        "name": "Shilpa Shivaram",
+                        "phone": "9003968542",
+                        "email": "shilpashivaram21@karunya.edu.in"
+                    }
+                }
+            },
+        
+            {
                 "eventid": "MK25E0081",
                 "eventname": "TrapZone",
                 "description": "The Player enter a classroom that has been transformed into a  dark room.\nThe Outer Perimeter:  This first level acts as a gateway to the more challenging second level. Players must search the outer perimeter of the classroom for three flags. Two flags are hidden somewhere within the environment.  The third flag is earned, not found. Players must compete in a quick game of XOX (Tic-Tac-Toe) against a game master. The winner of the XOX game receives the third flag.\nOnce a player has successfully located the two hidden flags and won the XOX game to acquire the third flag, they have completed Level 1. Only then are they allowed to proceed to Level 2.  This ensures that players can't just rush through to the final level without demonstrating some skill and thoroughness.\nThe Inner layer: This is the final and more difficult level.  Players now enter the inner part of the classroom. Here, five more flags are hidden. These flags might be more cleverly concealed than the ones in Level 1.\nWinning the Game: The player who finds all eight flags (three from Level 1 and five from Level 2) in the fastest time wins the game.  A timer is likely used to track each player's\u00a0progress.",
@@ -2476,16 +2527,7 @@ const MindkraftEventsPage: React.FC = () => {
                             }
                         }
                     },
-                                 
-                            
-                   
-                       
-                   
-                       
-                   
-                       
-                   
-                       
+                                     
                     ];
       
       setEvents(sampleData);
