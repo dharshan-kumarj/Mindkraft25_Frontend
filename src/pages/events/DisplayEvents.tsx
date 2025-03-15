@@ -10,6 +10,31 @@ interface Event {
     event: string;
     event_name: string;
     payment_status: boolean;
+    event_details: {
+        eventid: string;
+        eventname: string;
+        description: string;
+        type: string;
+        category: number;
+        category_name: string;
+        division: string;
+        start_time: string;
+        end_time: string;
+        price: string;
+        participation_strength_setlimit: string;
+        coordinators: {
+            faculty: {
+                name: string;
+                phone: string;
+                email: string;
+            };
+            student: {
+                name: string;
+                phone: string;
+                email: string;
+            };
+        };
+    };
 }
 
 const MyEvents: React.FC = () => {
@@ -98,8 +123,19 @@ const MyEvents: React.FC = () => {
                                 key={event.MKID || index}
                                 className="flex flex-col md:flex-row justify-between items-center bg-gray-800 p-5 rounded-lg border border-gray-700 mb-4"
                             >
-                                <div>
-                                    <h3 className="text-xl font-semibold text-white">{event.event_name}</h3>
+                                <div className="w-full md:w-3/4">
+                                    <h3 className="text-xl font-semibold text-white">{event.event_details.eventname}</h3>
+                                    <p className="text-md text-gray-300 mt-2">{event.event_details.description}</p>
+                                    <p className="text-sm text-gray-400 mt-2">
+                                        <strong>Category:</strong> {event.event_details.category_name} <br />
+                                        <strong>Division:</strong> {event.event_details.division} <br />
+                                        <strong>Start Time:</strong> {new Date(event.event_details.start_time).toLocaleString()} <br />
+                                        <strong>End Time:</strong> {new Date(event.event_details.end_time).toLocaleString()}
+                                    </p>
+                                    <p className="text-sm text-gray-400 mt-2">
+                                        <strong>Faculty Coordinator:</strong> {event.event_details.coordinators.faculty.name} ({event.event_details.coordinators.faculty.phone}, {event.event_details.coordinators.faculty.email}) <br />
+                                        <strong>Student Coordinator:</strong> {event.event_details.coordinators.student.name} ({event.event_details.coordinators.student.phone}, {event.event_details.coordinators.student.email})
+                                    </p>
                                 </div>
                                 <div className="mt-3 md:mt-0 text-lg font-semibold text-white">
                                     {event.payment_status ? (
