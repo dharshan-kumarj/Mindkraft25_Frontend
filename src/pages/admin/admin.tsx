@@ -53,6 +53,7 @@ const AdminPage: React.FC = () => {
   const [registeredEvents, setRegisteredEvents] = useState<RegisteredEvent[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [unauthorized, setUnauthorized] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchRegisteredEvents = async () => {
@@ -63,15 +64,29 @@ const AdminPage: React.FC = () => {
           .find((row) => row.startsWith("accessToken"))
           ?.split("=")[1];
 
-        // if (!token) {
-        //   console.error("Access token not found. Redirecting to login...");
-        //   window.location.href = "/#/login";
-        //   return;
-        // }
+        if (!token) {
+          console.error("Access token not found.");
+          setUnauthorized(true);
+          setError("You are not authorized to view this page. Please log in with admin credentials.");
+          setLoading(false);
+          return;
+        }
+
+        console.log("Token Retrieved:", token);
 
         const response = await fetch("http://localhost:8000/api/all-registered-events/", {
           method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         });
+
+        if (response.status === 401) {
+          setUnauthorized(true);
+          setError("You are not authorized to view this page. Please log in with admin credentials.");
+          return;
+        }
 
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
@@ -129,6 +144,50 @@ const AdminPage: React.FC = () => {
     XLSX.writeFile(workbook, filename);
   };
 
+  // Unauthorized Access Error Page
+  if (unauthorized) {
+    return (
+      <div
+        className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <div className="bg-red-900 bg-opacity-80 p-8 rounded-lg shadow-lg max-w-md text-center">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-16 w-16 mx-auto text-white mb-4"
+            fill="none"
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" 
+            />
+          </svg>
+          <h2 className="text-2xl text-white font-bold mb-4">Unauthorized Access</h2>
+          <p className="text-gray-300 mb-6">You don't have permission to access this admin page. Please log in with the appropriate credentials.</p>
+          <div className="flex justify-center gap-4">
+            <a 
+              href="/#/login" 
+              className="bg-white text-red-900 hover:bg-gray-200 font-bold py-2 px-4 rounded"
+            >
+              Log In
+            </a>
+            <a 
+              href="/#/" 
+              className="bg-transparent border border-white text-white hover:bg-white hover:bg-opacity-10 font-bold py-2 px-4 rounded"
+            >
+              Go to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Normal Admin Page
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-start pt-16 bg-cover bg-center"
@@ -146,7 +205,7 @@ const AdminPage: React.FC = () => {
       {/* Admin Section */}
       <div className="bg-white bg-opacity-20 p-8 rounded-lg shadow-lg mt-20 w-full max-w-7xl">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl text-white font-bold">All Registered Events</h2>
+          <h2 className="text-2xl text-white font-bold">All Registered Non-Paid Events of all students</h2>
           
           {!loading && !error && registeredEvents.length > 0 && (
             <button 
@@ -183,7 +242,6 @@ const AdminPage: React.FC = () => {
                   <th className="px-4 py-3 text-left text-white">College</th>
                   <th className="px-4 py-3 text-left text-white">Event Name</th>
                   <th className="px-4 py-3 text-left text-white">Event Category</th>
-                  {/* <th className="px-4 py-3 text-left text-white">Status</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -207,13 +265,6 @@ const AdminPage: React.FC = () => {
                     <td className="px-4 py-3 text-gray-300">{getCollegeName(event)}</td>
                     <td className="px-4 py-3 text-gray-300">{event.event_details.eventname}</td>
                     <td className="px-4 py-3 text-gray-300">{event.event_details.category_name}</td>
-                    {/* <td className="px-4 py-3">
-                      {event.payment_status ? (
-                        <span className="text-green-400">✔ Registered</span>
-                      ) : (
-                        <span className="text-red-500">❌ Not Registered</span>
-                      )}
-                    </td> */}
                   </tr>
                 ))}
               </tbody>
@@ -221,8 +272,6 @@ const AdminPage: React.FC = () => {
           </div>
         )}
       </div>
-      
-     
     </div>
   );
 };
