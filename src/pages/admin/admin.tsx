@@ -74,7 +74,7 @@ const AdminPage: React.FC = () => {
 
         console.log("Token Retrieved:", token);
 
-        const response = await fetch("http://localhost:8000/api/all-registered-events/", {
+        const response = await fetch("https://api.mindkraft.org/api/all-registered-events/", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
