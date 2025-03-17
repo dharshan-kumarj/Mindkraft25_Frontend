@@ -75,7 +75,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
+            "price": "100\u20b9",
             "participation_strength_setlimit": 60,
             "coordinators": {
                 "faculty": {
@@ -100,7 +100,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "150",
+            "price": "150\u20b9",
             "participation_strength_setlimit": 70,
             "coordinators": {
                 "faculty": {
@@ -125,7 +125,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "75",
+            "price": "75\u20b9",
             "participation_strength_setlimit": "",
             "coordinators": {
                 "faculty": {
@@ -315,7 +315,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0013",
-            "eventname": "TradeMaster Challenge: 24-Hour Profit Hunt",
+            "eventname": "TradeMAster Challenge: 24-Hour Profit Hunt",
             "description": "Think you can conquer the stock market in just 24 hours? Join the TradeMaster Challenge, a high-intensity virtual trading competition using the Frontpage paper trading app! Compete against fellow students to make the highest profit within a day. The top three traders will win exciting prizes. No real money, just skill and strategy\u2014analyze, trade, and rise to the top. Are you ready to prove you're the ultimate trader? Let the challenge begin!",
             "type": "tech",
             "category": 1,
@@ -975,7 +975,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Commerce and International Trade",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100",
+            "price": "Rs.100",
             "participation_strength_setlimit": 80,
             "coordinators": {
                 "faculty": {
@@ -2326,6 +2326,58 @@ const MindkraftEventsPage: React.FC = () => {
                 }
             },
             {
+                "eventid": "MK25E3015",
+                "eventname": " Venture Verse - A Pitch Competition",
+                "description": "Venture Verse is a pitchfest hosted by E-Cell Karunya, designed to ignite your entrepreneurial potential! Pitch your innovative business ideas and take the first step toward building a successful venture.",
+                "type": "tech",
+                "category": 1,
+                "category_name": "Technical",
+                "division": "Office of Innovation, Incubation and Entrepreneurship",
+                "start_time": "2025-03-21T09:00:00Z",
+                "end_time": "2025-02-10T18:55:36Z",
+                "price": "Free",
+                "participation_strength_setlimit": "9 Teams will be shortlisted (2-4 members per team)",
+                "coordinators": {
+                    "faculty": {
+                        "name": "Dr. Victor Du John",
+                        "phone": "6381490371",
+                        "email": "victorjohn@karunya.edu"
+                    },
+                    "student": {
+                        "name": "M Rajath",
+                        "phone": "7306068274",
+                        "email": "rajathm@karunya.edu.in"
+                    }
+                }
+                
+             },
+            {
+                "eventid": "MK25E3016",
+                "eventname": "Hydrothon - A Water Hackathon",
+                "description": "A Hackathon will be conducted on World Water Day (22 March 2024) to find solutions in the area of water. Teams should propose their problem statement and build solutions to achieve UN Sustainable Development Goal 6: Clean Water and Sanitation.",
+                "type": "tech",
+                "category": 1,
+                "category_name": "Technical",
+                "division": "Office of Innovation, Incubation and Entrepreneurship",
+                "start_time": "2025-03-21T09:00:00Z",
+                "end_time": "2025-02-10T18:55:36Z",
+                "price": "Free",
+                "participation_strength_setlimit": "9 Teams will be shortlisted (2-4 members per team)",
+                "coordinators": {
+                    "faculty": {
+                        "name": "Dr. Sugumar",
+                        "phone": "9629451775",
+                        "email": "sugumar@karunya.edu"
+                    },
+                    "student": {
+                        "name": "Darshnee Sunderraj",
+                        "phone": "6383236381",
+                        "email": "darshneesunderraj@karunya.edu.in"
+                    }
+                }
+            },
+        
+            {
                 "eventid": "MK25E0078",
                 "eventname": "Identify me",
                 "description": "Candidates will explore their chemistry knowledge in finding objects.",
@@ -2527,6 +2579,9 @@ const MindkraftEventsPage: React.FC = () => {
                             }
                         }
                     },
+                                 
+                            
+                   
                                      
                     ];
       

@@ -129,8 +129,8 @@ const MyEvents: React.FC = () => {
                                     <p className="text-sm text-gray-400 mt-2">
                                         <strong>Category:</strong> {event.event_details.category_name} <br />
                                         <strong>Division:</strong> {event.event_details.division} <br />
-                                        <strong>Start Time:</strong> {new Date(event.event_details.start_time).toLocaleString()} <br />
-                                        <strong>End Time:</strong> {new Date(event.event_details.end_time).toLocaleString()}
+                                        {/* <strong>Start Time:</strong> {new Date(event.event_details.start_time).toLocaleString()} <br />
+                                        <strong>End Time:</strong> {new Date(event.event_details.end_time).toLocaleString()} */}
                                     </p>
                                     <p className="text-sm text-gray-400 mt-2">
                                         <strong>Faculty Coordinator:</strong> {event.event_details.coordinators.faculty.name} ({event.event_details.coordinators.faculty.phone}, {event.event_details.coordinators.faculty.email}) <br />
