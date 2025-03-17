@@ -2335,7 +2335,7 @@ const MindkraftEventsPage: React.FC = () => {
                 "division": "Innovation, Incubation and Entrepreneurship",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
-                "price": "Free",
+                "price": "",
                 "participation_strength_setlimit": "9 Teams will be shortlisted (2-4 members per team)",
                 "coordinators": {
                     "faculty": {
@@ -2361,7 +2361,7 @@ const MindkraftEventsPage: React.FC = () => {
                 "division": "Innovation, Incubation and Entrepreneurship",
                 "start_time": "2025-03-21T09:00:00Z",
                 "end_time": "2025-02-10T18:55:36Z",
-                "price": "Free",
+                "price": "",
                 "participation_strength_setlimit": "9 Teams will be shortlisted (2-4 members per team)",
                 "coordinators": {
                     "faculty": {
