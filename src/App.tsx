@@ -26,7 +26,7 @@ const App: React.FC = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/test" element={<Testd />} />
         <Route path="/registered" element={<MyEvents />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/adminpanel" element={<AdminPage />} />
       </Routes>
     </Router>
   );

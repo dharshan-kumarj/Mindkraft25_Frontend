@@ -75,7 +75,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "100\u20b9",
+            "price": "100",
             "participation_strength_setlimit": 60,
             "coordinators": {
                 "faculty": {
@@ -100,7 +100,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "150\u20b9",
+            "price": "150",
             "participation_strength_setlimit": 70,
             "coordinators": {
                 "faculty": {
@@ -125,7 +125,7 @@ const MindkraftEventsPage: React.FC = () => {
             "division": "Aerospace Engineering",
             "start_time": "2025-03-21T09:00:00Z",
             "end_time": "2025-02-10T18:55:36Z",
-            "price": "75\u20b9",
+            "price": "75",
             "participation_strength_setlimit": "",
             "coordinators": {
                 "faculty": {
@@ -315,7 +315,7 @@ const MindkraftEventsPage: React.FC = () => {
         },
         {
             "eventid": "MK25E0013",
-            "eventname": "TradeMAster Challenge: 24-Hour Profit Hunt",
+            "eventname": "TradeMaster Challenge: 24-Hour Profit Hunt",
             "description": "Think you can conquer the stock market in just 24 hours? Join the TradeMaster Challenge, a high-intensity virtual trading competition using the Frontpage paper trading app! Compete against fellow students to make the highest profit within a day. The top three traders will win exciting prizes. No real money, just skill and strategy\u2014analyze, trade, and rise to the top. Are you ready to prove you're the ultimate trader? Let the challenge begin!",
             "type": "tech",
             "category": 1,

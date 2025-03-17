@@ -55,10 +55,10 @@ const RegistrationPage: React.FC = () => {
       mobile_no: formData.get("phone-number"),
       date_of_birth: formData.get("dob"),
       password: formData.get("password"),
-      recipt_no: formData.get("receiptno"),
+      is_faculty: false,
       intercollege: false,
       is_enrolled: true,
-      student_info: {
+      student: {
         college_name: "Karunya University",
         branch: formData.get("program"),
         dept: formData.get("course"),
@@ -127,10 +127,10 @@ const RegistrationPage: React.FC = () => {
       last_name: formData.get("ext-last-name"),
       mobile_no: formData.get("ext-phone-number"),
       password: formData.get("ext-password"),
-      recipt_no: formData.get("receiptno"),
+      is_faculty: false,
       intercollege: true,
       is_enrolled: false,
-      student_info: {
+      student: {
         college_name: collegeName,
         branch: formData.get("ext-program"),
         dept: formData.get("ext-course"),
@@ -245,7 +245,7 @@ const RegistrationPage: React.FC = () => {
     setConfirmPassword(newConfirmPassword);
 
     if (newConfirmPassword !== password) {
-      setConfirmPasswordError("Password must be at least 8 characters long!");
+      setConfirmPasswordError("ConfirPassword must be at least 8 characters long!");
     } else {
       setConfirmPasswordError("");
     }
@@ -269,13 +269,12 @@ const RegistrationPage: React.FC = () => {
     const newConfirmPassword = e.target.value;
     setConfirmPassword1(newConfirmPassword);
 
-    if (newConfirmPassword !== password1) {
-      setConfirmPasswordError1("Password must be at least 8 characters long!");
+    if (newConfirmPassword !== password) {
+      setConfirmPasswordError1("ConfirPassword must be at least 8 characters long!");
     } else {
       setConfirmPasswordError1("");
     }
   };
-
 
   return (
     <div
@@ -317,7 +316,7 @@ const RegistrationPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <a href="/">
             <span className="text-2xl font-bold text-white">
-              MINDKRAFT 2K25
+              MINDKRAFT'25
             </span>
           </a>
           <img
@@ -696,32 +695,7 @@ const RegistrationPage: React.FC = () => {
                   </div>
                 )}
               </div>
-
-              {/* Receipt Number */}
-              <div className="flex flex-col">
-                <label className="text-white font-bold mb-1">Receipt Number</label>
-                <input
-                  type="text"
-                  name="receiptno"
-                  placeholder="Payment Receipt Number"
-                  required
-                  className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-
-                />
-                 <p className="text-sm text-gray-300 mt-2">
-                  If you haven't made a payment, please visit{" "}
-                  <a
-                    href="https://eduserve.karunya.edu/online/PayAddOnFees.aspx" // Replace with the actual EdServe link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 underline"
-                  >
-                    Eduserve
-                  </a>{" "}
-                  to complete your payment.
-                </p>
-              </div>
-                          
+            
 
             <button
               type="submit"
@@ -905,30 +879,6 @@ const RegistrationPage: React.FC = () => {
                   </div>
                 )}
             </div>
-             {/* Receipt Number */}
-             <div className="flex flex-col">
-                <label className="text-white font-bold mb-1">Receipt Number</label>
-                <input
-                  type="text"
-                  name="receiptno"
-                  placeholder="Payment Receipt Number"
-                  required
-                  className="p-2 rounded bg-transparent border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-70"
-
-                />
-                 <p className="text-sm text-gray-300 mt-2">
-                  If you haven't made a payment, please visit{" "}
-                  <a
-                    href="https://eduserve.karunya.edu/Online/ExternalEvents.aspx" // Replace with the actual EdServe link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 underline"
-                  >
-                    Eduserve
-                  </a>{" "}
-                  to complete your payment.
-                </p>
-              </div>
             <button
               type="submit"
               className="col-span-2 p-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
