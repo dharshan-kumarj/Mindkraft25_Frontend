@@ -40,7 +40,7 @@ interface RegisteredEvent {
     eventname: string;
     category_name: string;
     division: string;
-  };
+  } | null; // Mark as nullable since the API might return null
 }
 
 interface ApiResponse {
@@ -117,9 +117,19 @@ const AdminPage: React.FC = () => {
     return event.student?.college_name || event.user.student?.college_name || '-';
   };
 
+  // Helper functions to safely access event_details properties
+  const getEventName = (event: RegisteredEvent) => {
+    return event.event_details?.eventname || event.event_name || "-";
+  };
+
+  const getEventCategory = (event: RegisteredEvent) => {
+    return event.event_details?.category_name || "-";
+  };
+
   const exportToExcel = () => {
     // Format the data for Excel export
-    const excelData = registeredEvents.map(event => ({
+    const excelData = registeredEvents.map((event, index) => ({
+      'S.No': index + 1,
       'MKID': event.user.mkid,
       'Name': `${event.user.first_name} ${event.user.last_name}`,
       'Email': event.user.email,
@@ -127,8 +137,8 @@ const AdminPage: React.FC = () => {
       'Mobile': event.user.mobile_no,
       'Type': event.user.intercollege ? "External" : "Internal",
       'College': getCollegeName(event),
-      'Event Name': event.event_details.eventname,
-      'Event Category': event.event_details.category_name,
+      'Event Name': getEventName(event),
+      'Event Category': getEventCategory(event),
       'Status': event.payment_status ? "Registered" : "Not Registered",
       'Registered At': new Date(event.registered_at).toLocaleString(),
     }));
@@ -140,7 +150,7 @@ const AdminPage: React.FC = () => {
 
     // Generate Excel file and download
     const currentDate = new Date().toISOString().slice(0, 10);
-    const filename = `MindKraft_Registrations_${currentDate}.xlsx`;
+    const filename = `MindKraft_NonPaidEvents_Registrations_${currentDate}.xlsx`;
     XLSX.writeFile(workbook, filename);
   };
 
@@ -233,6 +243,7 @@ const AdminPage: React.FC = () => {
             <table className="min-w-full bg-gray-800 bg-opacity-70 rounded-lg">
               <thead>
                 <tr className="border-b border-gray-700">
+                  <th className="px-4 py-3 text-left text-white">S.No</th>
                   <th className="px-4 py-3 text-left text-white">MKID</th>
                   <th className="px-4 py-3 text-left text-white">Name</th>
                   <th className="px-4 py-3 text-left text-white">Email</th>
@@ -250,6 +261,7 @@ const AdminPage: React.FC = () => {
                     key={event.id} 
                     className={`${index % 2 === 0 ? 'bg-gray-700 bg-opacity-30' : ''} hover:bg-gray-700 hover:bg-opacity-50`}
                   >
+                    <td className="px-4 py-3 text-gray-300">{index + 1}</td>
                     <td className="px-4 py-3 text-gray-300">{event.user.mkid}</td>
                     <td className="px-4 py-3 text-gray-300">{`${event.user.first_name} ${event.user.last_name}`}</td>
                     <td className="px-4 py-3 text-gray-300">{event.user.email}</td>
@@ -263,8 +275,8 @@ const AdminPage: React.FC = () => {
                       )}
                     </td>
                     <td className="px-4 py-3 text-gray-300">{getCollegeName(event)}</td>
-                    <td className="px-4 py-3 text-gray-300">{event.event_details.eventname}</td>
-                    <td className="px-4 py-3 text-gray-300">{event.event_details.category_name}</td>
+                    <td className="px-4 py-3 text-gray-300">{getEventName(event)}</td>
+                    <td className="px-4 py-3 text-gray-300">{getEventCategory(event)}</td>
                   </tr>
                 ))}
               </tbody>

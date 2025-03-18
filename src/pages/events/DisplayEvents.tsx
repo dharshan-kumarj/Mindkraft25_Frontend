@@ -137,13 +137,13 @@ const MyEvents: React.FC = () => {
                                         <strong>Student Coordinator:</strong> {event.event_details.coordinators.student.name} ({event.event_details.coordinators.student.phone}, {event.event_details.coordinators.student.email})
                                     </p>
                                 </div>
-                                <div className="mt-3 md:mt-0 text-lg font-semibold text-white">
+                                {/* <div className="mt-3 md:mt-0 text-lg font-semibold text-white">
                                     {event.payment_status ? (
                                         <span className="text-green-400">✔ Registered</span>
                                     ) : (
                                         <span className="text-red-500">❌ Not Registered</span>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                     </>
