@@ -113,8 +113,15 @@ const AdminPage: React.FC = () => {
   }, []);
 
   const getCollegeName = (event: RegisteredEvent) => {
-    // Try to get college name from student field, or from user.student, or return '-'
-    return event.student?.college_name || event.user.student?.college_name || '-';
+    // Get college name from either student field or user.student
+    const collegeName = event.student?.college_name || event.user.student?.college_name || '-';
+    
+    // Check if college name is Karunya University and replace with full name
+    if (collegeName.toLowerCase() === "karunya university") {
+      return "Karunya Institute of Technology and Sciences";
+    }
+    
+    return collegeName;
   };
 
   // Helper functions to safely access event_details properties
@@ -124,6 +131,11 @@ const AdminPage: React.FC = () => {
 
   const getEventCategory = (event: RegisteredEvent) => {
     return event.event_details?.category_name || "-";
+  };
+  
+  // New helper function to get division
+  const getDivision = (event: RegisteredEvent) => {
+    return event.event_details?.division || "-";
   };
 
   const exportToExcel = () => {
@@ -139,6 +151,7 @@ const AdminPage: React.FC = () => {
       'College': getCollegeName(event),
       'Event Name': getEventName(event),
       'Event Category': getEventCategory(event),
+      'Division': getDivision(event),
       'Status': event.payment_status ? "Registered" : "Not Registered",
       'Registered At': new Date(event.registered_at).toLocaleString(),
     }));
@@ -253,6 +266,7 @@ const AdminPage: React.FC = () => {
                   <th className="px-4 py-3 text-left text-white">College</th>
                   <th className="px-4 py-3 text-left text-white">Event Name</th>
                   <th className="px-4 py-3 text-left text-white">Event Category</th>
+                  <th className="px-4 py-3 text-left text-white">Division</th>
                 </tr>
               </thead>
               <tbody>
@@ -277,6 +291,7 @@ const AdminPage: React.FC = () => {
                     <td className="px-4 py-3 text-gray-300">{getCollegeName(event)}</td>
                     <td className="px-4 py-3 text-gray-300">{getEventName(event)}</td>
                     <td className="px-4 py-3 text-gray-300">{getEventCategory(event)}</td>
+                    <td className="px-4 py-3 text-gray-300">{getDivision(event)}</td>
                   </tr>
                 ))}
               </tbody>
