@@ -917,6 +917,11 @@ const RegistrationPage: React.FC = () => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-gray-800 p-6 rounded-lg text-center">
               <h2 className="text-white text-2xl font-bold mb-4">Enter OTP</h2>
+              <p className="text-white">
+                An OTP has been sent to your email address. Please enter the OTP
+                below to complete the registration process.
+              </p>
+              
               <input
                 type="text"
                 value={otp}
