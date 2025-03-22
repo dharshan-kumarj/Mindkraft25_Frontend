@@ -69,7 +69,7 @@ const RegistrationPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://api.mindkraft.org/user/register/",
+        "",
         data,
         {
           headers: {
