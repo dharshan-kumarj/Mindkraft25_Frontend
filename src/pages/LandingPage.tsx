@@ -183,7 +183,7 @@ const LandingPage: React.FC = () => {
         <p className="text-lg md:text-xl mt-4 text-gray-300 max-w-xl">
           “Redefining Technology for Sustainable Synergies”        </p>
         <p className="text-xl md:text-2xl font-semibold text-yellow-400 mt-2">
-          21 & 22 MARCH'25
+          1 & 2 APRIL '25
         </p>
 
         {/* CTA Button */}
